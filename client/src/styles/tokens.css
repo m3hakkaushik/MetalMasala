@@ -1,0 +1,33 @@
+:root {
+  --patina: #0f3d38;
+  --gulaal: #d81e70;
+  --gulaal-dark: #b91760;
+  --haldi: #f5b516;
+  --kapoor: #edf0ea;
+  --silver-oxide: #23262d;
+  --mirchi: #c42b12;
+  --white: #fff;
+  --muted: #4a5752;
+  --stroke: #c4cdc2;
+  --matte: #dce5db;
+  --reeled: #173a37;
+  --sheet: #f7f9f4;
+  --hero-ink: #f3ebcb;
+  --display: 'Yatra One', 'Mukta', Georgia, serif;
+  --body: 'Instrument Sans', 'Mukta', system-ui, sans-serif;
+  --hand: 'Kalam', 'Mukta', cursive;
+  --content-width: 87.5rem;
+  --gutter: clamp(1.125rem, 4vw, 4.25rem);
+  --focus: var(--silver-oxide);
+}
+
+@theme inline {
+  --color-patina: var(--patina);
+  --color-gulaal: var(--gulaal);
+  --color-haldi: var(--haldi);
+  --color-kapoor: var(--kapoor);
+  --color-silver-oxide: var(--silver-oxide);
+  --color-mirchi: var(--mirchi);
+  --font-display: var(--display);
+  --font-sans: var(--body);
+}
