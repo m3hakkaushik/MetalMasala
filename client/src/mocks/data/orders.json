@@ -1,0 +1,1506 @@
+[
+  {
+    "id": "ffffffffffffffffffff0001",
+    "orderNumber": "MM-2026-0017S3",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0001",
+        "name": "Chandni Chowk Jhumka",
+        "slug": "chandni-chowk-jhumka",
+        "image": "/products/chandni-chowk-jhumka-1.webp",
+        "price": 799,
+        "qty": 2,
+        "lineTotal": 1598
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aarav Mehta",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1598,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 1598
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-1"
+    },
+    "status": "placed",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-17T09:00:00.000Z",
+        "note": "Order placed"
+      }
+    ],
+    "user": "65f0c0ffee0000000000a001",
+    "createdAt": "2026-11-17T09:00:00.000Z",
+    "updatedAt": "2026-11-17T09:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0002",
+    "orderNumber": "MM-2026-001EEM",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0006",
+        "name": "Palash Coin Necklace",
+        "slug": "palash-coin-necklace",
+        "image": "/products/palash-coin-necklace-1.webp",
+        "price": 999,
+        "qty": 1,
+        "lineTotal": 999
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aarav Mehta",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 999,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 999
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-2"
+    },
+    "status": "shipped",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-15T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-15T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-15T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-15T16:00:00.000Z"
+      }
+    ],
+    "user": "65f0c0ffee0000000000a001",
+    "createdAt": "2026-11-15T10:00:00.000Z",
+    "updatedAt": "2026-11-15T16:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0003",
+    "orderNumber": "MM-2026-001L15",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb000b",
+        "name": "Anar Seed Ring",
+        "slug": "anar-seed-ring",
+        "image": "/products/anar-seed-ring-1.webp",
+        "price": 349,
+        "qty": 1,
+        "lineTotal": 349
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aarav Mehta",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 349,
+      "shipping": 79,
+      "codFee": 49,
+      "discount": 0,
+      "total": 477
+    },
+    "payment": {
+      "method": "cod",
+      "status": "paid",
+      "transactionId": null
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-13T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-13T13:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-13T15:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-13T17:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-11-13T19:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-11-13T21:00:00.000Z"
+      }
+    ],
+    "user": "65f0c0ffee0000000000a001",
+    "createdAt": "2026-11-13T11:00:00.000Z",
+    "updatedAt": "2026-11-13T21:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0004",
+    "orderNumber": "MM-2026-001RNO",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0010",
+        "name": "Bundi Balcony Cuff",
+        "slug": "bundi-balcony-cuff",
+        "image": "/products/bundi-balcony-cuff-1.webp",
+        "price": 1499,
+        "qty": 2,
+        "lineTotal": 2998
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Diya Patel",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 2998,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 2998
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-4"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-11T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-11T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-11T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-11T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-11-11T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-11-11T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0005",
+    "createdAt": "2026-11-11T09:00:00.000Z",
+    "updatedAt": "2026-11-11T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0005",
+    "orderNumber": "MM-2026-001YA7",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0015",
+        "name": "Mehfil Maang Tikka",
+        "slug": "mehfil-maang-tikka",
+        "image": "/products/mehfil-maang-tikka-1.webp",
+        "price": 899,
+        "qty": 1,
+        "lineTotal": 899
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aditi Bose",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 899,
+      "shipping": 79,
+      "codFee": 0,
+      "discount": 0,
+      "total": 978
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-5"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-09T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-09T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-09T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-09T16:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-11-09T18:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-11-09T20:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0006",
+    "createdAt": "2026-11-09T10:00:00.000Z",
+    "updatedAt": "2026-11-09T20:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0006",
+    "orderNumber": "MM-2026-0024WQ",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb001a",
+        "name": "Elaichi Nose Stud",
+        "slug": "elaichi-nose-stud",
+        "image": "/products/elaichi-nose-stud-1.webp",
+        "price": 299,
+        "qty": 1,
+        "lineTotal": 299
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Ishita Rao",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 299,
+      "shipping": 79,
+      "codFee": 49,
+      "discount": 0,
+      "total": 427
+    },
+    "payment": {
+      "method": "cod",
+      "status": "paid",
+      "transactionId": null
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-07T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-07T13:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-07T15:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-07T17:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-11-07T19:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-11-07T21:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0002",
+    "createdAt": "2026-11-07T11:00:00.000Z",
+    "updatedAt": "2026-11-07T21:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0007",
+    "orderNumber": "MM-2026-002BJ9",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb001f",
+        "name": "Best Friend Combo",
+        "slug": "best-friend-combo",
+        "image": "/products/best-friend-combo-1.webp",
+        "price": 999,
+        "qty": 2,
+        "lineTotal": 1998
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Noor Khan",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1998,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 1998
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-7"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-05T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-05T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-05T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-05T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-11-05T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-11-05T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0003",
+    "createdAt": "2026-11-05T09:00:00.000Z",
+    "updatedAt": "2026-11-05T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0008",
+    "orderNumber": "MM-2026-002I5S",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0004",
+        "name": "Monsoon Mini Jhumka",
+        "slug": "monsoon-mini-jhumka",
+        "image": "/products/monsoon-mini-jhumka-1.webp",
+        "price": 499,
+        "qty": 1,
+        "lineTotal": 499
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Meera Saini",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 499,
+      "shipping": 79,
+      "codFee": 0,
+      "discount": 0,
+      "total": 578
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-8"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-03T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-11-03T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-11-03T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-11-03T16:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-11-03T18:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-11-03T20:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0004",
+    "createdAt": "2026-11-03T10:00:00.000Z",
+    "updatedAt": "2026-11-03T20:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0009",
+    "orderNumber": "MM-2026-002OSB",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0009",
+        "name": "Hampi Ruins Ring",
+        "slug": "hampi-ruins-ring",
+        "image": "/products/hampi-ruins-ring-1.webp",
+        "price": 549,
+        "qty": 1,
+        "lineTotal": 549
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Diya Patel",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 549,
+      "shipping": 79,
+      "codFee": 49,
+      "discount": 0,
+      "total": 677
+    },
+    "payment": {
+      "method": "cod",
+      "status": "pending",
+      "transactionId": null
+    },
+    "status": "cancelled",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-11-01T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "cancelled",
+        "at": "2026-11-01T13:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0005",
+    "createdAt": "2026-11-01T11:00:00.000Z",
+    "updatedAt": "2026-11-01T13:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff000a",
+    "orderNumber": "MM-2026-002VEU",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb000e",
+        "name": "Narmada Ripple Kada",
+        "slug": "narmada-ripple-kada",
+        "image": "/products/narmada-ripple-kada-1.webp",
+        "price": 1099,
+        "qty": 2,
+        "lineTotal": 2198
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aditi Bose",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 2198,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 2198
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-10"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-30T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-30T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-30T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-30T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-30T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-30T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0006",
+    "createdAt": "2026-10-30T09:00:00.000Z",
+    "updatedAt": "2026-10-30T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff000b",
+    "orderNumber": "MM-2026-00321D",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0013",
+        "name": "Salt Pan Payal",
+        "slug": "salt-pan-payal",
+        "image": "/products/salt-pan-payal-1.webp",
+        "price": 899,
+        "qty": 1,
+        "lineTotal": 899
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Ishita Rao",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 899,
+      "shipping": 79,
+      "codFee": 0,
+      "discount": 0,
+      "total": 978
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-11"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-28T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-28T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-28T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-28T16:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-28T18:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-28T20:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0002",
+    "createdAt": "2026-10-28T10:00:00.000Z",
+    "updatedAt": "2026-10-28T20:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff000c",
+    "orderNumber": "MM-2026-0038NW",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0018",
+        "name": "Jamun Leaf Tikka",
+        "slug": "jamun-leaf-tikka",
+        "image": "/products/jamun-leaf-tikka-1.webp",
+        "price": 749,
+        "qty": 1,
+        "lineTotal": 749
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Noor Khan",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 749,
+      "shipping": 79,
+      "codFee": 49,
+      "discount": 0,
+      "total": 877
+    },
+    "payment": {
+      "method": "cod",
+      "status": "paid",
+      "transactionId": null
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-26T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-26T13:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-26T15:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-26T17:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-26T19:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-26T21:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0003",
+    "createdAt": "2026-10-26T11:00:00.000Z",
+    "updatedAt": "2026-10-26T21:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff000d",
+    "orderNumber": "MM-2026-003FAF",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb001d",
+        "name": "Sangeet Night Combo",
+        "slug": "sangeet-night-combo",
+        "image": "/products/sangeet-night-combo-1.webp",
+        "price": 2499,
+        "qty": 2,
+        "lineTotal": 4998
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Meera Saini",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 4998,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 4998
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-13"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-24T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-24T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-24T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-24T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-24T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-24T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0004",
+    "createdAt": "2026-10-24T09:00:00.000Z",
+    "updatedAt": "2026-10-24T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff000e",
+    "orderNumber": "MM-2026-003LWY",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0002",
+        "name": "Gulmohar Bell Jhumka",
+        "slug": "gulmohar-bell-jhumka",
+        "image": "/products/gulmohar-bell-jhumka-1.webp",
+        "price": 649,
+        "qty": 1,
+        "lineTotal": 649
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Diya Patel",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 649,
+      "shipping": 79,
+      "codFee": 0,
+      "discount": 0,
+      "total": 728
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-14"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-22T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-22T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-22T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-22T16:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-22T18:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-22T20:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0005",
+    "createdAt": "2026-10-22T10:00:00.000Z",
+    "updatedAt": "2026-10-22T20:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff000f",
+    "orderNumber": "MM-2026-003SJH",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0007",
+        "name": "Fort Road Collar",
+        "slug": "fort-road-collar",
+        "image": "/products/fort-road-collar-1.webp",
+        "price": 1699,
+        "qty": 1,
+        "lineTotal": 1699
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aditi Bose",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1699,
+      "shipping": 0,
+      "codFee": 49,
+      "discount": 0,
+      "total": 1748
+    },
+    "payment": {
+      "method": "cod",
+      "status": "paid",
+      "transactionId": null
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-20T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-20T13:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-20T15:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-20T17:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-20T19:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-20T21:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0006",
+    "createdAt": "2026-10-20T11:00:00.000Z",
+    "updatedAt": "2026-10-20T21:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0010",
+    "orderNumber": "MM-2026-003Z60",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb000c",
+        "name": "Gali Number Seven Ring",
+        "slug": "gali-number-seven-ring",
+        "image": "/products/gali-number-seven-ring-1.webp",
+        "price": 899,
+        "qty": 2,
+        "lineTotal": 1798
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Ishita Rao",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1798,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 1798
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-16"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-18T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-18T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-18T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-18T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-18T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-18T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0002",
+    "createdAt": "2026-10-18T09:00:00.000Z",
+    "updatedAt": "2026-10-18T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0011",
+    "orderNumber": "MM-2026-0045SJ",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0011",
+        "name": "Banaras Ghat Payal",
+        "slug": "banaras-ghat-payal",
+        "image": "/products/banaras-ghat-payal-1.webp",
+        "price": 1099,
+        "qty": 1,
+        "lineTotal": 1099
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Noor Khan",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1099,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 1099
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "refunded",
+      "transactionId": "MOCK-DEMO-17"
+    },
+    "status": "cancelled",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-16T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "cancelled",
+        "at": "2026-10-16T12:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0003",
+    "createdAt": "2026-10-16T10:00:00.000Z",
+    "updatedAt": "2026-10-16T12:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0012",
+    "orderNumber": "MM-2026-004CF2",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0016",
+        "name": "Nakshatra Tikka",
+        "slug": "nakshatra-tikka",
+        "image": "/products/nakshatra-tikka-1.webp",
+        "price": 649,
+        "qty": 1,
+        "lineTotal": 649
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Meera Saini",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 649,
+      "shipping": 79,
+      "codFee": 49,
+      "discount": 0,
+      "total": 777
+    },
+    "payment": {
+      "method": "cod",
+      "status": "paid",
+      "transactionId": null
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-14T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-14T13:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-14T15:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-14T17:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-14T19:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-14T21:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0004",
+    "createdAt": "2026-10-14T11:00:00.000Z",
+    "updatedAt": "2026-10-14T21:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0013",
+    "orderNumber": "MM-2026-004J1L",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb001b",
+        "name": "Teal Teardrop Pin",
+        "slug": "teal-teardrop-pin",
+        "image": "/products/teal-teardrop-pin-1.webp",
+        "price": 449,
+        "qty": 2,
+        "lineTotal": 898
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Diya Patel",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 898,
+      "shipping": 79,
+      "codFee": 0,
+      "discount": 0,
+      "total": 977
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-19"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-12T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-12T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-12T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-12T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-12T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-12T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0005",
+    "createdAt": "2026-10-12T09:00:00.000Z",
+    "updatedAt": "2026-10-12T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0014",
+    "orderNumber": "MM-2026-004PO4",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0020",
+        "name": "City After Dark Combo",
+        "slug": "city-after-dark-combo",
+        "image": "/products/city-after-dark-combo-1.webp",
+        "price": 1799,
+        "qty": 1,
+        "lineTotal": 1799
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Aditi Bose",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1799,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 1799
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-20"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-10T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-10T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-10T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-10T16:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-10T18:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-10T20:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0006",
+    "createdAt": "2026-10-10T10:00:00.000Z",
+    "updatedAt": "2026-10-10T20:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0015",
+    "orderNumber": "MM-2026-004WAN",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb0005",
+        "name": "Kutch Kadambari Choker",
+        "slug": "kutch-kadambari-choker",
+        "image": "/products/kutch-kadambari-choker-1.webp",
+        "price": 1499,
+        "qty": 1,
+        "lineTotal": 1499
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Ishita Rao",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1499,
+      "shipping": 0,
+      "codFee": 49,
+      "discount": 0,
+      "total": 1548
+    },
+    "payment": {
+      "method": "cod",
+      "status": "paid",
+      "transactionId": null
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-08T11:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-08T13:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-08T15:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-08T17:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-08T19:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-08T21:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0002",
+    "createdAt": "2026-10-08T11:00:00.000Z",
+    "updatedAt": "2026-10-08T21:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0016",
+    "orderNumber": "MM-2026-0052X6",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb000a",
+        "name": "Neeli Lake Ring",
+        "slug": "neeli-lake-ring",
+        "image": "/products/neeli-lake-ring-1.webp",
+        "price": 699,
+        "qty": 2,
+        "lineTotal": 1398
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Noor Khan",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 1398,
+      "shipping": 0,
+      "codFee": 0,
+      "discount": 0,
+      "total": 1398
+    },
+    "payment": {
+      "method": "upi_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-22"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-06T09:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-06T11:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-06T13:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-06T15:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-06T17:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-06T19:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0003",
+    "createdAt": "2026-10-06T09:00:00.000Z",
+    "updatedAt": "2026-10-06T19:00:00.000Z"
+  },
+  {
+    "id": "ffffffffffffffffffff0017",
+    "orderNumber": "MM-2026-0059JP",
+    "items": [
+      {
+        "product": "bbbbbbbbbbbbbbbbbbbb000f",
+        "name": "Kala Bazaar Bangle",
+        "slug": "kala-bazaar-bangle",
+        "image": "/products/kala-bazaar-bangle-1.webp",
+        "price": 449,
+        "qty": 1,
+        "lineTotal": 449
+      }
+    ],
+    "shippingAddress": {
+      "label": "Home",
+      "fullName": "Meera Saini",
+      "phone": "9000000001",
+      "line1": "12, Sample Lane",
+      "line2": "Sector 14",
+      "city": "Gurugram",
+      "state": "Haryana",
+      "pincode": "122001"
+    },
+    "pricing": {
+      "subtotal": 449,
+      "shipping": 79,
+      "codFee": 0,
+      "discount": 0,
+      "total": 528
+    },
+    "payment": {
+      "method": "card_mock",
+      "status": "paid",
+      "transactionId": "MOCK-DEMO-23"
+    },
+    "status": "delivered",
+    "statusHistory": [
+      {
+        "status": "placed",
+        "at": "2026-10-04T10:00:00.000Z",
+        "note": "Order placed"
+      },
+      {
+        "status": "confirmed",
+        "at": "2026-10-04T12:00:00.000Z"
+      },
+      {
+        "status": "packed",
+        "at": "2026-10-04T14:00:00.000Z"
+      },
+      {
+        "status": "shipped",
+        "at": "2026-10-04T16:00:00.000Z"
+      },
+      {
+        "status": "out_for_delivery",
+        "at": "2026-10-04T18:00:00.000Z"
+      },
+      {
+        "status": "delivered",
+        "at": "2026-10-04T20:00:00.000Z"
+      }
+    ],
+    "user": "cccccccccccccccccccc0004",
+    "createdAt": "2026-10-04T10:00:00.000Z",
+    "updatedAt": "2026-10-04T20:00:00.000Z"
+  }
+]
