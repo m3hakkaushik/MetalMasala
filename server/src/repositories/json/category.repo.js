@@ -49,11 +49,11 @@ class CategoryRepository {
         const catId = p.category?.id || p.category;
         const catSlug = p.category?.slug;
         if (catId) countMap.set(catId, (countMap.get(catId) || 0) + 1);
-        if (catSlug) countMap.set(catSlug, (countMap.get(catSlug) || 0) + 1);
+        if (catSlug && catSlug !== catId) countMap.set(catSlug, (countMap.get(catSlug) || 0) + 1);
       }
       categories = categories.map((c) => ({
         ...c,
-        productCount: countMap.get(c.id) ?? countMap.get(c.slug) ?? c.productCount ?? 0,
+        productCount: countMap.get(c.id) ?? countMap.get(c.slug) ?? 0,
       }));
     } catch {
       // Keep static count if products store cannot be read
@@ -95,8 +95,9 @@ class CategoryRepository {
     const categories = await readStore(STORE_FILE, []);
 
     const slug = data.slug ? slugify(data.slug) : slugify(data.name);
+    const defaultId = `cat-${slug || crypto.randomUUID().slice(0, 8)}`;
     const newCategory = {
-      id: data.id || `cat-${slug || crypto.randomUUID().slice(0, 8)}`,
+      id: data.id ?? (categories.some(({ id }) => id === defaultId) ? crypto.randomUUID() : defaultId),
       name: data.name,
       nameHi: data.nameHi || '',
       slug,

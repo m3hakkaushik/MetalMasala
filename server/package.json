@@ -1,7 +1,7 @@
 {
   "name": "metal-masala-server",
   "version": "1.0.0",
-  "description": "Metal मसाला backend server (Phase 1 — Foundations & Server Core)",
+  "description": "Metal मसाला backend API",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -13,7 +13,8 @@
     "seed": "node scripts/seed.js",
     "export": "node scripts/export-products.js",
     "test": "node --test test/*.test.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "db:ping": "node scripts/db-ping.js"
   },
   "keywords": [
     "metal-masala",
@@ -24,12 +25,19 @@
   "author": "Mehak",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.8.2",
     "cors": "^2.8.5",
     "debug": "^4.4.0",
-    "express": "^4.21.2"
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.7.2",
+    "helmet": "^8.3.0",
+    "morgan": "^1.12.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "eslint": "^9.20.0",
+    "mongodb": "^6.21.0",
     "prettier": "^3.5.1",
     "supertest": "^7.0.0"
   }

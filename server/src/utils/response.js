@@ -54,6 +54,7 @@ export function sendError(res, {
   message = 'An unexpected error occurred',
   details = null,
   requestId = null,
+  stack,
 } = {}) {
   const reqId = requestId || res.getHeader('X-Request-Id') || undefined;
 
@@ -69,6 +70,7 @@ export function sendError(res, {
   const payload = {
     success: false,
     error: errorPayload,
+    ...(stack ? { stack } : {}),
     ...(reqId ? { requestId: reqId } : {}),
   };
 

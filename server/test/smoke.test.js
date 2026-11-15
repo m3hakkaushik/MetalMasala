@@ -1,3 +1,4 @@
+import './helpers/environment.js';
 import { describe, it, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import request from 'supertest';
@@ -92,7 +93,7 @@ describe('Metal Masala — API Smoke Test Suite [L8]', () => {
   });
 
   it('GET /api/v1/products/export.csv streams CSV file [L5, L11]', async () => {
-    const res = await request(app).get('/api/v1/products/export.csv');
+    const res = await request(app).get('/api/v1/products/export.csv').set('x-dev-role', 'manager');
     assert.equal(res.status, 200);
     assert.ok(res.headers['content-type'].includes('text/csv'));
     assert.ok(res.headers['content-disposition'].includes('products.csv'));
@@ -102,6 +103,7 @@ describe('Metal Masala — API Smoke Test Suite [L8]', () => {
   it('POST /api/v1/products returns 422 on validation failure [L11]', async () => {
     const res = await request(app)
       .post('/api/v1/products')
+      .set('x-dev-role', 'manager')
       .send({ name: '', price: -10 });
     assert.equal(res.status, 422);
     assert.equal(res.body.success, false);
@@ -110,7 +112,7 @@ describe('Metal Masala — API Smoke Test Suite [L8]', () => {
   });
 
   it('DELETE /api/v1/categories/:id returns 409 when category has products [L10]', async () => {
-    const res = await request(app).delete('/api/v1/categories/jhumkas');
+    const res = await request(app).delete('/api/v1/categories/jhumkas').set('x-dev-role', 'admin');
     assert.equal(res.status, 409);
     assert.equal(res.body.success, false);
     assert.equal(res.body.error.code, 'CONFLICT');
