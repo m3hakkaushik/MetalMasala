@@ -50,9 +50,7 @@ const schema = z
     NATIVE_PORT: integer(0, 65535).prefault('4001'),
     CLIENT_ORIGIN: origin.default('http://localhost:5173'),
     LOG_LEVEL: z.enum(['dev', 'combined', 'tiny', 'silent']).optional(),
-    DATA_STORE: z
-      .literal('json', { error: 'Phase 2 supports the JSON store only.' })
-      .default('json'),
+    DATA_STORE: z.enum(['mongo', 'json']).default('mongo'),
     DATA_STORE_DIR: z.string().trim().min(1).optional(),
     DB_TARGET: z.enum(['local', 'atlas']).default('local'),
     MONGODB_URI: z.preprocess(
@@ -67,6 +65,9 @@ const schema = z
       .trim()
       .regex(/^[\w-]+$/, 'Use letters, digits, underscores, or hyphens.')
       .default('metal_masala'),
+    AI_PROVIDER: z.enum(['mock', 'openai', 'anthropic', 'gemini']).default('mock'),
+    AI_API_KEY: z.string().trim().optional(),
+    AI_MODEL: z.string().trim().optional(),
     FREE_SHIPPING_THRESHOLD: integer(1, Number.MAX_SAFE_INTEGER).prefault(
       '999'
     ),
@@ -129,6 +130,12 @@ const config = Object.freeze({
     freeShippingThreshold: env.FREE_SHIPPING_THRESHOLD,
     shippingFee: env.SHIPPING_FEE,
     codFee: env.COD_FEE,
+  }),
+  // [L43] AI service integration parameters
+  ai: Object.freeze({
+    provider: env.AI_PROVIDER,
+    apiKey: env.AI_API_KEY,
+    model: env.AI_MODEL,
   }),
   rateLimit: Object.freeze({
     windowMs: env.RATE_LIMIT_WINDOW_MS,

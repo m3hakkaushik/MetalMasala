@@ -1,25 +1,33 @@
 import http from 'node:http';
 import app from './app.js';
 import config from './config/index.js';
+import { connectDB, disconnectDB } from './config/db.js';
 import { debugBoot } from './utils/logger.js';
 
 // [L1] Introduction to Backend Development: HTTP Server listening for client requests
 // [L3] Node.js Runtime & NPM: Application entrypoint running on Node.js >=22 runtime with native ES Modules
 // [L6] Process Object & CLI: Process lifecycle, graceful shutdown on SIGINT/SIGTERM, global unhandled exception hooks
+// [L27] Connecting Node.js with MongoDB: Connect-before-listen & disconnect on graceful shutdown
 
 const server = http.createServer(app);
 
-// Graceful shutdown helper
+// Graceful shutdown helper [L6] [L27]
 function handleGracefulShutdown(signal) {
   console.log(`\n🛑 Received ${signal}. Starting graceful shutdown...`);
   debugBoot(`Shutdown initiated via ${signal}`);
 
-  server.close((err) => {
+  server.close(async (err) => {
     if (err) {
       console.error('❌ Error during server close:', err);
       process.exit(1);
     }
-    console.log('✅ HTTP server closed. Process terminating safely.');
+    console.log('✅ HTTP server closed.');
+    try {
+      await disconnectDB();
+      console.log('✅ Database connection closed. Process terminating safely.');
+    } catch (dbErr) {
+      console.error('❌ Error disconnecting database:', dbErr);
+    }
     process.exit(0);
   });
 
@@ -47,6 +55,16 @@ process.on('uncaughtException', (err) => {
   debugBoot('Uncaught exception: %O', err);
   process.exit(1);
 });
+
+// [L27] Connect database before listening
+if (config.server.dataStore === 'mongo' && config.server.env !== 'test') {
+  try {
+    await connectDB();
+  } catch (err) {
+    console.error('❌ Failed to connect to MongoDB on startup:', err.message);
+    process.exit(1);
+  }
+}
 
 // Start listening
 server.listen(config.server.port, () => {
