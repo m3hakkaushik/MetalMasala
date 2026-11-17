@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import path from 'node:path';
 import apiRouter from './routes/index.js';
@@ -16,6 +17,7 @@ const app = express();
 // [L16] Application middleware, built-in parsers, static serving, and resource routers.
 app.use(requestId, requestLogger, ...consoleLogger, ...security);
 app.use(
+  cookieParser(),
   express.json({ limit: '10kb' }),
   express.urlencoded({ extended: true, limit: '10kb' })
 );

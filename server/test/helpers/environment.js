@@ -3,7 +3,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 const store = mkdtempSync(path.join(tmpdir(), 'metal-masala-test-'));
-process.env.NODE_ENV = 'test';
+import './mongoEnvironment.js';
+
 process.env.PORT = '4000';
 process.env.NATIVE_PORT = '0';
 process.env.MONGODB_URI = '';

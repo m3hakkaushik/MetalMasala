@@ -13,6 +13,8 @@ function validationDetails(errors = {}) {
 // [L18] Convert upstream infrastructure errors to the stable API error contract.
 export function normalizeError(error) {
   if (error instanceof AppError) return error;
+  if (error?.name === 'VersionError')
+    return new AppError(409, codes.CONFLICT, 'This record changed. Reload it and retry.');
   if (error?.name === 'CastError')
     return new AppError(400, codes.INVALID_ID, 'Invalid resource identifier');
   if (error?.name === 'ValidationError') {

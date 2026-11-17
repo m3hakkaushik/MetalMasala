@@ -2,6 +2,7 @@ import './helpers/environment.js';
 import { describe, it, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import request from 'supertest';
+import { bearer, connectTestUsers } from './helpers/auth.js';
 import app from '../src/app.js';
 import { categoryRepo } from '../src/repositories/json/category.repo.js';
 import { productRepo } from '../src/repositories/json/product.repo.js';
@@ -9,11 +10,15 @@ import { productRepo } from '../src/repositories/json/product.repo.js';
 // [L8] API Testing & Debugging: Automated smoke test suite using node:test and supertest
 
 describe('Metal Masala — API Smoke Test Suite [L8]', () => {
+  let disconnect;
   before(async () => {
+    disconnect = await connectTestUsers();
     // Ensure stores have initialized data
     await categoryRepo.findMany();
     await productRepo.findMany();
   });
+
+  after(() => disconnect?.());
 
   it('GET /health returns 200 and healthy status [L5, L6]', async () => {
     const res = await request(app).get('/health');
@@ -93,7 +98,7 @@ describe('Metal Masala — API Smoke Test Suite [L8]', () => {
   });
 
   it('GET /api/v1/products/export.csv streams CSV file [L5, L11]', async () => {
-    const res = await request(app).get('/api/v1/products/export.csv').set('x-dev-role', 'manager');
+    const res = await request(app).get('/api/v1/products/export.csv').set('Authorization', bearer('manager'));
     assert.equal(res.status, 200);
     assert.ok(res.headers['content-type'].includes('text/csv'));
     assert.ok(res.headers['content-disposition'].includes('products.csv'));
@@ -103,7 +108,7 @@ describe('Metal Masala — API Smoke Test Suite [L8]', () => {
   it('POST /api/v1/products returns 422 on validation failure [L11]', async () => {
     const res = await request(app)
       .post('/api/v1/products')
-      .set('x-dev-role', 'manager')
+      .set('Authorization', bearer('manager'))
       .send({ name: '', price: -10 });
     assert.equal(res.status, 422);
     assert.equal(res.body.success, false);
@@ -112,7 +117,7 @@ describe('Metal Masala — API Smoke Test Suite [L8]', () => {
   });
 
   it('DELETE /api/v1/categories/:id returns 409 when category has products [L10]', async () => {
-    const res = await request(app).delete('/api/v1/categories/jhumkas').set('x-dev-role', 'admin');
+    const res = await request(app).delete('/api/v1/categories/jhumkas').set('Authorization', bearer('admin'));
     assert.equal(res.status, 409);
     assert.equal(res.body.success, false);
     assert.equal(res.body.error.code, 'CONFLICT');

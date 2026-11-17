@@ -12,6 +12,7 @@ router.post(
   '/describe',
   protect,
   restrictTo('manager', 'admin'),
+  rateLimits.strict(10),
   catchAsync(aiController.describe)
 );
 
