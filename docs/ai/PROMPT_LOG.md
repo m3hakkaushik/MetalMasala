@@ -21,3 +21,12 @@
 - “Create CommonJS formatter utility and import via createRequire to show module interop.” Explaining the singleton caching and synchronous vs static evaluation patterns satisfied the L4 curriculum goal.
 - “Build manual CLI seeder and raw Node.js HTTP server on port 4001.” Parsing `process.argv` manually and implementing streaming body parsing highlighted the low-level mechanics before comparing them with Express in `docs/node-vs-express.md`.
 - “Implement catalogue CRUD and filtering with ETags and CSV export.” All query parameters from the contract implemented in `product.repo.js`; weak ETag generation enabled 304 Not Modified responses; smoke test verified 15 assertions across all endpoints.
+
+## Backend Phase 2 · 18 November 2026
+
+- Pull Mehak's finished L1–L11 branch. Work on Nitesh's phase only and keep it local for review.
+- Preserve Phase 1 routes, ETags, CSV export, and the JSON store while extracting controllers and services. Role headers were added to the existing write examples so they exercise the same authorized behaviour.
+- Test simultaneous signups and catalogue writes, the shipping threshold, malformed JSON, and production auth refusal. The tests confirmed the shared queue prevents lost local writes and that error responses carry the request ID.
+- Switch the client to the real contact, newsletter, and pricing endpoints. The browser confirmed a saved contact, an idempotent signup, and the ₹927 COD quote for a ₹799 product.
+- Verify MongoDB with the standalone ping while keeping the HTTP application JSON-backed. The local MongoDB 7 check passed.
+- Repeat the read-only ping against the team's Atlas cluster. The check passed on MongoDB 8.0.37 using a temporary process environment.

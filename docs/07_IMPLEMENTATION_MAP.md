@@ -32,17 +32,17 @@ This file answers one question for every curriculum topic: **"How did you implem
 
 | Lecture | Concept | Where in Metal मसाला | How it's implemented | Status |
 |---|---|---|---|---|
-| L12 | Introduction to MVC Architecture | Whole backend structure | `docs/mvc.md`: Model = repositories (Mongoose models in B3), View = React client consuming JSON, Controller = Express handlers; folders `routes → controllers → services → repositories`. | ⬜ |
-| L13 | Controllers & Business Logic | Pricing and product rules | Thin controllers + `catchAsync`; `services/pricing.service.js` (pure functions: subtotal, free-shipping threshold, COD fee, total) with unit tests; `product.service.js` for filtering/slug/discount logic. | ⬜ |
-| L14 | CRUD Operations using MVC | Products, Categories, Newsletter, Contact, Pricing quote | B1's handlers refactored into controller/service/repository with no behaviour change; Newsletter (idempotent), Contact and `POST /pricing/quote` built end-to-end in MVC; repository interface (S1) formalised. | ⬜ |
-| L15 | Express Routing & REST APIs | The `/api/v1` surface | One `Router` per resource mounted in `routes/index.js`; `router.param('slug')`; `router.route().get().post()`; nested `mergeParams` placeholder for reviews; `docs/rest-conventions.md`. | ⬜ |
-| L16 | Middleware Basics | Cross-cutting behaviour | App-level (`requestId`, `requestLogger`, `morgan`, `helmet`, `cors`, `compression`), built-in (`express.json({limit})`, `static`), router-level and custom (`notFound`); explained in `docs/middleware.md`. | ⬜ |
-| L17 | Middleware Chaining | Per-route pipelines | Chains such as `protect → restrictTo → validate(zod) → controller` and `rateLimit.strict → validate → controller`; ordering rule documented; `protect` stub + real `restrictTo` (auth seam S2); `next()` vs `next(err)`. | ⬜ |
-| L18 | Error Handling | One consistent error model | `AppError`, `catchAsync`, central `errorHandler` (dev stack vs prod message), 404 handler, mapping for `CastError/ValidationError/11000/JWT/body-parser` errors, contract error codes; unit-tested with fake errors. | ⬜ |
-| L19 | Introduction to Databases (SQL vs NoSQL) | Choosing the datastore | `docs/adr/0001-why-mongodb.md`: flexible jewellery attributes, embedded order snapshots, read-heavy catalogue — plus honest costs (no joins, transactions). | ⬜ |
-| L20 | MongoDB Basics + Installation, Atlas & Local Configuration | DB ready for the team | `docs/mongodb-setup.md` (Atlas cluster, DB user, IP allowlist, connection string; local `mongod` or `docker-compose.yml`; Compass/mongosh); `scripts/db-ping.js` verifies both targets; BSON/ObjectId/collections explained. | ⬜ |
-| L29 | Environment Variables | Secrets and settings out of code | `.env` (gitignored) + documented `.env.example`; `process.env` read only inside `src/config/`; `NODE_ENV` modes; client `VITE_*` vars explained as public. `docs/env-and-config.md`. | ⬜ |
-| L30 | Configuration Management & dotenv | Central validated config | `dotenv` + zod schema in `config/index.js`, fail-fast with readable errors, frozen grouped config object (`server, db, cors, pricing, rateLimit…`); `config/constants.js` for roles, statuses, enums, dev ids. | ⬜ |
+| L12 | Introduction to MVC Architecture | `server/src/app.js`, `docs/mvc.md` | Express routes dispatch to controllers and services. The repository layer provides the model for the React view. | ✅ |
+| L13 | Controllers & Business Logic | `server/src/controllers/product.controller.js`, `server/src/services/product.service.js`, `server/src/services/pricing.service.js` | Controllers handle HTTP. Services coordinate catalogue lookups, slug conflicts, and reusable pricing calculations. The JSON adapter supplies stock and discount fields. | ✅ |
+| L14 | CRUD Operations using MVC | `server/src/controllers/`, `server/src/services/`, `server/src/repositories/README.md` | Catalogue CRUD keeps the Phase 1 interface. Newsletter and contact persist records in JSON. Price quotes read current catalogue prices. | ✅ |
+| L15 | Express Routing & REST APIs | `server/src/routes/index.js`, `server/src/routes/product.routes.js`, `server/src/routes/review.routes.js`, `docs/rest-conventions.md` | Resource routers share `/api/v1`. The product router preloads slugs with `router.param`. Reviews inherit the product ID and return 501 until Phase 3. | ✅ |
+| L16 | Middleware Basics | `server/src/app.js`, `server/src/middleware/`, `docs/middleware.md` | Request IDs, access logging, Morgan, Helmet, CORS, compression, Express parsers, and scoped rate limits run before resource handlers. | ✅ |
+| L17 | Middleware Chaining | `server/src/routes/`, `server/src/middleware/auth.js`, `server/src/middleware/validate.js` | Public forms rate-limit before validation. Catalogue writes check roles before validation. Production refuses the development auth stub. | ✅ |
+| L18 | Error Handling | `server/src/middleware/errorHandler.js`, `server/src/utils/AppError.js`, `server/test/error-handler.test.js`, `docs/error-handling.md` | One Express error pipeline returns contract codes and request IDs. Tests cover mappings for parser, Mongoose, and JWT failures. | ✅ |
+| L19 | Introduction to Databases (SQL vs NoSQL) | `docs/adr/0001-why-mongodb.md`, `server/src/config/index.js` | The ADR records trade-offs for the catalogue, embedded order snapshots, references, and the Phase 3 migration. | ✅ |
+| L20 | MongoDB Basics + Installation, Atlas & Local Configuration | `server/docker-compose.yml`, `server/scripts/db-ping.js`, `docs/mongodb-setup.md` | Standalone ping, version lookup, and collection listing passed on local MongoDB 7.0.48 and Atlas MongoDB 8.0.37. | ✅ |
+| L29 | Environment Variables | `server/.env.example`, `server/src/config/constants.js`, `docs/env-and-config.md` | Documented defaults, environment modes, public Vite flags, and contract enums. Runtime environment reads are centralized. | ✅ |
+| L30 | Configuration Management & dotenv | `server/src/config/index.js`, `server/test/config.test.js` | Dotenv selects the environment file. Zod creates and validates immutable config groups or exits with a redacted field report. | ✅ |
 
 ### B3 · Tanishq — Database Layer, Commerce Flow & AI (L21 – L28, L42 – L44)
 
@@ -167,3 +167,13 @@ This file answers one question for every curriculum topic: **"How did you implem
   - Catalogue facets (`/products/facets`) and related products (`/products/:slug/related`) are queued for B3 (MongoDB aggregation). Keep `catalogue-extras` in client mock groups.
 - Contract changes made (and who agreed):
   - None; strictly adheres to `docs/01_API_CONTRACT.md`.
+
+### Backend Phase 2 · Nitesh · 18 November 2026
+
+- Local review branch `backend/phase-2-architecture`, based on Mehak's merged Phase 1 at `adf1ebc`.
+- Moved catalogue CRUD into routes, controllers, and services. Added the newsletter, contact, and pricing APIs, central middleware, development role checks, validated configuration, and the MongoDB setup and ping.
+- Start with `npm ci` and `npm run dev` from `server/`, then start the client with the groups in `client/.env.example`. The API serves products, categories, pricing, newsletter, and contact. Facets, related products, and the remaining app features still use their mock groups.
+- Verification passed for 29 automated backend tests and all 31 requests across the catalogue and Phase 2 HTTP files. Seed import, compressed CSV export, frontend lint and build, and browser newsletter, contact, and checkout quoting also passed.
+- Local MongoDB 7.0.48 and Atlas MongoDB 8.0.37 passed the standalone ping. Atlas reported no visible collections in `metal_masala`.
+- For Phase 3, reuse `calculateQuote`, keep the repository interface and central errors, and replace the nested review placeholder. The HTTP app still uses the JSON repositories.
+- The response contract is unchanged. Explicit duplicate slugs return 409, while auto-generated collisions use sequential suffixes.
