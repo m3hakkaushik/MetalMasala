@@ -1,0 +1,36 @@
+{
+  "name": "metal-masala-server",
+  "version": "1.0.0",
+  "description": "Metal मसाला backend server (Phase 1 — Foundations & Server Core)",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "dev:native": "node --watch src/native/server.js",
+    "seed": "node scripts/seed.js",
+    "export": "node scripts/export-products.js",
+    "test": "node --test test/*.test.js",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "metal-masala",
+    "express",
+    "ecommerce",
+    "rest-api"
+  ],
+  "author": "Mehak",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "^4.4.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.20.0",
+    "prettier": "^3.5.1",
+    "supertest": "^7.0.0"
+  }
+}

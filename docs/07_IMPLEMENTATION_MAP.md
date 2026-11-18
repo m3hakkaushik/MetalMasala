@@ -16,17 +16,17 @@ This file answers one question for every curriculum topic: **"How did you implem
 
 | Lecture | Concept | Where in Metal मसाला | How it's implemented | Status |
 |---|---|---|---|---|
-| L1 | Introduction to Backend Development | The request lifecycle of the store | `docs/architecture.md` traces one request (browser → Vite proxy → Express → repository → JSON → response). The `server/` folder layout mirrors those layers. Client/server separation explained with real routes (`GET /products`). | ⬜ |
-| L2 | HTTP Fundamentals | Correct semantics across the whole API | `docs/http-notes.md` maps methods → CRUD for this API; status codes in use (200/201/204/304/400/404/409/422); `Location` on `201`, `Cache-Control` + `ETag` on product reads, CORS headers. Each shown with a `curl` example. | ⬜ |
-| L3 | Node.js Runtime & NPM | The `server/` project itself | `package.json` with `"type":"module"`, `engines`, scripts (`dev`, `start`, `dev:native`, `seed`, `export`), `dependencies` vs `devDependencies`, committed lockfile, semver notes in `docs/node-notes.md`. | ⬜ |
-| L4 | Node.js Modules | Code organised into small units | ES Modules across `src/`; one deliberate CommonJS file `utils/formatters.cjs` (`formatINR`, `slugify`) imported via `createRequire` to show interop; module-caching/singleton behaviour noted in comments. | ⬜ |
-| L5 | Core Node.js Modules | Built-ins doing real work | `fs/promises` atomic JSON store + access log; `path`/`url` for ESM paths; `os` stats in `/health`; `crypto.randomUUID` + SHA-1 ETags; `stream.pipeline` + `readline` + `zlib` in `scripts/export-products.js` (products → CSV → gzip). | ⬜ |
-| L6 | Process Object & CLI | Seed CLI and process lifecycle | `scripts/seed.js` parses `process.argv` (`--import/--destroy/--file/--help`) with exit codes; `SIGINT/SIGTERM` graceful shutdown; `unhandledRejection` + `uncaughtException` handlers; `process.uptime()/memoryUsage()` in `/health`. | ⬜ |
-| L7 | HTTP Server Development | Raw Node server alongside Express | `src/native/server.js` using `http.createServer`: manual routing, stream-based JSON body parsing, correct status/headers, 404/405; `docs/node-vs-express.md` compares the two. | ⬜ |
-| L8 | API Testing & Debugging | Reproducible tests + debugging setup | `api-tests/*.http` (REST Client) + Postman collection and environment; `.vscode/launch.json` for `node --inspect`; `debug` namespaces (`mm:http`, `mm:data`, `mm:boot`); optional `node:test` + `supertest` smoke tests. | ⬜ |
-| L9 | Introduction to Express.js | Application skeleton | `app.js` (builds the app) separate from `server.js` (listens); `express.json()`, `express.static`, `cors` for the Vite origin; router mounted at `/api/v1`. | ⬜ |
-| L10 | CRUD Fundamentals | Catalogue management | Products & Categories create/read/update/delete through the repository interface; `201` + `Location`, `204` on delete, slug uniqueness (`409`), category-in-use protection. Persists to JSON files. | ⬜ |
-| L11 | Request & Response Handling | Browsing the catalogue | `req.params/query/body/get` used for slug lookup and `GET /products` filtering (`q, category, price, finish, material, tags, sort, page, limit`); `res.status().json()` via `sendSuccess`; ETag/304; CSV export via `res.download`/stream. | ⬜ |
+| L1 | Introduction to Backend Development | The request lifecycle of the store | `docs/architecture.md` traces one request (browser → Vite proxy → Express → repository → JSON → response). The `server/` folder layout mirrors those layers. Client/server separation explained with real routes (`GET /products`). (files: `docs/architecture.md`, `server/src/app.js`, `server/src/server.js`) | ✅ |
+| L2 | HTTP Fundamentals | Correct semantics across the whole API | `docs/http-notes.md` maps methods → CRUD for this API; status codes in use (200/201/204/304/400/404/409/422); `Location` on `201`, `Cache-Control` + `ETag` on product reads, CORS headers. Each shown with a `curl` example. (files: `docs/http-notes.md`, `server/src/utils/response.js`, `server/src/routes/product.routes.js`, `server/src/routes/category.routes.js`) | ✅ |
+| L3 | Node.js Runtime & NPM | The `server/` project itself | `package.json` with `"type":"module"`, `engines`, scripts (`dev`, `start`, `dev:native`, `seed`, `export`), `dependencies` vs `devDependencies`, committed lockfile, semver notes in `docs/node-notes.md`. (files: `server/package.json`, `server/package-lock.json`, `docs/node-notes.md`, `server/src/server.js`, `server/src/config/index.js`) | ✅ |
+| L4 | Node.js Modules | Code organised into small units | ES Modules across `src/`; one deliberate CommonJS file `utils/formatters.cjs` (`formatINR`, `slugify`) imported via `createRequire` to show interop; module-caching/singleton behaviour noted in comments. (files: `server/src/utils/formatters.cjs`, `server/src/utils/formatters.js`) | ✅ |
+| L5 | Core Node.js Modules | Built-ins doing real work | `fs/promises` atomic JSON store + access log; `path`/`url` for ESM paths; `os` stats in `/health`; `crypto.randomUUID` + SHA-1 ETags; `stream.pipeline` + `readline` + `zlib` in `scripts/export-products.js` (products → CSV → gzip). (files: `server/src/utils/jsonStore.js`, `server/src/utils/logger.js`, `server/src/routes/health.routes.js`, `server/scripts/export-products.js`) | ✅ |
+| L6 | Process Object & CLI | Seed CLI and process lifecycle | `scripts/seed.js` parses `process.argv` (`--import/--destroy/--file/--help`) with exit codes; `SIGINT/SIGTERM` graceful shutdown; `unhandledRejection` + `uncaughtException` handlers; `process.uptime()/memoryUsage()` in `/health`. (files: `server/scripts/seed.js`, `server/src/server.js`, `server/src/config/index.js`, `server/src/routes/health.routes.js`) | ✅ |
+| L7 | HTTP Server Development | Raw Node server alongside Express | `src/native/server.js` using `http.createServer`: manual routing, stream-based JSON body parsing, correct status/headers, 404/405; `docs/node-vs-express.md` compares the two. (files: `server/src/native/server.js`, `docs/node-vs-express.md`, `server/test/smoke.test.js`) | ✅ |
+| L8 | API Testing & Debugging | Reproducible tests + debugging setup | `api-tests/*.http` (REST Client) + Postman collection and environment; `.vscode/launch.json` for `node --inspect`; `debug` namespaces (`mm:http`, `mm:data`, `mm:boot`); `node:test` + `supertest` smoke tests. (files: `server/api-tests/catalogue.http`, `server/api-tests/metal-masala.postman_collection.json`, `server/api-tests/metal-masala.postman_environment.json`, `server/.vscode/launch.json`, `docs/debugging.md`, `server/test/smoke.test.js`) | ✅ |
+| L9 | Introduction to Express.js | Application skeleton | `app.js` (builds the app) separate from `server.js` (listens); `express.json()`, `express.static`, `cors` for the Vite origin; router mounted at `/api/v1`. (files: `server/src/app.js`, `server/src/server.js`, `server/src/routes/index.js`, `server/public/index.html`) | ✅ |
+| L10 | CRUD Fundamentals | Catalogue management | Products & Categories create/read/update/delete through the repository interface; `201` + `Location`, `204` on delete, slug uniqueness (`409`), category-in-use protection. Persists to JSON files. (files: `server/src/repositories/json/category.repo.js`, `server/src/repositories/json/product.repo.js`, `server/src/routes/category.routes.js`, `server/src/routes/product.routes.js`) | ✅ |
+| L11 | Request & Response Handling | Browsing the catalogue | `req.params/query/body/get` used for slug lookup and `GET /products` filtering (`q, category, price, finish, material, tags, sort, page, limit`); `res.status().json()` via `sendSuccess`; ETag/304; CSV export via `res.download`/stream. (files: `server/src/routes/product.routes.js`, `server/src/routes/category.routes.js`, `server/src/utils/response.js`) | ✅ |
 
 ### B2 · Nitesh — Architecture, Middleware & Configuration (L12 – L20, L29, L30)
 
@@ -137,4 +137,33 @@ This file answers one question for every curriculum topic: **"How did you implem
 - **B1 integration:** remove `products` and `categories` from `VITE_MOCK_GROUPS`, keep `catalogue-extras` alongside `pricing,newsletter,contact,reviews,cart,orders,admin,ai,auth,users`. B3 should remove `catalogue-extras` when its facets and related routes are live.
 - The mock product write request uses the category ID as the `category` string and continues to return the embedded category object in reads. The API contract's response and error shapes are unchanged.
 - Verified builds with all mocks and with the mock group list empty. Browser checks covered guest checkout, timeline advancement, session reload, wishlist, reviews, staff screens, quick search, and the mobile filter sheet. Mock API checks covered all payment methods, stock restoration, refresh rotation, concurrent token-expiry retries, and staff permissions.
-- Backend curriculum rows remain pending.
+- B1 curriculum rows (L1 – L11) completed and verified below.
+
+### Backend Phase 1 (B1) — Mehak — 18 November 2026
+
+- Branch / PR: `backend/phase-1-foundation`
+- What's done (one line per lecture group):
+  - **L1–L3:** Node.js runtime setup (`engines: >=22`, `"type": "module"`), package.json scripts, committed lockfile, request lifecycle architecture (`docs/architecture.md`), HTTP semantics (`docs/http-notes.md`), and runtime guide (`docs/node-notes.md`).
+  - **L4–L5:** ES Modules across `src/`; deliberate CommonJS module `src/utils/formatters.cjs` with `createRequire` interop and module caching comments; core Node modules (`fs/promises`, `path`, `url`, `os`, `crypto`, `stream`, `readline`, `zlib`, `util`) used for atomic JSON store (`jsonStore.js`), append-only access log (`logger.js`), and stream gzip CSV export.
+  - **L6:** Seeder CLI (`scripts/seed.js`) parsing `process.argv` manually (`--import`, `--destroy`, `--file`, `--help`) with exit codes; graceful shutdown on `SIGINT`/`SIGTERM` in `server.js`; global `unhandledRejection` and `uncaughtException` handlers; process uptime/memory in `/health`.
+  - **L7:** Standalone raw Node.js HTTP server (`src/native/server.js`) on port 4001 using `http.createServer`, manual stream JSON parsing, query parsing, 404/405 handlers, and comparison document `docs/node-vs-express.md`.
+  - **L8:** API test suite `api-tests/catalogue.http` (REST Client), Postman collection and environment files, `.vscode/launch.json` for `--inspect` debugging, `debug` namespaces (`mm:boot`, `mm:http`, `mm:data`), and automated `node:test` + `supertest` smoke tests (15/15 passing).
+  - **L9–L11:** Express 4.x application skeleton (`src/app.js` separate from `src/server.js`) with CORS, static serving, and `/api/v1` routes; full Categories & Products CRUD via S1 repository interface; comprehensive query filtering (`q`, `category`, `price`, `material`, `finish`, `tags`, `sort`, `page`, `limit`), `sendSuccess`/`sendError` envelopes, weak ETag + `Cache-Control: public, max-age=60` with 304 revalidation, slug conflict checks (409), category-in-use delete protection (409), and CSV stream export (`/api/v1/products/export.csv`).
+- How to run it (commands, env needed):
+  - `cd server && npm install`
+  - `npm run seed -- --import` (populates `data/store/*.json` from seed data)
+  - `npm run dev` (starts Express API server on `http://localhost:4000`)
+  - `npm run dev:native` (starts Raw Node HTTP server on `http://localhost:4001`)
+  - `npm run export` (exports products to CSV and gzip archive in `data/export/`)
+  - `npm test` (runs the 15-test automated smoke test suite)
+  - `npm run lint` (runs ESLint, passes with 0 errors)
+- Seams left for the next person (what to pick up, where the markers/TODOs are):
+  - **S1 (Repository interface):** `server/src/repositories/json/{product,category}.repo.js` implement `findMany, findById, findBySlug, create, update, remove`.
+  - **S2 (Auth seam):** write routes (`POST /categories`, `PATCH /categories/:id`, `DELETE /categories/:id`, `POST /products`, `PATCH /products/:id`, `DELETE /products/:id`, `GET /products/export.csv`) carry `// TODO(B2): protect + restrictTo(...)`.
+  - **S5 (Response envelope & errors):** `src/utils/response.js` exports `sendSuccess` and `sendError`. Nitesh will wire `AppError` and the central error middleware.
+  - **S6 (Config):** `src/config/index.js` reads env vars. Nitesh will upgrade it with dotenv + zod schema validation.
+- Known issues / shortcuts:
+  - Auth is currently stubbed until B2 creates `protect`/`restrictTo` and B4 delivers JWT auth.
+  - Catalogue facets (`/products/facets`) and related products (`/products/:slug/related`) are queued for B3 (MongoDB aggregation). Keep `catalogue-extras` in client mock groups.
+- Contract changes made (and who agreed):
+  - None; strictly adheres to `docs/01_API_CONTRACT.md`.

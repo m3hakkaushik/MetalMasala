@@ -1,0 +1,1734 @@
+[
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0001",
+    "name": "Chandni Chowk Jhumka",
+    "slug": "chandni-chowk-jhumka",
+    "tagline": "Loud enough for the sangeet, light enough for 9 a.m. lectures.",
+    "description": "Miniature ghungroos hang from a deeply engraved dome, adding a soft chime as you walk. The surface is rubbed back by hand to leave deeper tones in the grooves. Pair it with a cotton kurta or a dark, plain tee and let the movement do the work. Each pair has slight variations in colour and texture, a trace of the handwork that goes into it.",
+    "price": 799,
+    "compareAtPrice": 999,
+    "discountPercent": 20,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0001",
+      "name": "Jhumkas",
+      "slug": "jhumkas"
+    },
+    "tags": [
+      "festive",
+      "college",
+      "statement"
+    ],
+    "material": "brass",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/chandni-chowk-jhumka-1.webp",
+        "alt": "Chandni Chowk Jhumka, front view"
+      },
+      {
+        "url": "/products/chandni-chowk-jhumka-2.webp",
+        "alt": "Chandni Chowk Jhumka, detail view"
+      },
+      {
+        "url": "/products/chandni-chowk-jhumka-3.webp",
+        "alt": "Chandni Chowk Jhumka, angled view"
+      }
+    ],
+    "stock": 14,
+    "inStock": true,
+    "sku": "MM-JHM-001",
+    "isFeatured": true,
+    "isNewDrop": true,
+    "ratingAverage": 4.7,
+    "ratingCount": 3,
+    "soldCount": 120,
+    "craft": {
+      "artisan": "Studio Rangrez",
+      "region": "Jaipur, Rajasthan",
+      "technique": "Hand-oxidized cast brass"
+    },
+    "details": {
+      "weightGrams": 18,
+      "lengthMm": 55,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-30T00:00:00.000Z",
+    "updatedAt": "2026-10-30T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0002",
+    "name": "Gulmohar Bell Jhumka",
+    "slug": "gulmohar-bell-jhumka",
+    "tagline": "A flower up top, a little drama below.",
+    "description": "A cast gulmohar bloom sits above a fluted dome, with tiny hammered beads tracing the rim. The surface is rubbed back by hand to leave deeper tones in the grooves. Pair it with a cotton kurta or a dark, plain tee and let the movement do the work. Each pair has slight variations in colour and texture, a trace of the handwork that goes into it.",
+    "price": 649,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0001",
+      "name": "Jhumkas",
+      "slug": "jhumkas"
+    },
+    "tags": [
+      "everyday",
+      "festive"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/gulmohar-bell-jhumka-1.webp",
+        "alt": "Gulmohar Bell Jhumka, front view"
+      },
+      {
+        "url": "/products/gulmohar-bell-jhumka-2.webp",
+        "alt": "Gulmohar Bell Jhumka, detail view"
+      },
+      {
+        "url": "/products/gulmohar-bell-jhumka-3.webp",
+        "alt": "Gulmohar Bell Jhumka, angled view"
+      }
+    ],
+    "stock": 3,
+    "inStock": true,
+    "sku": "MM-JHM-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.3,
+    "ratingCount": 3,
+    "soldCount": 157,
+    "craft": {
+      "artisan": "Studio Rangrez",
+      "region": "Jaipur, Rajasthan",
+      "technique": "Hand casting and chasing"
+    },
+    "details": {
+      "weightGrams": 19,
+      "lengthMm": 57,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-26T00:00:00.000Z",
+    "updatedAt": "2026-10-26T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0003",
+    "name": "Jaipur Jaal Jhumka",
+    "slug": "jaipur-jaal-jhumka",
+    "tagline": "Open latticework that catches the light.",
+    "description": "Jaali-inspired cutouts give this wide dome an airy feel and draw the eye to the darker channels. The surface is rubbed back by hand to leave deeper tones in the grooves. Pair it with a cotton kurta or a dark, plain tee and let the movement do the work. Each pair has slight variations in colour and texture, a trace of the handwork that goes into it.",
+    "price": 1199,
+    "compareAtPrice": 1499,
+    "discountPercent": 20,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0001",
+      "name": "Jhumkas",
+      "slug": "jhumkas"
+    },
+    "tags": [
+      "wedding-guest",
+      "statement"
+    ],
+    "material": "german-silver",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/jaipur-jaal-jhumka-1.webp",
+        "alt": "Jaipur Jaal Jhumka, front view"
+      },
+      {
+        "url": "/products/jaipur-jaal-jhumka-2.webp",
+        "alt": "Jaipur Jaal Jhumka, detail view"
+      }
+    ],
+    "stock": 18,
+    "inStock": true,
+    "sku": "MM-JHM-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.7,
+    "ratingCount": 3,
+    "soldCount": 38,
+    "craft": {
+      "artisan": "Studio Rangrez",
+      "region": "Jaipur, Rajasthan",
+      "technique": "Hand casting and chasing"
+    },
+    "details": {
+      "weightGrams": 20,
+      "lengthMm": 59,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-22T00:00:00.000Z",
+    "updatedAt": "2026-10-22T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0004",
+    "name": "Monsoon Mini Jhumka",
+    "slug": "monsoon-mini-jhumka",
+    "tagline": "A tiny bell for grey skies and bright plans.",
+    "description": "Rain-drop stamps around the dome echo the shape of the small copper beads on the edge. The surface is rubbed back by hand to leave deeper tones in the grooves. Pair it with a cotton kurta or a dark, plain tee and let the movement do the work. Each pair has slight variations in colour and texture, a trace of the handwork that goes into it.",
+    "price": 499,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0001",
+      "name": "Jhumkas",
+      "slug": "jhumkas"
+    },
+    "tags": [
+      "college",
+      "everyday"
+    ],
+    "material": "copper",
+    "finish": "patina-green",
+    "images": [
+      {
+        "url": "/products/monsoon-mini-jhumka-1.webp",
+        "alt": "Monsoon Mini Jhumka, front view"
+      },
+      {
+        "url": "/products/monsoon-mini-jhumka-2.webp",
+        "alt": "Monsoon Mini Jhumka, detail view"
+      }
+    ],
+    "stock": 9,
+    "inStock": true,
+    "sku": "MM-JHM-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.3,
+    "ratingCount": 3,
+    "soldCount": 75,
+    "craft": {
+      "artisan": "Studio Rangrez",
+      "region": "Jaipur, Rajasthan",
+      "technique": "Hand casting and chasing"
+    },
+    "details": {
+      "weightGrams": 21,
+      "lengthMm": 61,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-18T00:00:00.000Z",
+    "updatedAt": "2026-10-18T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0005",
+    "name": "Kutch Kadambari Choker",
+    "slug": "kutch-kadambari-choker",
+    "tagline": "A textured collar with a soft cotton tie.",
+    "description": "Brass plaques repeat across the collar, each stamped with a flower and joined by rings for a flexible fit. The studio shapes, finishes and checks each link before assembling the piece. Wear it against a simple neckline, so the texture can catch the light. Slight changes in colour are part of the finish, and the piece comes in a soft pouch for storage between wears.",
+    "price": 1499,
+    "compareAtPrice": 1799,
+    "discountPercent": 17,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0002",
+      "name": "Chokers & Necklaces",
+      "slug": "chokers-necklaces"
+    },
+    "tags": [
+      "festive",
+      "wedding-guest",
+      "statement"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/kutch-kadambari-choker-1.webp",
+        "alt": "Kutch Kadambari Choker, front view"
+      },
+      {
+        "url": "/products/kutch-kadambari-choker-2.webp",
+        "alt": "Kutch Kadambari Choker, detail view"
+      },
+      {
+        "url": "/products/kutch-kadambari-choker-3.webp",
+        "alt": "Kutch Kadambari Choker, angled view"
+      }
+    ],
+    "stock": 11,
+    "inStock": true,
+    "sku": "MM-NCK-001",
+    "isFeatured": true,
+    "isNewDrop": true,
+    "ratingAverage": 4.7,
+    "ratingCount": 3,
+    "soldCount": 112,
+    "craft": {
+      "artisan": "Kirtan Metal Studio",
+      "region": "Bhuj, Gujarat",
+      "technique": "Hand casting and filing"
+    },
+    "details": {
+      "weightGrams": 32,
+      "lengthMm": 360,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-29T00:00:00.000Z",
+    "updatedAt": "2026-10-29T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0006",
+    "name": "Palash Coin Necklace",
+    "slug": "palash-coin-necklace",
+    "tagline": "Old coin texture on a fine chain.",
+    "description": "A single stamped coin is the focus, suspended from a compact chain that sits just below the collarbone. The studio shapes, finishes and checks each link before assembling the piece. Wear it against a simple neckline, so the texture can catch the light. Slight changes in colour are part of the finish, and the piece comes in a soft pouch for storage between wears.",
+    "price": 999,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0002",
+      "name": "Chokers & Necklaces",
+      "slug": "chokers-necklaces"
+    },
+    "tags": [
+      "office-desi",
+      "date-night"
+    ],
+    "material": "german-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/palash-coin-necklace-1.webp",
+        "alt": "Palash Coin Necklace, front view"
+      },
+      {
+        "url": "/products/palash-coin-necklace-2.webp",
+        "alt": "Palash Coin Necklace, detail view"
+      },
+      {
+        "url": "/products/palash-coin-necklace-3.webp",
+        "alt": "Palash Coin Necklace, angled view"
+      }
+    ],
+    "stock": 15,
+    "inStock": true,
+    "sku": "MM-NCK-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.3,
+    "ratingCount": 3,
+    "soldCount": 149,
+    "craft": {
+      "artisan": "Kirtan Metal Studio",
+      "region": "Bhuj, Gujarat",
+      "technique": "Hand casting and filing"
+    },
+    "details": {
+      "weightGrams": 33,
+      "lengthMm": 362,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-25T00:00:00.000Z",
+    "updatedAt": "2026-10-25T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0007",
+    "name": "Fort Road Collar",
+    "slug": "fort-road-collar",
+    "tagline": "A broad, sculptural collar with an open back.",
+    "description": "A smooth strip of dark metal tapers at each end, with raw hammer marks left visible along the centre. The studio shapes, finishes and checks each link before assembling the piece. Wear it against a simple neckline, so the texture can catch the light. Slight changes in colour are part of the finish, and the piece comes in a soft pouch for storage between wears.",
+    "price": 1699,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0002",
+      "name": "Chokers & Necklaces",
+      "slug": "chokers-necklaces"
+    },
+    "tags": [
+      "statement",
+      "date-night"
+    ],
+    "material": "alloy",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/fort-road-collar-1.webp",
+        "alt": "Fort Road Collar, front view"
+      },
+      {
+        "url": "/products/fort-road-collar-2.webp",
+        "alt": "Fort Road Collar, detail view"
+      }
+    ],
+    "stock": 0,
+    "inStock": false,
+    "sku": "MM-NCK-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.7,
+    "ratingCount": 3,
+    "soldCount": 30,
+    "craft": {
+      "artisan": "Kirtan Metal Studio",
+      "region": "Bhuj, Gujarat",
+      "technique": "Hand casting and filing"
+    },
+    "details": {
+      "weightGrams": 34,
+      "lengthMm": 364,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-21T00:00:00.000Z",
+    "updatedAt": "2026-10-21T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0008",
+    "name": "Mogra Thread Necklace",
+    "slug": "mogra-thread-necklace",
+    "tagline": "Lightweight links with a verdigris finish.",
+    "description": "Hand-twisted wire links sit against small floral discs whose patina varies between teal and moss. The studio shapes, finishes and checks each link before assembling the piece. Wear it against a simple neckline, so the texture can catch the light. Slight changes in colour are part of the finish, and the piece comes in a soft pouch for storage between wears.",
+    "price": 1199,
+    "compareAtPrice": 1399,
+    "discountPercent": 14,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0002",
+      "name": "Chokers & Necklaces",
+      "slug": "chokers-necklaces"
+    },
+    "tags": [
+      "office-desi",
+      "gift"
+    ],
+    "material": "copper",
+    "finish": "patina-green",
+    "images": [
+      {
+        "url": "/products/mogra-thread-necklace-1.webp",
+        "alt": "Mogra Thread Necklace, front view"
+      },
+      {
+        "url": "/products/mogra-thread-necklace-2.webp",
+        "alt": "Mogra Thread Necklace, detail view"
+      }
+    ],
+    "stock": 7,
+    "inStock": true,
+    "sku": "MM-NCK-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.3,
+    "ratingCount": 3,
+    "soldCount": 67,
+    "craft": {
+      "artisan": "Kirtan Metal Studio",
+      "region": "Bhuj, Gujarat",
+      "technique": "Hand casting and filing"
+    },
+    "details": {
+      "weightGrams": 35,
+      "lengthMm": 366,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-17T00:00:00.000Z",
+    "updatedAt": "2026-10-17T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0009",
+    "name": "Hampi Ruins Ring",
+    "slug": "hampi-ruins-ring",
+    "tagline": "A carved square with a temple-stone finish.",
+    "description": "The stepped edges echo carved basalt doorways, with a wide open band that adjusts gently to fit. The face of the ring is worked before the band is shaped and smoothed. It works on its own or against a thinner ring with a related finish. Small variations in the surface come from the tools, and the piece is checked for smoothness around its edges.",
+    "price": 549,
+    "compareAtPrice": 699,
+    "discountPercent": 21,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0003",
+      "name": "Rings",
+      "slug": "rings"
+    },
+    "tags": [
+      "college",
+      "statement"
+    ],
+    "material": "brass",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/hampi-ruins-ring-1.webp",
+        "alt": "Hampi Ruins Ring, front view"
+      },
+      {
+        "url": "/products/hampi-ruins-ring-2.webp",
+        "alt": "Hampi Ruins Ring, detail view"
+      },
+      {
+        "url": "/products/hampi-ruins-ring-3.webp",
+        "alt": "Hampi Ruins Ring, angled view"
+      }
+    ],
+    "stock": 8,
+    "inStock": true,
+    "sku": "MM-RNG-001",
+    "isFeatured": true,
+    "isNewDrop": true,
+    "ratingAverage": 4.7,
+    "ratingCount": 3,
+    "soldCount": 104,
+    "craft": {
+      "artisan": "Kora Bench",
+      "region": "Hampi, Karnataka",
+      "technique": "Hand hammering and patination"
+    },
+    "details": {
+      "weightGrams": 5,
+      "lengthMm": 22,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb000a",
+    "name": "Neeli Lake Ring",
+    "slug": "neeli-lake-ring",
+    "tagline": "A low-profile ring with a rippled face.",
+    "description": "Three shallow waves cross the face, and polishing the ridges reveals the copper through the verdigris. The face of the ring is worked before the band is shaped and smoothed. It works on its own or against a thinner ring with a related finish. Small variations in the surface come from the tools, and the piece is checked for smoothness around its edges.",
+    "price": 699,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0003",
+      "name": "Rings",
+      "slug": "rings"
+    },
+    "tags": [
+      "everyday",
+      "date-night"
+    ],
+    "material": "copper",
+    "finish": "patina-green",
+    "images": [
+      {
+        "url": "/products/neeli-lake-ring-1.webp",
+        "alt": "Neeli Lake Ring, front view"
+      },
+      {
+        "url": "/products/neeli-lake-ring-2.webp",
+        "alt": "Neeli Lake Ring, detail view"
+      },
+      {
+        "url": "/products/neeli-lake-ring-3.webp",
+        "alt": "Neeli Lake Ring, angled view"
+      }
+    ],
+    "stock": 14,
+    "inStock": true,
+    "sku": "MM-RNG-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 4.3,
+    "ratingCount": 3,
+    "soldCount": 141,
+    "craft": {
+      "artisan": "Kora Bench",
+      "region": "Hampi, Karnataka",
+      "technique": "Hand hammering and patination"
+    },
+    "details": {
+      "weightGrams": 6,
+      "lengthMm": 24,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-24T00:00:00.000Z",
+    "updatedAt": "2026-10-24T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb000b",
+    "name": "Anar Seed Ring",
+    "slug": "anar-seed-ring",
+    "tagline": "A line of tiny metal seeds, made for stacking.",
+    "description": "Seven small raised seeds follow the curve of the band and catch the light when worn in a stack. The face of the ring is worked before the band is shaped and smoothed. It works on its own or against a thinner ring with a related finish. Small variations in the surface come from the tools, and the piece is checked for smoothness around its edges.",
+    "price": 349,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0003",
+      "name": "Rings",
+      "slug": "rings"
+    },
+    "tags": [
+      "everyday",
+      "gift"
+    ],
+    "material": "alloy",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/anar-seed-ring-1.webp",
+        "alt": "Anar Seed Ring, front view"
+      },
+      {
+        "url": "/products/anar-seed-ring-2.webp",
+        "alt": "Anar Seed Ring, detail view"
+      }
+    ],
+    "stock": 21,
+    "inStock": true,
+    "sku": "MM-RNG-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 178,
+    "craft": {
+      "artisan": "Kora Bench",
+      "region": "Hampi, Karnataka",
+      "technique": "Hand hammering and patination"
+    },
+    "details": {
+      "weightGrams": 7,
+      "lengthMm": 26,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-20T00:00:00.000Z",
+    "updatedAt": "2026-10-20T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb000c",
+    "name": "Gali Number Seven Ring",
+    "slug": "gali-number-seven-ring",
+    "tagline": "A slender silver band with a hammered edge.",
+    "description": "An irregular hammered edge contrasts with a polished central band and smooth inner surface. The face of the ring is worked before the band is shaped and smoothed. It works on its own or against a thinner ring with a related finish. Small variations in the surface come from the tools, and the piece is checked for smoothness around its edges.",
+    "price": 899,
+    "compareAtPrice": 1099,
+    "discountPercent": 18,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0003",
+      "name": "Rings",
+      "slug": "rings"
+    },
+    "tags": [
+      "office-desi",
+      "gift"
+    ],
+    "material": "sterling-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/gali-number-seven-ring-1.webp",
+        "alt": "Gali Number Seven Ring, front view"
+      },
+      {
+        "url": "/products/gali-number-seven-ring-2.webp",
+        "alt": "Gali Number Seven Ring, detail view"
+      }
+    ],
+    "stock": 4,
+    "inStock": true,
+    "sku": "MM-RNG-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 59,
+    "craft": {
+      "artisan": "Kora Bench",
+      "region": "Hampi, Karnataka",
+      "technique": "Hand hammering and patination"
+    },
+    "details": {
+      "weightGrams": 8,
+      "lengthMm": 28,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "updatedAt": "2026-10-16T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb000d",
+    "name": "Dilli Dhoop Kada",
+    "slug": "dilli-dhoop-kada",
+    "tagline": "A wide cuff warmed with an antique-gold finish.",
+    "description": "A broad brass cuff carries a set of shallow rays punched a few millimetres apart. The surface is worked in small sections before the metal is shaped around a mandrel. It fits into a stack of thinner bands or sits neatly above a rolled sleeve. The finish varies slightly from piece to piece, with fine marks from filing and polishing still visible.",
+    "price": 1299,
+    "compareAtPrice": 1599,
+    "discountPercent": 19,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0004",
+      "name": "Kadas & Bangles",
+      "slug": "kadas-bangles"
+    },
+    "tags": [
+      "festive",
+      "statement"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/dilli-dhoop-kada-1.webp",
+        "alt": "Dilli Dhoop Kada, front view"
+      },
+      {
+        "url": "/products/dilli-dhoop-kada-2.webp",
+        "alt": "Dilli Dhoop Kada, detail view"
+      },
+      {
+        "url": "/products/dilli-dhoop-kada-3.webp",
+        "alt": "Dilli Dhoop Kada, angled view"
+      }
+    ],
+    "stock": 7,
+    "inStock": true,
+    "sku": "MM-KDA-001",
+    "isFeatured": true,
+    "isNewDrop": true,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 96,
+    "craft": {
+      "artisan": "Phool Workshop",
+      "region": "Delhi",
+      "technique": "Repoussé and hand stamping"
+    },
+    "details": {
+      "weightGrams": 45,
+      "lengthMm": 63,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-27T00:00:00.000Z",
+    "updatedAt": "2026-10-27T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb000e",
+    "name": "Narmada Ripple Kada",
+    "slug": "narmada-ripple-kada",
+    "tagline": "Quiet curves with a deep copper patina.",
+    "description": "A rippling seam runs around the cuff and wraps over the edge beside its open ends. The surface is worked in small sections before the metal is shaped around a mandrel. It fits into a stack of thinner bands or sits neatly above a rolled sleeve. The finish varies slightly from piece to piece, with fine marks from filing and polishing still visible.",
+    "price": 1099,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0004",
+      "name": "Kadas & Bangles",
+      "slug": "kadas-bangles"
+    },
+    "tags": [
+      "office-desi",
+      "everyday"
+    ],
+    "material": "copper",
+    "finish": "antique-copper",
+    "images": [
+      {
+        "url": "/products/narmada-ripple-kada-1.webp",
+        "alt": "Narmada Ripple Kada, front view"
+      },
+      {
+        "url": "/products/narmada-ripple-kada-2.webp",
+        "alt": "Narmada Ripple Kada, detail view"
+      },
+      {
+        "url": "/products/narmada-ripple-kada-3.webp",
+        "alt": "Narmada Ripple Kada, angled view"
+      }
+    ],
+    "stock": 16,
+    "inStock": true,
+    "sku": "MM-KDA-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 133,
+    "craft": {
+      "artisan": "Phool Workshop",
+      "region": "Delhi",
+      "technique": "Repoussé and hand stamping"
+    },
+    "details": {
+      "weightGrams": 46,
+      "lengthMm": 65,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-23T00:00:00.000Z",
+    "updatedAt": "2026-10-23T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb000f",
+    "name": "Kala Bazaar Bangle",
+    "slug": "kala-bazaar-bangle",
+    "tagline": "A clean black band with an uneven, handworked rim.",
+    "description": "The band is wide enough to wear alone, with a hand-filed outer rim and a smooth inner curve. The surface is worked in small sections before the metal is shaped around a mandrel. It fits into a stack of thinner bands or sits neatly above a rolled sleeve. The finish varies slightly from piece to piece, with fine marks from filing and polishing still visible.",
+    "price": 449,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0004",
+      "name": "Kadas & Bangles",
+      "slug": "kadas-bangles"
+    },
+    "tags": [
+      "college",
+      "everyday"
+    ],
+    "material": "alloy",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/kala-bazaar-bangle-1.webp",
+        "alt": "Kala Bazaar Bangle, front view"
+      },
+      {
+        "url": "/products/kala-bazaar-bangle-2.webp",
+        "alt": "Kala Bazaar Bangle, detail view"
+      }
+    ],
+    "stock": 0,
+    "inStock": false,
+    "sku": "MM-KDA-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 170,
+    "craft": {
+      "artisan": "Phool Workshop",
+      "region": "Delhi",
+      "technique": "Repoussé and hand stamping"
+    },
+    "details": {
+      "weightGrams": 47,
+      "lengthMm": 67,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-19T00:00:00.000Z",
+    "updatedAt": "2026-10-19T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0010",
+    "name": "Bundi Balcony Cuff",
+    "slug": "bundi-balcony-cuff",
+    "tagline": "Small silver arches, set in a wide cuff.",
+    "description": "Rows of open arches let the skin show through, framed by solid edges that are rounded for comfort. The surface is worked in small sections before the metal is shaped around a mandrel. It fits into a stack of thinner bands or sits neatly above a rolled sleeve. The finish varies slightly from piece to piece, with fine marks from filing and polishing still visible.",
+    "price": 1499,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0004",
+      "name": "Kadas & Bangles",
+      "slug": "kadas-bangles"
+    },
+    "tags": [
+      "wedding-guest",
+      "statement"
+    ],
+    "material": "german-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/bundi-balcony-cuff-1.webp",
+        "alt": "Bundi Balcony Cuff, front view"
+      },
+      {
+        "url": "/products/bundi-balcony-cuff-2.webp",
+        "alt": "Bundi Balcony Cuff, detail view"
+      }
+    ],
+    "stock": 12,
+    "inStock": true,
+    "sku": "MM-KDA-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 51,
+    "craft": {
+      "artisan": "Phool Workshop",
+      "region": "Delhi",
+      "technique": "Repoussé and hand stamping"
+    },
+    "details": {
+      "weightGrams": 48,
+      "lengthMm": 69,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-15T00:00:00.000Z",
+    "updatedAt": "2026-10-15T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0011",
+    "name": "Banaras Ghat Payal",
+    "slug": "banaras-ghat-payal",
+    "tagline": "An ankle chain with a soft trail of ghungroos.",
+    "description": "The little bells are double looped onto the chain to keep them spaced evenly as you move. The links are assembled and checked by hand, and the fastening sits neatly against the ankle. Let it show above a sandal or under a cropped hem. Individual pieces have subtle variations in texture, and a soft cloth is enough to polish away any dust after a long day.",
+    "price": 1099,
+    "compareAtPrice": 1399,
+    "discountPercent": 21,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0005",
+      "name": "Payals",
+      "slug": "payals"
+    },
+    "tags": [
+      "festive",
+      "wedding-guest"
+    ],
+    "material": "german-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/banaras-ghat-payal-1.webp",
+        "alt": "Banaras Ghat Payal, front view"
+      },
+      {
+        "url": "/products/banaras-ghat-payal-2.webp",
+        "alt": "Banaras Ghat Payal, detail view"
+      },
+      {
+        "url": "/products/banaras-ghat-payal-3.webp",
+        "alt": "Banaras Ghat Payal, angled view"
+      }
+    ],
+    "stock": 6,
+    "inStock": true,
+    "sku": "MM-PYL-001",
+    "isFeatured": false,
+    "isNewDrop": true,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 88,
+    "craft": {
+      "artisan": "Ghat Metalworks",
+      "region": "Varanasi, Uttar Pradesh",
+      "technique": "Hand-linked metalwork"
+    },
+    "details": {
+      "weightGrams": 16,
+      "lengthMm": 240,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-26T00:00:00.000Z",
+    "updatedAt": "2026-10-26T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0012",
+    "name": "Parijat Anklet",
+    "slug": "parijat-anklet",
+    "tagline": "Three tiny flowers on a fine everyday chain.",
+    "description": "Small five-petalled flowers sit flat along the front of the ankle, leaving the back of the chain bare. The links are assembled and checked by hand, and the fastening sits neatly against the ankle. Let it show above a sandal or under a cropped hem. Individual pieces have subtle variations in texture, and a soft cloth is enough to polish away any dust after a long day.",
+    "price": 699,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0005",
+      "name": "Payals",
+      "slug": "payals"
+    },
+    "tags": [
+      "date-night",
+      "everyday"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/parijat-anklet-1.webp",
+        "alt": "Parijat Anklet, front view"
+      },
+      {
+        "url": "/products/parijat-anklet-2.webp",
+        "alt": "Parijat Anklet, detail view"
+      },
+      {
+        "url": "/products/parijat-anklet-3.webp",
+        "alt": "Parijat Anklet, angled view"
+      }
+    ],
+    "stock": 19,
+    "inStock": true,
+    "sku": "MM-PYL-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 125,
+    "craft": {
+      "artisan": "Ghat Metalworks",
+      "region": "Varanasi, Uttar Pradesh",
+      "technique": "Hand-linked metalwork"
+    },
+    "details": {
+      "weightGrams": 17,
+      "lengthMm": 242,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-22T00:00:00.000Z",
+    "updatedAt": "2026-10-22T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0013",
+    "name": "Salt Pan Payal",
+    "slug": "salt-pan-payal",
+    "tagline": "Tiny pale discs with the texture of sea salt.",
+    "description": "Gently domed silver discs have individually stippled faces and are attached on rings for movement. The links are assembled and checked by hand, and the fastening sits neatly against the ankle. Let it show above a sandal or under a cropped hem. Individual pieces have subtle variations in texture, and a soft cloth is enough to polish away any dust after a long day.",
+    "price": 899,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0005",
+      "name": "Payals",
+      "slug": "payals"
+    },
+    "tags": [
+      "everyday",
+      "gift"
+    ],
+    "material": "sterling-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/salt-pan-payal-1.webp",
+        "alt": "Salt Pan Payal, front view"
+      },
+      {
+        "url": "/products/salt-pan-payal-2.webp",
+        "alt": "Salt Pan Payal, detail view"
+      }
+    ],
+    "stock": 13,
+    "inStock": true,
+    "sku": "MM-PYL-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 162,
+    "craft": {
+      "artisan": "Ghat Metalworks",
+      "region": "Varanasi, Uttar Pradesh",
+      "technique": "Hand-linked metalwork"
+    },
+    "details": {
+      "weightGrams": 18,
+      "lengthMm": 244,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-18T00:00:00.000Z",
+    "updatedAt": "2026-10-18T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0014",
+    "name": "Copper Raag Anklet",
+    "slug": "copper-raag-anklet",
+    "tagline": "A warm copper chain with a single small bell.",
+    "description": "One small bell sits just off-centre, with a short adjustable chain that can be trimmed at a studio. The links are assembled and checked by hand, and the fastening sits neatly against the ankle. Let it show above a sandal or under a cropped hem. Individual pieces have subtle variations in texture, and a soft cloth is enough to polish away any dust after a long day.",
+    "price": 599,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0005",
+      "name": "Payals",
+      "slug": "payals"
+    },
+    "tags": [
+      "college",
+      "gift"
+    ],
+    "material": "copper",
+    "finish": "antique-copper",
+    "images": [
+      {
+        "url": "/products/copper-raag-anklet-1.webp",
+        "alt": "Copper Raag Anklet, front view"
+      },
+      {
+        "url": "/products/copper-raag-anklet-2.webp",
+        "alt": "Copper Raag Anklet, detail view"
+      }
+    ],
+    "stock": 2,
+    "inStock": true,
+    "sku": "MM-PYL-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 43,
+    "craft": {
+      "artisan": "Ghat Metalworks",
+      "region": "Varanasi, Uttar Pradesh",
+      "technique": "Hand-linked metalwork"
+    },
+    "details": {
+      "weightGrams": 19,
+      "lengthMm": 246,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-14T00:00:00.000Z",
+    "updatedAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0015",
+    "name": "Mehfil Maang Tikka",
+    "slug": "mehfil-maang-tikka",
+    "tagline": "A filigree medallion with little gold drops.",
+    "description": "The rounded medallion sits beneath the hairline, bordered by an alternating row of bells and petal drops. A small hook at the end of the chain secures the piece inside the hair. Leave the forehead clear so the pendant has a little space to move. The surface keeps the slight variations made by hand, and the underside is smoothed so it sits comfortably for a long evening.",
+    "price": 899,
+    "compareAtPrice": 1199,
+    "discountPercent": 25,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0006",
+      "name": "Maang Tikka",
+      "slug": "maang-tikka"
+    },
+    "tags": [
+      "wedding-guest",
+      "festive"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/mehfil-maang-tikka-1.webp",
+        "alt": "Mehfil Maang Tikka, front view"
+      },
+      {
+        "url": "/products/mehfil-maang-tikka-2.webp",
+        "alt": "Mehfil Maang Tikka, detail view"
+      },
+      {
+        "url": "/products/mehfil-maang-tikka-3.webp",
+        "alt": "Mehfil Maang Tikka, angled view"
+      }
+    ],
+    "stock": 4,
+    "inStock": true,
+    "sku": "MM-MTK-001",
+    "isFeatured": true,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 80,
+    "craft": {
+      "artisan": "Kangura Studio",
+      "region": "Bundi, Rajasthan",
+      "technique": "Pierced and engraved metalwork"
+    },
+    "details": {
+      "weightGrams": 10,
+      "lengthMm": 115,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-25T00:00:00.000Z",
+    "updatedAt": "2026-10-25T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0016",
+    "name": "Nakshatra Tikka",
+    "slug": "nakshatra-tikka",
+    "tagline": "A small star on a thread-thin silver chain.",
+    "description": "Eight tapered points frame a beaded centre that sits on the forehead without an overhanging fringe. A small hook at the end of the chain secures the piece inside the hair. Leave the forehead clear so the pendant has a little space to move. The surface keeps the slight variations made by hand, and the underside is smoothed so it sits comfortably for a long evening.",
+    "price": 649,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0006",
+      "name": "Maang Tikka",
+      "slug": "maang-tikka"
+    },
+    "tags": [
+      "date-night",
+      "festive"
+    ],
+    "material": "sterling-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/nakshatra-tikka-1.webp",
+        "alt": "Nakshatra Tikka, front view"
+      },
+      {
+        "url": "/products/nakshatra-tikka-2.webp",
+        "alt": "Nakshatra Tikka, detail view"
+      },
+      {
+        "url": "/products/nakshatra-tikka-3.webp",
+        "alt": "Nakshatra Tikka, angled view"
+      }
+    ],
+    "stock": 10,
+    "inStock": true,
+    "sku": "MM-MTK-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 117,
+    "craft": {
+      "artisan": "Kangura Studio",
+      "region": "Bundi, Rajasthan",
+      "technique": "Pierced and engraved metalwork"
+    },
+    "details": {
+      "weightGrams": 11,
+      "lengthMm": 117,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-21T00:00:00.000Z",
+    "updatedAt": "2026-10-21T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0017",
+    "name": "Rani Ki Vav Tikka",
+    "slug": "rani-ki-vav-tikka",
+    "tagline": "An angular pendant inspired by stepwell stonework.",
+    "description": "Small copper steps are chiselled around an open centre, with a brass loop joining the pendant to the chain. A small hook at the end of the chain secures the piece inside the hair. Leave the forehead clear so the pendant has a little space to move. The surface keeps the slight variations made by hand, and the underside is smoothed so it sits comfortably for a long evening.",
+    "price": 1199,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0006",
+      "name": "Maang Tikka",
+      "slug": "maang-tikka"
+    },
+    "tags": [
+      "statement",
+      "wedding-guest"
+    ],
+    "material": "copper",
+    "finish": "antique-copper",
+    "images": [
+      {
+        "url": "/products/rani-ki-vav-tikka-1.webp",
+        "alt": "Rani Ki Vav Tikka, front view"
+      },
+      {
+        "url": "/products/rani-ki-vav-tikka-2.webp",
+        "alt": "Rani Ki Vav Tikka, detail view"
+      }
+    ],
+    "stock": 8,
+    "inStock": true,
+    "sku": "MM-MTK-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 154,
+    "craft": {
+      "artisan": "Kangura Studio",
+      "region": "Bundi, Rajasthan",
+      "technique": "Pierced and engraved metalwork"
+    },
+    "details": {
+      "weightGrams": 12,
+      "lengthMm": 119,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-17T00:00:00.000Z",
+    "updatedAt": "2026-10-17T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0018",
+    "name": "Jamun Leaf Tikka",
+    "slug": "jamun-leaf-tikka",
+    "tagline": "A matte leaf with a fine, dark chain.",
+    "description": "Its pointed leaf is engraved with asymmetrical veins and gently bowed so the underside sits flat. A small hook at the end of the chain secures the piece inside the hair. Leave the forehead clear so the pendant has a little space to move. The surface keeps the slight variations made by hand, and the underside is smoothed so it sits comfortably for a long evening.",
+    "price": 749,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0006",
+      "name": "Maang Tikka",
+      "slug": "maang-tikka"
+    },
+    "tags": [
+      "festive",
+      "statement"
+    ],
+    "material": "brass",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/jamun-leaf-tikka-1.webp",
+        "alt": "Jamun Leaf Tikka, front view"
+      },
+      {
+        "url": "/products/jamun-leaf-tikka-2.webp",
+        "alt": "Jamun Leaf Tikka, detail view"
+      }
+    ],
+    "stock": 0,
+    "inStock": false,
+    "sku": "MM-MTK-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 35,
+    "craft": {
+      "artisan": "Kangura Studio",
+      "region": "Bundi, Rajasthan",
+      "technique": "Pierced and engraved metalwork"
+    },
+    "details": {
+      "weightGrams": 13,
+      "lengthMm": 121,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "updatedAt": "2026-10-13T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0019",
+    "name": "Pushkar Mela Nose Pin",
+    "slug": "pushkar-mela-nose-pin",
+    "tagline": "A little sunburst with an etched centre.",
+    "description": "A flat circular face catches the light on the raised tips and darkens towards the engraved centre. Each pin is filed smooth at the back and polished at the bench before packing. Its small scale keeps the detail close, so it pairs easily with larger earrings. Expect subtle changes in colour and texture between pieces, especially where the finish sits in a groove.",
+    "price": 399,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0007",
+      "name": "Nose Pins",
+      "slug": "nose-pins"
+    },
+    "tags": [
+      "college",
+      "everyday"
+    ],
+    "material": "sterling-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/pushkar-mela-nose-pin-1.webp",
+        "alt": "Pushkar Mela Nose Pin, front view"
+      },
+      {
+        "url": "/products/pushkar-mela-nose-pin-2.webp",
+        "alt": "Pushkar Mela Nose Pin, detail view"
+      },
+      {
+        "url": "/products/pushkar-mela-nose-pin-3.webp",
+        "alt": "Pushkar Mela Nose Pin, angled view"
+      }
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sku": "MM-NSP-001",
+    "isFeatured": false,
+    "isNewDrop": true,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 72,
+    "craft": {
+      "artisan": "Neem Bench",
+      "region": "Ajmer, Rajasthan",
+      "technique": "Hand stamping and burnishing"
+    },
+    "details": {
+      "weightGrams": 2,
+      "lengthMm": 5,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-24T00:00:00.000Z",
+    "updatedAt": "2026-10-24T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb001a",
+    "name": "Elaichi Nose Stud",
+    "slug": "elaichi-nose-stud",
+    "tagline": "One antique-gold dot with a textured edge.",
+    "description": "A compact domed setting tapers into a short pin, with small beads pressed into the outer edge. Each pin is filed smooth at the back and polished at the bench before packing. Its small scale keeps the detail close, so it pairs easily with larger earrings. Expect subtle changes in colour and texture between pieces, especially where the finish sits in a groove.",
+    "price": 299,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0007",
+      "name": "Nose Pins",
+      "slug": "nose-pins"
+    },
+    "tags": [
+      "everyday",
+      "office-desi"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/elaichi-nose-stud-1.webp",
+        "alt": "Elaichi Nose Stud, front view"
+      },
+      {
+        "url": "/products/elaichi-nose-stud-2.webp",
+        "alt": "Elaichi Nose Stud, detail view"
+      },
+      {
+        "url": "/products/elaichi-nose-stud-3.webp",
+        "alt": "Elaichi Nose Stud, angled view"
+      }
+    ],
+    "stock": 30,
+    "inStock": true,
+    "sku": "MM-NSP-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 109,
+    "craft": {
+      "artisan": "Neem Bench",
+      "region": "Ajmer, Rajasthan",
+      "technique": "Hand stamping and burnishing"
+    },
+    "details": {
+      "weightGrams": 3,
+      "lengthMm": 7,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-20T00:00:00.000Z",
+    "updatedAt": "2026-10-20T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb001b",
+    "name": "Teal Teardrop Pin",
+    "slug": "teal-teardrop-pin",
+    "tagline": "One drop of colour, set close to the skin.",
+    "description": "Its tightly curved teardrop face holds the green patina, while the raised rim is left warm copper. Each pin is filed smooth at the back and polished at the bench before packing. Its small scale keeps the detail close, so it pairs easily with larger earrings. Expect subtle changes in colour and texture between pieces, especially where the finish sits in a groove.",
+    "price": 449,
+    "compareAtPrice": 599,
+    "discountPercent": 25,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0007",
+      "name": "Nose Pins",
+      "slug": "nose-pins"
+    },
+    "tags": [
+      "college",
+      "date-night"
+    ],
+    "material": "copper",
+    "finish": "patina-green",
+    "images": [
+      {
+        "url": "/products/teal-teardrop-pin-1.webp",
+        "alt": "Teal Teardrop Pin, front view"
+      },
+      {
+        "url": "/products/teal-teardrop-pin-2.webp",
+        "alt": "Teal Teardrop Pin, detail view"
+      }
+    ],
+    "stock": 5,
+    "inStock": true,
+    "sku": "MM-NSP-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 146,
+    "craft": {
+      "artisan": "Neem Bench",
+      "region": "Ajmer, Rajasthan",
+      "technique": "Hand stamping and burnishing"
+    },
+    "details": {
+      "weightGrams": 4,
+      "lengthMm": 9,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "updatedAt": "2026-10-16T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb001c",
+    "name": "Kaali Bindu Nose Stud",
+    "slug": "kaali-bindu-nose-stud",
+    "tagline": "A matte disc with a small polished centre.",
+    "description": "A single raised dot interrupts the dark outer disc, with a smooth finished back that sits close to the skin. Each pin is filed smooth at the back and polished at the bench before packing. Its small scale keeps the detail close, so it pairs easily with larger earrings. Expect subtle changes in colour and texture between pieces, especially where the finish sits in a groove.",
+    "price": 349,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0007",
+      "name": "Nose Pins",
+      "slug": "nose-pins"
+    },
+    "tags": [
+      "office-desi",
+      "everyday"
+    ],
+    "material": "german-silver",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/kaali-bindu-nose-stud-1.webp",
+        "alt": "Kaali Bindu Nose Stud, front view"
+      },
+      {
+        "url": "/products/kaali-bindu-nose-stud-2.webp",
+        "alt": "Kaali Bindu Nose Stud, detail view"
+      }
+    ],
+    "stock": 20,
+    "inStock": true,
+    "sku": "MM-NSP-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 183,
+    "craft": {
+      "artisan": "Neem Bench",
+      "region": "Ajmer, Rajasthan",
+      "technique": "Hand stamping and burnishing"
+    },
+    "details": {
+      "weightGrams": 5,
+      "lengthMm": 11,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-12T00:00:00.000Z",
+    "updatedAt": "2026-10-12T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb001d",
+    "name": "Sangeet Night Combo",
+    "slug": "sangeet-night-combo",
+    "tagline": "A pair of jhumkas and a cuff for the dance floor.",
+    "description": "The matching jhumkas and cuff share a row of punched arches and subtly different silver tones. The pieces are finished together and packed in a soft pouch that can be used again. They share a surface and a sense of scale, so you can wear them as a set or mix them with pieces already in your collection. Small tool marks are visible in the details.",
+    "price": 2499,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0008",
+      "name": "Gift Combos",
+      "slug": "gift-combos"
+    },
+    "tags": [
+      "wedding-guest",
+      "gift",
+      "statement"
+    ],
+    "material": "german-silver",
+    "finish": "oxidized-silver",
+    "images": [
+      {
+        "url": "/products/sangeet-night-combo-1.webp",
+        "alt": "Sangeet Night Combo, front view"
+      },
+      {
+        "url": "/products/sangeet-night-combo-2.webp",
+        "alt": "Sangeet Night Combo, detail view"
+      },
+      {
+        "url": "/products/sangeet-night-combo-3.webp",
+        "alt": "Sangeet Night Combo, angled view"
+      }
+    ],
+    "stock": 10,
+    "inStock": true,
+    "sku": "MM-CMB-001",
+    "isFeatured": true,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 64,
+    "craft": {
+      "artisan": "Taanka Studio",
+      "region": "Ahmedabad, Gujarat",
+      "technique": "Hand finishing and assembly"
+    },
+    "details": {
+      "weightGrams": 55,
+      "lengthMm": 58,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-23T00:00:00.000Z",
+    "updatedAt": "2026-10-23T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb001e",
+    "name": "First Job Combo",
+    "slug": "first-job-combo",
+    "tagline": "A fine necklace and small studs for repeat wear.",
+    "description": "Small brass seeds are stamped into the necklace plaque and repeated on matching low-profile studs. The pieces are finished together and packed in a soft pouch that can be used again. They share a surface and a sense of scale, so you can wear them as a set or mix them with pieces already in your collection. Small tool marks are visible in the details.",
+    "price": 1399,
+    "compareAtPrice": 1699,
+    "discountPercent": 18,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0008",
+      "name": "Gift Combos",
+      "slug": "gift-combos"
+    },
+    "tags": [
+      "office-desi",
+      "gift"
+    ],
+    "material": "brass",
+    "finish": "antique-gold",
+    "images": [
+      {
+        "url": "/products/first-job-combo-1.webp",
+        "alt": "First Job Combo, front view"
+      },
+      {
+        "url": "/products/first-job-combo-2.webp",
+        "alt": "First Job Combo, detail view"
+      },
+      {
+        "url": "/products/first-job-combo-3.webp",
+        "alt": "First Job Combo, angled view"
+      }
+    ],
+    "stock": 13,
+    "inStock": true,
+    "sku": "MM-CMB-002",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 101,
+    "craft": {
+      "artisan": "Taanka Studio",
+      "region": "Ahmedabad, Gujarat",
+      "technique": "Hand finishing and assembly"
+    },
+    "details": {
+      "weightGrams": 56,
+      "lengthMm": 60,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-19T00:00:00.000Z",
+    "updatedAt": "2026-10-19T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb001f",
+    "name": "Best Friend Combo",
+    "slug": "best-friend-combo",
+    "tagline": "Two patina-green rings with slightly different shapes.",
+    "description": "One ring has a wavy face, while the other carries three rounded ridges that show off the copper finish. The pieces are finished together and packed in a soft pouch that can be used again. They share a surface and a sense of scale, so you can wear them as a set or mix them with pieces already in your collection. Small tool marks are visible in the details.",
+    "price": 999,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0008",
+      "name": "Gift Combos",
+      "slug": "gift-combos"
+    },
+    "tags": [
+      "college",
+      "gift"
+    ],
+    "material": "copper",
+    "finish": "patina-green",
+    "images": [
+      {
+        "url": "/products/best-friend-combo-1.webp",
+        "alt": "Best Friend Combo, front view"
+      },
+      {
+        "url": "/products/best-friend-combo-2.webp",
+        "alt": "Best Friend Combo, detail view"
+      }
+    ],
+    "stock": 14,
+    "inStock": true,
+    "sku": "MM-CMB-003",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 138,
+    "craft": {
+      "artisan": "Taanka Studio",
+      "region": "Ahmedabad, Gujarat",
+      "technique": "Hand finishing and assembly"
+    },
+    "details": {
+      "weightGrams": 57,
+      "lengthMm": 62,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-15T00:00:00.000Z",
+    "updatedAt": "2026-10-15T00:00:00.000Z"
+  },
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbb0020",
+    "name": "City After Dark Combo",
+    "slug": "city-after-dark-combo",
+    "tagline": "An open black cuff and a pair of compact bells.",
+    "description": "The cuff picks up the dark metal and etched edges of the bells, while leaving the rest of the band plain. The pieces are finished together and packed in a soft pouch that can be used again. They share a surface and a sense of scale, so you can wear them as a set or mix them with pieces already in your collection. Small tool marks are visible in the details.",
+    "price": 1799,
+    "compareAtPrice": null,
+    "discountPercent": 0,
+    "currency": "INR",
+    "category": {
+      "id": "aaaaaaaaaaaaaaaaaaaa0008",
+      "name": "Gift Combos",
+      "slug": "gift-combos"
+    },
+    "tags": [
+      "date-night",
+      "gift",
+      "statement"
+    ],
+    "material": "alloy",
+    "finish": "oxidized-black",
+    "images": [
+      {
+        "url": "/products/city-after-dark-combo-1.webp",
+        "alt": "City After Dark Combo, front view"
+      },
+      {
+        "url": "/products/city-after-dark-combo-2.webp",
+        "alt": "City After Dark Combo, detail view"
+      }
+    ],
+    "stock": 3,
+    "inStock": true,
+    "sku": "MM-CMB-004",
+    "isFeatured": false,
+    "isNewDrop": false,
+    "ratingAverage": 0,
+    "ratingCount": 0,
+    "soldCount": 175,
+    "craft": {
+      "artisan": "Taanka Studio",
+      "region": "Ahmedabad, Gujarat",
+      "technique": "Hand finishing and assembly"
+    },
+    "details": {
+      "weightGrams": 58,
+      "lengthMm": 64,
+      "care": "Keep dry. Wipe with a soft cloth after wear and store in its pouch."
+    },
+    "createdAt": "2026-10-11T00:00:00.000Z",
+    "updatedAt": "2026-10-11T00:00:00.000Z"
+  }
+]
