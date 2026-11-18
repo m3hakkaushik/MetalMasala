@@ -48,17 +48,17 @@ This file answers one question for every curriculum topic: **"How did you implem
 
 | Lecture | Concept | Where in Metal मसाला | How it's implemented | Status |
 |---|---|---|---|---|
-| L21 | MongoDB CRUD Operations | Seeding and data operations | `queries/01-crud.mongodb.js` (`insertMany`, `find`, `updateOne` with `$set/$inc/$push/$pull`, `deleteMany`, `bulkWrite`) on real store data; `scripts/seed.js` now imports into MongoDB (`--fresh` re-runnable). | ⬜ |
-| L22 | Query Operations in MongoDB | Catalogue search & filters | `queries/02-queries.mongodb.js` (comparison/logical/array operators, `$regex`, `$text`, projection, sort, skip/limit, `countDocuments`, `distinct`) → implemented in `repositories/mongo/product.repo.js` for every `GET /products` param. | ⬜ |
-| L23 | Aggregation Pipeline + Indexing | Analytics, facets, speed | Pipelines (`$match/$group/$unwind/$lookup/$facet/$dateToString`) for `/products/facets`, revenue, sales-by-category, top products, summary and rating recalculation; indexes (weighted text, compound `category+price`, unique `slug/email/orderNumber`, review `(product,user)`) with `explain()` before/after in `docs/indexing.md`. | ⬜ |
-| L24 | Data Modelling & Relationships | Schema design | `docs/data-model.md` Mermaid ER diagram + embed-vs-reference table: order items & address embedded snapshots, reviews referenced, wishlist refs, cart items embedded, product → category reference. | ⬜ |
-| L25 | Introduction to Mongoose ODM + Schema & Model Design | Models | Category, Product, Review, Cart, Order, User, Subscriber, ContactMessage; `timestamps`, `toJSON` → `id`, virtuals (`discountPercent`, `inStock`), statics/methods (`calcAverageRatings`, `canTransitionTo`), hooks (slug pre-validate, rating post-save), `populate`, `lean()`. | ⬜ |
-| L26 | Data Validation using Mongoose | Trustworthy data | Built-in validators + custom (`compareAtPrice ≥ price`, 6-digit pincode, 10-digit phone, integer rating 1–5) with custom messages; `runValidators` on updates; errors surface as `422` via B2's handler; two-layer validation (zod + Mongoose) documented. | ⬜ |
-| L27 | Connecting Node.js with MongoDB | Live DB connection | `config/db.js` (`mongoose.connect`, Atlas/local via `DB_TARGET`, event logging, retry/backoff); connect-before-listen; close on shutdown; `/health` includes DB state. | ⬜ |
-| L28 | Building REST APIs with Database Integration | Real commerce flow | Mongo repositories replace JSON; Reviews; server-side Cart (+ guest merge); Orders (build from cart, atomic stock decrement with `$inc` + `stock ≥ qty` guard, compensation on failure, order number via `crypto`, state machine, cancel + restock); admin orders & analytics. | ⬜ |
-| L42 | AI Tools For Developers | How the team built the project | `docs/ai/AI_TOOLS.md`: agents/assistants used per phase, where they helped or failed, review practices, what is never delegated. Backed by `docs/ai/PROMPT_LOG.md`. | ⬜ |
-| L43 | Integrating AI Services | Masala Stylist + AI copywriter | `services/ai/` provider interface with adapters (+ offline `mock`); `POST /ai/stylist` = retrieve candidates (`$text` + inferred filters) → LLM picks ids and writes reply → ids allow-listed against candidates; `POST /ai/describe`; timeouts, rate limits, input caps. | ⬜ |
-| L44 | AI driven Development | Spec-first workflow | `docs/ai/AI_DRIVEN_DEVELOPMENT.md`: docs → plan → build → review → log loop actually used (these very docs), prompt examples, review checklist, agent-written tests and the human fixes they needed. | ⬜ |
+| L21 | MongoDB CRUD Operations | Seeding and data operations | `queries/01-crud.mongodb.js` (`insertMany`, `find`, `updateOne` with `$set/$inc/$push/$pull`, `deleteMany`, `bulkWrite`) on real store data; `scripts/seed.js` now imports into MongoDB (`--fresh` re-runnable). (files: server/queries/01-crud.mongodb.js, server/scripts/seed.js) | ✅ |
+| L22 | Query Operations in MongoDB | Catalogue search & filters | `queries/02-queries.mongodb.js` (comparison/logical/array operators, `$regex`, `$text`, projection, sort, skip/limit, `countDocuments`, `distinct`) → implemented in `repositories/mongo/product.repo.js` for every `GET /products` param. (files: server/queries/02-queries.mongodb.js, server/src/repositories/mongo/product.repo.js, server/src/repositories/mongo/category.repo.js) | ✅ |
+| L23 | Aggregation Pipeline + Indexing | Analytics, facets, speed | Pipelines (`$match/$group/$unwind/$lookup/$facet/$dateToString`) for `/products/facets`, revenue, sales-by-category, top products, summary and rating recalculation; indexes (weighted text, compound `category+price`, unique `slug/email/orderNumber`, review `(product,user)`) with `explain()` before/after in `docs/indexing.md`. (files: docs/indexing.md, server/src/services/analytics.service.js, server/src/routes/analytics.routes.js, server/src/controllers/product.controller.js, server/src/models/Review.js) | ✅ |
+| L24 | Data Modelling & Relationships | Schema design | `docs/data-model.md` Mermaid ER diagram + embed-vs-reference table: order items & address embedded snapshots, reviews referenced, wishlist refs, cart items embedded, product → category reference. (files: docs/data-model.md) | ✅ |
+| L25 | Introduction to Mongoose ODM + Schema & Model Design | Models | Category, Product, Review, Cart, Order, User, Subscriber, ContactMessage; `timestamps`, `toJSON` → `id`, virtuals (`discountPercent`, `inStock`), statics/methods (`calcAverageRatings`, `canTransitionTo`), hooks (slug pre-validate, rating post-save), `populate`, `lean()`. (files: server/src/models/Category.js, server/src/models/Product.js, server/src/models/Review.js, server/src/models/Cart.js, server/src/models/Order.js, server/src/models/User.js, server/src/models/Subscriber.js, server/src/models/ContactMessage.js) | ✅ |
+| L26 | Data Validation using Mongoose | Trustworthy data | Built-in validators + custom (`compareAtPrice ≥ price`, 6-digit pincode, 10-digit phone, integer rating 1–5) with custom messages; `runValidators` on updates; errors surface as `422` via B2's handler; two-layer validation (zod + Mongoose) documented. (files: server/src/models/Product.js, server/src/models/Order.js, server/src/models/User.js, docs/data-model.md) | ✅ |
+| L27 | Connecting Node.js with MongoDB | Live DB connection | `config/db.js` (`mongoose.connect`, Atlas/local via `DB_TARGET`, event logging, retry/backoff); connect-before-listen; close on shutdown; `/health` includes DB state. (files: server/src/config/db.js, server/src/server.js, server/src/routes/health.routes.js) | ✅ |
+| L28 | Building REST APIs with Database Integration | Real commerce flow | Mongo repositories replace JSON; Reviews; server-side Cart (+ guest merge); Orders (build from cart, atomic stock decrement with `$inc` + `stock ≥ qty` guard, compensation on failure, order number via `crypto`, state machine, cancel + restock); admin orders & analytics. (files: server/src/services/order.service.js, server/src/services/cart.service.js, server/src/services/review.service.js, server/src/repositories/index.js, server/src/repositories/mongo/*, server/src/routes/order.routes.js, server/src/routes/cart.routes.js, server/src/routes/adminOrder.routes.js) | ✅ |
+| L42 | AI Tools For Developers | How the team built the project | `docs/ai/AI_TOOLS.md`: agents/assistants used per phase, where they helped or failed, review practices, what is never delegated. Backed by `docs/ai/PROMPT_LOG.md`. (files: docs/ai/AI_TOOLS.md, docs/ai/PROMPT_LOG.md) | ✅ |
+| L43 | Integrating AI Services | Masala Stylist + AI copywriter | `services/ai/` provider interface with adapters (+ offline `mock`); `POST /ai/stylist` = retrieve candidates (`$text` + inferred filters) → LLM picks ids and writes reply → ids allow-listed against candidates; `POST /ai/describe`; timeouts, rate limits, input caps. (files: server/src/services/ai.service.js, server/src/services/ai/provider.js, server/src/services/ai/adapters/mock.js, server/src/services/ai/adapters/gemini.js, server/src/routes/ai.routes.js, server/src/controllers/ai.controller.js) | ✅ |
+| L44 | AI driven Development | Spec-first workflow | `docs/ai/AI_DRIVEN_DEVELOPMENT.md`: docs → plan → build → review → log loop actually used (these very docs), prompt examples, review checklist, agent-written tests and the human fixes they needed. (files: docs/ai/AI_DRIVEN_DEVELOPMENT.md, docs/ai/PROMPT_LOG.md) | ✅ |
 
 ### B4 · Aakash — Auth, Realtime & Integration (L31 – L41)
 
@@ -177,3 +177,35 @@ This file answers one question for every curriculum topic: **"How did you implem
 - Local MongoDB 7.0.48 and Atlas MongoDB 8.0.37 passed the standalone ping. Atlas reported no visible collections in `metal_masala`.
 - For Phase 3, reuse `calculateQuote`, keep the repository interface and central errors, and replace the nested review placeholder. The HTTP app still uses the JSON repositories.
 - The response contract is unchanged. Explicit duplicate slugs return 409, while auto-generated collisions use sequential suffixes.
+
+### Backend Phase 3 · Tanishq · 18 November 2026
+
+- Branch / PR: `backend/phase-3-data-ai`
+- What's done (one line per lecture group):
+  - **L21:** MongoDB CRUD Operations playbook (`queries/01-crud.mongodb.js`) and database seeder CLI (`scripts/seed.js`) supporting `--import`, `--destroy`, and `--fresh`.
+  - **L22:** MongoDB Query Operations playbook (`queries/02-queries.mongodb.js`) translating all catalogue filters to Mongo queries in `repositories/mongo/product.repo.js`.
+  - **L23:** Aggregation Pipelines for `/products/facets`, review rating recalculations, and admin analytics (`summary`, `revenue`, `sales-by-category`, `top-products`) in `services/analytics.service.js`; indexing strategy with `explain('executionStats')` documented in `docs/indexing.md`.
+  - **L24:** Data Modelling ER diagram, embedding vs referencing decisions, and validation architecture in `docs/data-model.md`.
+  - **L25–L26:** Mongoose models (Category, Product, Review, Cart, Order, User schema, Subscriber, ContactMessage) with custom validators (`compareAtPrice ≥ price`, 10-digit phone, 6-digit pincode, integer rating 1–5), virtuals, state machine methods, and hooks.
+  - **L27:** Live MongoDB connection lifecycle in `config/db.js` with exponential backoff retry and graceful shutdown; `/health` endpoint updated with database status.
+  - **L28:** Full commerce backend: reviews with verified purchase check, server-side cart with guest merge, concurrency-safe orders with atomic stock decrements and compensation rollback, admin orders, related products, and repository layer dispatcher.
+  - **L42–L44:** AI developer tools assessment (`docs/ai/AI_TOOLS.md`), spec-first workflow guide (`docs/ai/AI_DRIVEN_DEVELOPMENT.md`), and Masala Stylist + AI Copywriter services (`services/ai.service.js`) with deterministic offline mock adapter and prompt-injection allowlist verification.
+- How to run it (commands, env needed):
+  - `cd server && npm install`
+  - `npm run seed -- --import` (or `--fresh` to reset and seed MongoDB)
+  - `npm run dev` (starts API connected to MongoDB)
+  - `npm test` (runs 38/38 automated tests across all phases)
+  - `npm run lint` (runs ESLint with 0 warnings and 0 errors)
+- Seams left for the next person (Aakash - B4):
+  - **User Model:** `src/models/User.js` contains `email` (unique, lowercase), `password` (select: false), `role`, `addresses`, `wishlist`, `isActive`, `passwordChangedAt`. Left clean without password hashing or auth methods for B4 (L31, L33, L34).
+  - **Dev Users:** Seeded with fixed IDs (`customer: 65f0c0ffee0000000000a001`, `manager: 65f0c0ffee0000000000a002`, `admin: 65f0c0ffee0000000000a003`) and placeholder password `'__unset_until_B4__'`.
+  - **EVENT HOOK Markers:** Placed exactly at the 4 required locations for B4 to wire into EventEmitter / WebSockets:
+    1. `// EVENT HOOK: review.created  { review }` in `src/services/review.service.js` (after review save)
+    2. `// EVENT HOOK: order.placed    { order }` in `src/services/order.service.js` (after order create)
+    3. `// EVENT HOOK: order.statusChanged { order, from, to }` in `src/services/order.service.js` (status update & cancel)
+    4. `// EVENT HOOK: stock.low       { product }` in `src/services/order.service.js` (when remaining stock ≤ threshold)
+  - **Auth Seam:** Routes rely on `req.user` provided by `middleware/auth.js`. Once B4 implements JWT verification in `protect`, all commerce routes (Cart, Orders, Reviews, Admin) will bind to real authenticated users without route changes.
+- Known issues / shortcuts:
+  - AI Stylist defaults to the offline mock adapter when `AI_API_KEY` is not provided, allowing 100% offline development.
+- Contract changes made (and who agreed):
+  - None; perfectly conforms to `docs/01_API_CONTRACT.md`.

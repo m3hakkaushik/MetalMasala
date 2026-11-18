@@ -30,3 +30,16 @@
 - Switch the client to the real contact, newsletter, and pricing endpoints. The browser confirmed a saved contact, an idempotent signup, and the ₹927 COD quote for a ₹799 product.
 - Verify MongoDB with the standalone ping while keeping the HTTP application JSON-backed. The local MongoDB 7 check passed.
 - Repeat the read-only ping against the team's Atlas cluster. The check passed on MongoDB 8.0.37 using a temporary process environment.
+
+## Backend Phase 3 (B3) — Tanishq — 18 November 2026
+
+- “Review the project folder structure, README, API contract, and implementation map; then build Database Layer, Commerce Flow & AI (L21–L28, L42–L44).” The architecture transitioned from JSON storage to MongoDB + Mongoose with complete contract fidelity.
+- “Write runnable query playbooks in server/queries/ for CRUD operations and query filters on real Metal मसाला jewellery data.” Playbooks `01-crud.mongodb.js` and `02-queries.mongodb.js` created with comprehensive examples ($inc, $push, $pull, $text, $facet, $elemMatch).
+- “Draft docs/data-model.md with Mermaid ER diagram and embed vs reference decisions; document two-layer validation.” Completed data architecture and schema constraints.
+- “Draft docs/indexing.md with compound indexes and explain('executionStats') demonstrating COLLSCAN to IXSCAN improvements.” Analyzed execution stats for catalogue queries, full-text searches, and user order history.
+- “Design Mongoose schemas with validation, virtuals, static methods, and hooks for Category, Product, Review, Cart, Order, User, Subscriber, ContactMessage.” Implemented custom validators (compareAtPrice >= price, 6-digit pincode, 10-digit phone, integer rating 1–5) and review average rating calculation hooks.
+- “Connect Node.js with MongoDB in config/db.js with retry backoff and graceful shutdown; update /health with live database status.”
+- “Implement MongoDB repositories and flip DATA_STORE default to mongo while preserving backwards compatibility.”
+- “Build commerce services and controllers: Reviews with verified purchase check, server-side Cart with guest merge, Orders with atomic stock decrement and compensation rollback, Admin Orders, and Aggregation Analytics.”
+- “Implement Masala Stylist and AI Copywriter with offline mock adapter and prompt-injection allowlist verification.”
+- “Document AI developer tools (AI_TOOLS.md) and spec-first workflow (AI_DRIVEN_DEVELOPMENT.md); leave clean EVENT HOOK seams for B4.”
