@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "[L8] Launch Express Server (Dev)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/server",
+      "program": "${workspaceFolder}/server/src/server.js",
+      "restart": true,
+      "runtimeArgs": ["--watch"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "4000",
+        "DEBUG": "mm:*"
+      }
+    },
+    {
+      "name": "[L8] Launch Native HTTP Server",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/server",
+      "program": "${workspaceFolder}/server/src/native/server.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NATIVE_PORT": "4001"
+      }
+    },
+    {
+      "name": "[L8] Run Smoke Tests",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/server",
+      "program": "${workspaceFolder}/server/test/smoke.test.js",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "[L8] Attach to Node Process",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true
+    }
+  ]
+}

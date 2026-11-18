@@ -1,0 +1,133 @@
+### [L8] API Testing & Debugging: REST Client test definitions for Metal Masala
+
+@baseUrl = http://localhost:4000
+@apiUrl = {{baseUrl}}/api/v1
+@nativeUrl = http://localhost:4001
+
+### 1. Health check probe [L5, L6]
+GET {{baseUrl}}/health
+Accept: application/json
+
+### 2. Versioned Health check
+GET {{apiUrl}}/health
+Accept: application/json
+
+### 3. List all categories with product counts [L10]
+GET {{apiUrl}}/categories
+Accept: application/json
+
+### 4. Create category (Manager+) [L10]
+# @name createCategory
+POST {{apiUrl}}/categories
+Content-Type: application/json
+
+{
+  "name": "Anklets & Charms",
+  "nameHi": "पायल व आकर्षण",
+  "slug": "anklets-charms",
+  "description": "Handcrafted silver-plated anklets with melodious bells.",
+  "sortOrder": 9
+}
+
+### 5. Create category with duplicate slug (Conflict 409) [L10]
+POST {{apiUrl}}/categories
+Content-Type: application/json
+
+{
+  "name": "Anklets & Charms",
+  "slug": "anklets-charms"
+}
+
+### 6. Update category [L10]
+PATCH {{apiUrl}}/categories/cat-anklets-charms
+Content-Type: application/json
+
+{
+  "description": "Updated description for festive anklets collection."
+}
+
+### 7. Delete category with referencing products (Fails with 409) [L10]
+DELETE {{apiUrl}}/categories/jhumkas
+
+### 8. List products (Default pagination: 12 items) [L11]
+GET {{apiUrl}}/products
+Accept: application/json
+
+### 9. Filter products by search query, sorting, and price range [L11]
+GET {{apiUrl}}/products?q=jhumka&sort=popular&minPrice=400&maxPrice=1200
+Accept: application/json
+
+### 10. Filter products by category, material, and finish [L11]
+GET {{apiUrl}}/products?category=jhumkas&material=brass&finish=oxidized-silver&inStock=true
+Accept: application/json
+
+### 11. Pagination: Page 2 with limit 5 [L11]
+GET {{apiUrl}}/products?page=2&limit=5&sort=price-asc
+Accept: application/json
+
+### 12. Export products as CSV (Manager+) [L5, L11]
+GET {{apiUrl}}/products/export.csv
+
+### 13. Get single product by slug [L11]
+# @name getProduct
+GET {{apiUrl}}/products/chandni-chowk-jhumka
+Accept: application/json
+
+### 14. ETag caching conditional GET (Expect 304 Not Modified) [L2, L11]
+GET {{apiUrl}}/products/chandni-chowk-jhumka
+If-None-Match: {{getProduct.response.headers.ETag}}
+
+### 15. Product not found (404) [L2]
+GET {{apiUrl}}/products/non-existent-jewellery-piece
+Accept: application/json
+
+### 16. Create a new product (201 Created + Location header) [L10, L11]
+# @name createProduct
+POST {{apiUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Jaipur Royal Hasli Choker",
+  "slug": "jaipur-royal-hasli-choker",
+  "tagline": "A royal collar forged in solid brass with peacock motifs.",
+  "description": "Handcrafted heirloom choker with intricate nakashi engravings.",
+  "price": 1499,
+  "compareAtPrice": 1999,
+  "category": "cat-chokers",
+  "material": "brass",
+  "finish": "antique-gold",
+  "stock": 8,
+  "tags": ["wedding-guest", "statement"],
+  "craft": {
+    "artisan": "Studio Rangrez",
+    "region": "Jaipur, Rajasthan",
+    "technique": "Hand-engraved nakashi brass"
+  }
+}
+
+### 17. Create product validation error (422) [L11]
+POST {{apiUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -50,
+  "category": ""
+}
+
+### 18. Native HTTP Server Health Probe [L7]
+GET {{nativeUrl}}/health
+Accept: application/json
+
+### 19. Native HTTP Server Products List [L7]
+GET {{nativeUrl}}/native/products?limit=3
+Accept: application/json
+
+### 20. Native HTTP Server Echo (POST body parsing) [L7]
+POST {{nativeUrl}}/native/echo
+Content-Type: application/json
+
+{
+  "sender": "Student",
+  "message": "Testing raw Node.js stream body parser"
+}
