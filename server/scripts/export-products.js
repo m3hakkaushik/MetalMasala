@@ -13,11 +13,12 @@ import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import zlib from 'node:zlib';
 import readline from 'node:readline';
+import { SEED_DIR, STORE_DIR } from '../src/utils/jsonStore.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const STORE_PATH = path.resolve(__dirname, '../data/store/products.json');
-const SEED_PATH = path.resolve(__dirname, '../data/seed/products.json');
+const STORE_PATH = path.join(STORE_DIR, 'products.json');
+const SEED_PATH = path.join(SEED_DIR, 'products.json');
 const EXPORT_DIR = path.resolve(__dirname, '../data/export');
 
 /**

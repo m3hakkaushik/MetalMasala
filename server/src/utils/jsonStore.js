@@ -1,89 +1,75 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import crypto from 'node:crypto';
+import { randomUUID } from 'node:crypto';
+import config from '../config/index.js';
 import { debugData } from './logger.js';
+import { createSerialQueue } from './serialQueue.js';
 
-// [L5] Core Node.js Modules:
-// - `path` and `url` to construct absolute paths
-// - `fs/promises` for atomic writes (write temp file + rename)
-// - `crypto` for unique temp file naming
+// [L5] Store files are written to a temporary path and replaced with an atomic rename.
+export const STORE_DIR = config.server.storeDir;
+export const SEED_DIR = path.resolve(import.meta.dirname, '../../data/seed');
+const serialize = createSerialQueue();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-export const STORE_DIR = path.resolve(__dirname, '../../data/store');
-export const SEED_DIR = path.resolve(__dirname, '../../data/seed');
-
-let storeDirEnsured = false;
-async function ensureStoreDir() {
-  if (storeDirEnsured) return;
-  await fs.mkdir(STORE_DIR, { recursive: true });
-  storeDirEnsured = true;
+async function readJson(file) {
+  return JSON.parse(await fs.readFile(file, 'utf-8'));
 }
 
-// Simple mutex queue per file to prevent write-race conditions
-const writeLocks = new Map();
-
-/**
- * Reads a JSON file from the store. If missing, attempts to initialize from seed.
- * @param {string} filename - e.g. 'products.json'
- * @param {any} [defaultData=[]]
- * @returns {Promise<any>}
- */
-export async function readStore(filename, defaultData = []) {
-  await ensureStoreDir();
-  const storePath = path.join(STORE_DIR, filename);
-
+async function replaceStore(filename, data) {
+  await fs.mkdir(STORE_DIR, { recursive: true });
+  const target = path.join(STORE_DIR, filename);
+  const temporary = `${target}.tmp.${randomUUID()}`;
   try {
-    const raw = await fs.readFile(storePath, 'utf-8');
-    return JSON.parse(raw);
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      // Check if seed file exists to auto-populate
-      const seedPath = path.join(SEED_DIR, filename);
-      try {
-        const seedRaw = await fs.readFile(seedPath, 'utf-8');
-        const seedData = JSON.parse(seedRaw);
-        await writeStore(filename, seedData);
-        debugData('Initialized store from seed for %s', filename);
-        return seedData;
-      } catch {
-        debugData('Seed not found for %s, using default', filename);
-        await writeStore(filename, defaultData);
-        return defaultData;
-      }
-    }
-    throw err;
+    const json = JSON.stringify(data, null, 2);
+    await fs.writeFile(temporary, json, 'utf-8');
+    await fs.rename(temporary, target);
+    debugData(
+      'Atomic write completed for %s (%d bytes)',
+      filename,
+      Buffer.byteLength(json)
+    );
+  } catch (error) {
+    await fs.rm(temporary, { force: true }).catch(() => {});
+    throw error;
   }
 }
 
-/**
- * Writes data to a JSON store file atomically.
- * Writes to a temporary file first, then renames it over the target file.
- * @param {string} filename - e.g. 'products.json'
- * @param {any} data
- */
-export async function writeStore(filename, data) {
-  await ensureStoreDir();
-  const storePath = path.join(STORE_DIR, filename);
-  const tempPath = path.join(
-    STORE_DIR,
-    `${filename}.tmp.${Date.now()}.${crypto.randomUUID().slice(0, 8)}`
-  );
+async function readOrSeed(filename, defaultData) {
+  try {
+    return await readJson(path.join(STORE_DIR, filename));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  let data;
+  try {
+    data = await readJson(path.join(SEED_DIR, filename));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    data = defaultData;
+  }
+  await replaceStore(filename, data);
+  return data;
+}
 
-  const prevLock = writeLocks.get(filename) || Promise.resolve();
+export async function readStore(filename, defaultData = []) {
+  try {
+    return await readJson(path.join(STORE_DIR, filename));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    // A concurrent first reader may have already installed the seed by the time this acquires the queue.
+    return serialize(filename, () => readOrSeed(filename, defaultData));
+  }
+}
 
-  const writeOperation = async () => {
-    const serialized = JSON.stringify(data, null, 2);
-    // Write to temp file first
-    await fs.writeFile(tempPath, serialized, 'utf-8');
-    // Atomic rename replaces the destination file completely
-    await fs.rename(tempPath, storePath);
-    debugData('Atomic write completed for %s (%d bytes)', filename, serialized.length);
-  };
+export function writeStore(filename, data) {
+  return serialize(filename, () => replaceStore(filename, data));
+}
 
-  const nextLock = prevLock.then(writeOperation, writeOperation);
-  writeLocks.set(filename, nextLock);
-
-  return nextLock;
+// [L14] Write APIs keep read-modify-write in the same queue so simultaneous signups cannot overwrite one another.
+export function updateStore(filename, mutate) {
+  return serialize(filename, async () => {
+    const records = await readOrSeed(filename, []);
+    const { result, changed = true } = mutate(records);
+    if (changed) await replaceStore(filename, records);
+    return result;
+  });
 }

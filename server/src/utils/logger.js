@@ -44,23 +44,3 @@ export async function appendAccessLog(entry) {
     debugHttp('Failed to write to access log: %s', util.inspect(err));
   }
 }
-
-/**
- * Express middleware for request logging and X-Request-Id header propagation.
- */
-export function requestLogger(req, res, next) {
-  const startTime = Date.now();
-  const requestId = req.headers['x-request-id'] || crypto.randomUUID();
-  res.setHeader('X-Request-Id', requestId);
-  req.requestId = requestId;
-
-  res.on('finish', () => {
-    const duration = Date.now() - startTime;
-    const logLine = `${req.method} ${req.originalUrl || req.url} ${res.statusCode} ${duration}ms [requestId=${requestId}]`;
-    debugHttp(logLine);
-    // Non-blocking background append
-    appendAccessLog(logLine).catch(() => {});
-  });
-
-  next();
-}

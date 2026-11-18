@@ -1,8 +1,8 @@
 {
   "info": {
     "_postman_id": "c1f0d3a5-9204-4e2b-b68e-01a4f00999aa",
-    "name": "Metal मसाला — API Collection (B1)",
-    "description": "[L8] Postman collection covering System, Categories, Products, and Native HTTP Server endpoints.",
+    "name": "Metal मसाला — API Collection (B1–B2)",
+    "description": "[L8] Postman collection covering System, Categories, Products, Native HTTP, and Phase 2 marketing and pricing endpoints.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -55,6 +55,7 @@
           "request": {
             "method": "POST",
             "header": [
+              { "key": "X-Dev-Role", "value": "manager" },
               {
                 "key": "Content-Type",
                 "value": "application/json"
@@ -75,11 +76,13 @@
           "name": "Delete Category (Conflict when in use)",
           "request": {
             "method": "DELETE",
-            "header": [],
+            "header": [
+              { "key": "X-Dev-Role", "value": "admin" }
+            ],
             "url": {
-              "raw": "{{apiUrl}}/categories/cat-jhumkas",
+              "raw": "{{apiUrl}}/categories/jhumkas",
               "host": ["{{apiUrl}}"],
-              "path": ["categories", "cat-jhumkas"]
+              "path": ["categories", "jhumkas"]
             }
           }
         }
@@ -135,7 +138,9 @@
           "name": "Export Products CSV",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              { "key": "X-Dev-Role", "value": "manager" }
+            ],
             "url": {
               "raw": "{{apiUrl}}/products/export.csv",
               "host": ["{{apiUrl}}"],
@@ -148,6 +153,7 @@
           "request": {
             "method": "POST",
             "header": [
+              { "key": "X-Dev-Role", "value": "manager" },
               {
                 "key": "Content-Type",
                 "value": "application/json"
@@ -212,6 +218,87 @@
               "raw": "{{nativeUrl}}/native/echo",
               "host": ["{{nativeUrl}}"],
               "path": ["native", "echo"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 2",
+      "item": [
+        {
+          "name": "Join the newsletter",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"phase2@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}/newsletter",
+              "host": [
+                "{{apiUrl}}"
+              ],
+              "path": [
+                "newsletter"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send a contact message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Demo Customer\",\n  \"email\": \"demo@example.com\",\n  \"message\": \"Could you confirm how to care for this finish?\"\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}/contact",
+              "host": [
+                "{{apiUrl}}"
+              ],
+              "path": [
+                "contact"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Quote a cash-on-delivery order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": \"bbbbbbbbbbbbbbbbbbbb0001\",\n      \"qty\": 1\n    }\n  ],\n  \"paymentMethod\": \"cod\"\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}/pricing/quote",
+              "host": [
+                "{{apiUrl}}"
+              ],
+              "path": [
+                "pricing",
+                "quote"
+              ]
             }
           }
         }

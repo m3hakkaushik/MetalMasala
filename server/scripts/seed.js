@@ -14,12 +14,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const SEED_DIR = path.resolve(__dirname, '../data/seed');
-const STORE_DIR = path.resolve(__dirname, '../data/store');
+import { SEED_DIR, STORE_DIR } from '../src/utils/jsonStore.js';
 
 function printUsage() {
   process.stdout.write(`

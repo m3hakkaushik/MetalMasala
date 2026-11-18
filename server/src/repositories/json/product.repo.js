@@ -10,7 +10,7 @@ import { categoryRepo } from './category.repo.js';
 const STORE_FILE = 'products.json';
 
 /**
- * Computes derived/virtual product fields according to API contract §3.
+ * [L13] Computes catalogue discounts and availability according to API contract §3.
  */
 function applyVirtuals(product) {
   const stock = typeof product.stock === 'number' ? product.stock : 0;
@@ -212,8 +212,9 @@ class ProductRepository {
     }
 
     const now = new Date().toISOString();
+    const defaultId = `prod-${slug || crypto.randomUUID().slice(0, 8)}`;
     const newProduct = {
-      id: data.id || `prod-${slug || crypto.randomUUID().slice(0, 8)}`,
+      id: data.id ?? (products.some(({ id }) => id === defaultId) ? crypto.randomUUID() : defaultId),
       name: data.name,
       slug,
       tagline: data.tagline || '',

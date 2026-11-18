@@ -49,14 +49,14 @@ process.on('uncaughtException', (err) => {
 });
 
 // Start listening
-server.listen(config.port, () => {
-  const url = `http://localhost:${config.port}`;
+server.listen(config.server.port, () => {
+  const url = `http://localhost:${config.server.port}`;
   console.log(`✨ Metal मसाला API server running at ${url}`);
   console.log(`   Health probe:  ${url}/health`);
   console.log(`   Products API:  ${url}/api/v1/products`);
-  console.log(`   Environment:   ${config.env}`);
-  console.log(`   Data Store:    ${config.dataStore}`);
-  debugBoot('Server initialized on port %d', config.port);
+  console.log(`   Environment:   ${config.server.env}`);
+  console.log(`   Data Store:    ${config.server.dataStore}`);
+  debugBoot('Server initialized on port %d', config.server.port);
 });
 
 export default server;

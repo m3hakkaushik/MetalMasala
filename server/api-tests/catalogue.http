@@ -19,6 +19,7 @@ Accept: application/json
 ### 4. Create category (Manager+) [L10]
 # @name createCategory
 POST {{apiUrl}}/categories
+X-Dev-Role: manager
 Content-Type: application/json
 
 {
@@ -31,6 +32,7 @@ Content-Type: application/json
 
 ### 5. Create category with duplicate slug (Conflict 409) [L10]
 POST {{apiUrl}}/categories
+X-Dev-Role: manager
 Content-Type: application/json
 
 {
@@ -39,7 +41,8 @@ Content-Type: application/json
 }
 
 ### 6. Update category [L10]
-PATCH {{apiUrl}}/categories/cat-anklets-charms
+PATCH {{apiUrl}}/categories/{{createCategory.response.body.$.data.id}}
+X-Dev-Role: manager
 Content-Type: application/json
 
 {
@@ -48,6 +51,7 @@ Content-Type: application/json
 
 ### 7. Delete category with referencing products (Fails with 409) [L10]
 DELETE {{apiUrl}}/categories/jhumkas
+X-Dev-Role: admin
 
 ### 8. List products (Default pagination: 12 items) [L11]
 GET {{apiUrl}}/products
@@ -67,6 +71,7 @@ Accept: application/json
 
 ### 12. Export products as CSV (Manager+) [L5, L11]
 GET {{apiUrl}}/products/export.csv
+X-Dev-Role: manager
 
 ### 13. Get single product by slug [L11]
 # @name getProduct
@@ -84,6 +89,7 @@ Accept: application/json
 ### 16. Create a new product (201 Created + Location header) [L10, L11]
 # @name createProduct
 POST {{apiUrl}}/products
+X-Dev-Role: manager
 Content-Type: application/json
 
 {
@@ -93,7 +99,7 @@ Content-Type: application/json
   "description": "Handcrafted heirloom choker with intricate nakashi engravings.",
   "price": 1499,
   "compareAtPrice": 1999,
-  "category": "cat-chokers",
+  "category": "chokers-necklaces",
   "material": "brass",
   "finish": "antique-gold",
   "stock": 8,
@@ -107,6 +113,7 @@ Content-Type: application/json
 
 ### 17. Create product validation error (422) [L11]
 POST {{apiUrl}}/products
+X-Dev-Role: manager
 Content-Type: application/json
 
 {

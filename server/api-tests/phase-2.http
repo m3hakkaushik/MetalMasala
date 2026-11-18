@@ -1,0 +1,71 @@
+@apiUrl = http://localhost:4000/api/v1
+
+### [L14] Subscribe with a new address (201)
+POST {{apiUrl}}/newsletter
+Content-Type: application/json
+
+{ "email": "phase2@example.com" }
+
+### [L14] Same subscriber is idempotent (200)
+POST {{apiUrl}}/newsletter
+Content-Type: application/json
+
+{ "email": " Phase2@example.com " }
+
+### [L17] Newsletter validation (422)
+POST {{apiUrl}}/newsletter
+Content-Type: application/json
+
+{ "email": "not-an-email" }
+
+### [L14] Contact submission (201)
+POST {{apiUrl}}/contact
+Content-Type: application/json
+
+{ "name": "Demo Customer", "email": "demo@example.com", "message": "Could you confirm how to care for this finish?" }
+
+### [L18] Malformed JSON keeps the request ID (400)
+POST {{apiUrl}}/contact
+Content-Type: application/json
+
+{ "message":
+
+### [L13] Quote using live catalogue prices (200, total 927 on the seed)
+# @name phaseTwoProduct
+GET {{apiUrl}}/products/chandni-chowk-jhumka
+
+###
+
+POST {{apiUrl}}/pricing/quote
+Content-Type: application/json
+
+{
+  "items": [{ "productId": "{{phaseTwoProduct.response.body.$.data.id}}", "qty": 1 }],
+  "paymentMethod": "cod"
+}
+
+### [L18] Invalid quantity (422)
+POST {{apiUrl}}/pricing/quote
+Content-Type: application/json
+
+{
+  "items": [{ "productId": "{{phaseTwoProduct.response.body.$.data.id}}", "qty": 0 }],
+  "paymentMethod": "card_mock"
+}
+
+### [L17] Customer role is denied before body validation (403)
+POST {{apiUrl}}/products
+Content-Type: application/json
+X-Dev-Role: customer
+
+{}
+
+### [L17] The manager reaches body validation (422)
+POST {{apiUrl}}/products
+Content-Type: application/json
+X-Dev-Role: manager
+
+{}
+
+### [L15] Nested reviews placeholder (501)
+GET {{apiUrl}}/products/{{phaseTwoProduct.response.body.$.data.id}}/reviews

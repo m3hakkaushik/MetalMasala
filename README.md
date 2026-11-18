@@ -1,10 +1,19 @@
 # Metal मसाला
 
-Metal मसाला is a storefront for handcrafted Indian jewellery. The React frontend runs on a local mock API and includes shopping, demo checkout, customer accounts, order tracking, and staff management screens.
+Metal मसाला is a storefront for handcrafted Indian jewellery. The React storefront uses an Express API for catalogue, newsletter, contact, and pricing. Mock Service Worker simulates customer accounts, cart and order processing, and later backend features.
 
 ## Run locally
 
-Use Node.js 22.12 or later.
+Use Node.js 22.12 or later. Start the API from the repository root.
+
+```sh
+cd server
+npm ci
+cp .env.example .env
+npm run dev
+```
+
+Open a second terminal at the repository root and start the storefront.
 
 ```sh
 cd client
@@ -13,13 +22,9 @@ cp .env.example .env
 npm run dev
 ```
 
-Open http://localhost:5173. The default mock configuration uses Mock Service Worker on localhost or HTTPS. A separate server and database are unnecessary for the frontend demo. Checkout simulates UPI, card, and cash on delivery.
+Open http://localhost:5173. The server listens on port 4000 and initializes its JSON catalogue from the seed on first use. Checkout simulates UPI, card, and cash on delivery. Set `VITE_MOCK_GROUPS=all` in the client environment for a standalone demo.
 
-```sh
-npm run lint
-npm run build
-npm run preview
-```
+From `server/`, run `npm test` and `npm run lint`. From `client/`, run `npm run lint`, `npm run build`, and `npm run preview`. See the [Phase 2 HTTP examples](server/api-tests/phase-2.http) and [standalone MongoDB setup](docs/mongodb-setup.md).
 
 ## Demo accounts
 
@@ -50,6 +55,6 @@ There are 32 demo products, eight categories, 30 reviews, and 23 orders. To use 
 
 `VITE_MOCK_GROUPS=all` enables the demo. Use a comma-separated subset for integration or set it to an empty string to build without the mock modules. Unselected requests go through the Vite proxy to port 4000 by default.
 
-During Backend Phases 1 and 2, keep the `catalogue-extras` group after removing `products` and `categories`. It keeps facets and related products mocked until their Phase 3 implementations are available.
+Phase 2 defaults to `catalogue-extras,reviews,cart,orders,admin,ai,auth,users`. Keep `catalogue-extras` until the real facets and related-product endpoints land in Phase 3. To test staff catalogue writes from the storefront, sign in as the corresponding demo user, set `VITE_DEV_ROLE=manager` or `VITE_DEV_ROLE=admin`, and restart Vite. The local Express API refuses those headers in production.
 
 See the [API contract](docs/01_API_CONTRACT.md), [frontend spec](docs/02_FRONTEND_PHASE.md), and [handoff](docs/07_IMPLEMENTATION_MAP.md#handoff-log).

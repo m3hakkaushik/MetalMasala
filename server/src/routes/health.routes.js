@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   const healthData = {
     status: 'healthy',
     uptime: Math.floor(process.uptime()),
-    env: config.env,
+    env: config.server.env,
     node: process.version,
     memory: {
       rss: Math.round(process.memoryUsage().rss / 1024 / 1024) + 'MB',
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
       freeMemory: Math.round(os.freemem() / 1024 / 1024) + 'MB',
       totalMemory: Math.round(os.totalmem() / 1024 / 1024) + 'MB',
     },
-    store: config.dataStore,
+    store: config.server.dataStore,
   };
 
   return sendSuccess(res, healthData, {

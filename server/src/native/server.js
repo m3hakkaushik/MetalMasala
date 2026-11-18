@@ -7,12 +7,13 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import os from 'node:os';
+import config from '../config/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const PORT = parseInt(process.env.NATIVE_PORT || '4001', 10);
+const PORT = config.server.nativePort;
 const SEED_PRODUCTS = path.resolve(__dirname, '../../data/seed/products.json');
-const STORE_PRODUCTS = path.resolve(__dirname, '../../data/store/products.json');
+const STORE_PRODUCTS = path.join(config.server.storeDir, 'products.json');
 
 /**
  * Helper to safely read products JSON from store or seed.
@@ -195,7 +196,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`[L7] Raw Node HTTP server listening on http://localhost:${PORT}`);
+  console.log(`[L7] Raw Node HTTP server listening on http://localhost:${server.address().port}`);
 });
 
 export default server;
