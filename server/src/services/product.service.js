@@ -1,7 +1,6 @@
 import config from '../config/index.js';
 import { ERROR_CODES as codes } from '../config/constants.js';
-import { productRepo } from '../repositories/json/product.repo.js';
-import { categoryRepo } from '../repositories/json/category.repo.js';
+import { productRepo, categoryRepo } from '../repositories/index.js';
 import { productsToCsv } from '../../scripts/export-products.js';
 import { AppError } from '../utils/AppError.js';
 import { slugify } from '../utils/formatters.js';
@@ -117,6 +116,28 @@ export const productService = {
   async exportCsv() {
     const products = await productRepo.getAllRaw();
     return productsToCsv(products);
+  },
+  // [L23] Facets aggregation for catalogue sidebar filters
+  async getFacets(filter) {
+    if (typeof productRepo.getFacets === 'function') {
+      return productRepo.getFacets(filter);
+    }
+    return {
+      price: { min: 299, max: 2499 },
+      categories: [],
+      finishes: [],
+      materials: [],
+      tags: [],
+    };
+  },
+  // [L28] Related products by category and tags
+  async getRelated(slug, limit = 8) {
+    if (typeof productRepo.findRelated === 'function') {
+      return productRepo.findRelated(slug, limit);
+    }
+    const current = await this.bySlug(slug);
+    const { items } = await productRepo.findMany({ limit: limit + 1 });
+    return items.filter((p) => p.slug !== current.slug).slice(0, limit);
   },
   isLowStock,
 };

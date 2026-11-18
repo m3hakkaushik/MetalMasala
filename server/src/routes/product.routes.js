@@ -16,6 +16,9 @@ import reviewsRouter from './review.routes.js';
 const router = Router();
 
 // [L15] Mount specific routes before the slug parameter and preload a product once per detail request.
+// [L23] GET /products/facets for catalogue sidebar counts
+router.get('/facets', catchAsync(productController.getFacets));
+
 router.get(
   '/export.csv',
   protect,
@@ -23,6 +26,8 @@ router.get(
   catchAsync(productController.exportCsv)
 );
 router.use('/:productId/reviews', reviewsRouter);
+// [L28] GET /products/:slug/related
+router.get('/:slug/related', catchAsync(productController.getRelated));
 router.param(
   'slug',
   catchAsync(async (req, _res, next, slug) => {

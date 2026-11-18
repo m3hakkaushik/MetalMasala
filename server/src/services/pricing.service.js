@@ -1,6 +1,6 @@
 import config from '../config/index.js';
 import { ERROR_CODES as codes } from '../config/constants.js';
-import { productRepo } from '../repositories/json/product.repo.js';
+import { productRepo } from '../repositories/index.js';
 import { AppError } from '../utils/AppError.js';
 
 // [L13] Compute checkout totals from a verified subtotal. Order services can reuse this function.

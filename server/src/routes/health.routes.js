@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import os from 'node:os';
 import config from '../config/index.js';
+import { getDbStatus } from '../config/db.js';
 import { sendSuccess } from '../utils/response.js';
 
 // [L5] Core Node.js Modules: os stats (platform, cpus, memory)
 // [L6] Process Object & CLI: process.uptime(), process.memoryUsage(), process.version
+// [L27] Connecting Node.js with MongoDB: /health reports live database state (state, name, host)
 
 const router = Router();
 
@@ -27,6 +29,7 @@ router.get('/', (req, res) => {
       totalMemory: Math.round(os.totalmem() / 1024 / 1024) + 'MB',
     },
     store: config.server.dataStore,
+    db: getDbStatus(),
   };
 
   return sendSuccess(res, healthData, {

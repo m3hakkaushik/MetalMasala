@@ -50,4 +50,14 @@ export const productController = {
       })
       .send(csv);
   },
+  // [L23] Facets endpoint for filtering
+  async getFacets(req, res) {
+    const facets = await productService.getFacets(req.query);
+    return sendSuccess(res, facets);
+  },
+  // [L28] Related products endpoint
+  async getRelated(req, res) {
+    const related = await productService.getRelated(req.params.slug);
+    return sendSuccess(res, related);
+  },
 };
