@@ -2,6 +2,8 @@ import http from 'node:http';
 import app from './app.js';
 import config from './config/index.js';
 import { connectDB, disconnectDB } from './config/db.js';
+import { initSockets } from './sockets/index.js';
+import { registerListeners } from './events/listeners/index.js';
 import { debugBoot } from './utils/logger.js';
 
 // [L1] Introduction to Backend Development: HTTP Server listening for client requests
@@ -10,13 +12,16 @@ import { debugBoot } from './utils/logger.js';
 // [L27] Connecting Node.js with MongoDB: Connect-before-listen & disconnect on graceful shutdown
 
 const server = http.createServer(app);
+const io = initSockets(server);
+const stopListening = registerListeners(io);
 
 // Graceful shutdown helper [L6] [L27]
 function handleGracefulShutdown(signal) {
   console.log(`\n🛑 Received ${signal}. Starting graceful shutdown...`);
   debugBoot(`Shutdown initiated via ${signal}`);
 
-  server.close(async (err) => {
+  stopListening();
+  void io.close(async (err) => {
     if (err) {
       console.error('❌ Error during server close:', err);
       process.exit(1);

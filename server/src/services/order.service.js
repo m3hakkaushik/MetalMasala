@@ -1,5 +1,6 @@
+import { bus } from '../events/bus.js';
+import { EVENTS } from '../events/events.js';
 import crypto from 'node:crypto';
-import config from '../config/index.js';
 import { ERROR_CODES as codes } from '../config/constants.js';
 import { orderRepo } from '../repositories/mongo/order.repo.js';
 import { cartRepo } from '../repositories/mongo/cart.repo.js';
@@ -60,12 +61,6 @@ export const orderService = {
         }
 
         decremented.push({ product, qty });
-
-        // Check if stock reached low threshold
-        const updatedProduct = await Product.findById(product._id);
-        if (updatedProduct && updatedProduct.stock <= config.stock.lowStockThreshold) {
-          // EVENT HOOK: stock.low       { product }                         (order.service, when stock ≤ LOW_STOCK_THRESHOLD after decrement)
-        }
       }
     } catch (error) {
       // Compensate: rollback all successfully decremented items
@@ -142,7 +137,7 @@ export const orderService = {
       }
     }
 
-    // EVENT HOOK: order.placed    { order }                           (order.service, after save)
+    bus.emit(EVENTS.ORDER_PLACED, { order: savedOrder });
 
     // 8. Clear user's cart
     await cartRepo.clear(userId);
@@ -205,7 +200,7 @@ export const orderService = {
 
     // Ownership check
     const isOwner = order.user?.toString() === user.id;
-    if (!isOwner && user.role !== 'admin') {
+    if (!isOwner) {
       throw new AppError(403, codes.FORBIDDEN, 'You can only cancel your own orders');
     }
 
@@ -218,7 +213,7 @@ export const orderService = {
       );
     }
 
-    // EVENT HOOK: order.statusChanged { order, from: order.status, to: 'cancelled' }             (order.service, status update + cancel)
+    const from = order.status;
     order.status = 'cancelled';
     order.statusHistory.push({
       status: 'cancelled',
@@ -236,7 +231,7 @@ export const orderService = {
 
     await order.save();
 
-    // EVENT HOOK: order.statusChanged { order, from: _previousStatus, to: 'cancelled' }             (order.service, status update + cancel)
+    bus.emit(EVENTS.ORDER_STATUS_CHANGED, { order, from, to: 'cancelled' });
 
     return typeof order.toJSON === 'function' ? order.toJSON() : order;
   },
@@ -285,7 +280,7 @@ export const orderService = {
       );
     }
 
-    // EVENT HOOK: order.statusChanged { order, from: order.status, to: newStatus }             (order.service, status update + cancel)
+    const from = order.status;
     order.status = newStatus;
     order.statusHistory.push({
       status: newStatus,
@@ -305,7 +300,7 @@ export const orderService = {
 
     await order.save();
 
-    // EVENT HOOK: order.statusChanged { order, from, to }             (order.service, status update + cancel)
+    bus.emit(EVENTS.ORDER_STATUS_CHANGED, { order, from, to: newStatus });
 
     return typeof order.toJSON === 'function' ? order.toJSON() : order;
   },

@@ -100,8 +100,8 @@ reviewSchema.statics.calcAverageRatings = async function (productId) {
 };
 
 // [L25] Post hooks for automatic rating recalculation
-reviewSchema.post('save', function () {
-  this.constructor.calcAverageRatings(this.product);
+reviewSchema.post('save', async function () {
+  await this.constructor.calcAverageRatings(this.product);
 });
 
 reviewSchema.post(['deleteOne', 'findOneAndDelete'], async function (doc) {
