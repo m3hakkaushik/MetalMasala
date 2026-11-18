@@ -1,5 +1,5 @@
 import { ERROR_CODES as codes } from '../config/constants.js';
-import { categoryRepo } from '../repositories/json/category.repo.js';
+import { categoryRepo } from '../repositories/index.js';
 import { AppError } from '../utils/AppError.js';
 import { resolveSlug } from './catalogueSlug.js';
 import { catalogueWrite } from './catalogueWrites.js';

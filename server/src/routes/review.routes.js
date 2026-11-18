@@ -1,24 +1,37 @@
 import { Router } from 'express';
+import mongoose from 'mongoose';
+import config from '../config/index.js';
 import { ERROR_CODES } from '../config/constants.js';
+import { reviewController } from '../controllers/review.controller.js';
 import { protect } from '../middleware/auth.js';
-import { validate } from '../middleware/validate.js';
+import { catchAsync } from '../utils/catchAsync.js';
 import { AppError } from '../utils/AppError.js';
-import { productIdParams } from '../validators/catalogue.js';
 
-// [L15] [L16] Router-level validation can see the product ID inherited from the parent route.
+// [L28] Product Reviews Router
 const router = Router({ mergeParams: true });
-router.use(validate({ params: productIdParams }));
 
-function pendingReview(_req, _res, next) {
-  next(
-    new AppError(
-      501,
-      ERROR_CODES.INTERNAL_ERROR,
-      'Product reviews are scheduled for Phase 3'
-    )
-  );
+function reviewStoreGuard(handler) {
+  return (req, res, next) => {
+    if (mongoose.connection.readyState !== 1 && config.server.dataStore !== 'mongo') {
+      return next(
+        new AppError(
+          501,
+          ERROR_CODES.INTERNAL_ERROR,
+          'Product reviews are scheduled for Phase 3'
+        )
+      );
+    }
+    return handler(req, res, next);
+  };
 }
 
-router.route('/').get(pendingReview).post(protect, pendingReview);
+router
+  .route('/')
+  .get(reviewStoreGuard(catchAsync(reviewController.list)))
+  .post(protect, reviewStoreGuard(catchAsync(reviewController.create)));
+
+router
+  .route('/:id')
+  .delete(protect, reviewStoreGuard(catchAsync(reviewController.remove)));
 
 export default router;

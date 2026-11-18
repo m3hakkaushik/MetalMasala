@@ -1,33 +1,44 @@
 #!/usr/bin/env node
 
 /**
- * // [L5] Core Node.js Modules: fs/promises, path, url
  * // [L6] Process Object & CLI: Manual parsing of process.argv, stdout streaming, exit codes
+ * // [L21] MongoDB CRUD Operations: Seeding categories, products, reviews, users, and orders
+ * // [L28] Building REST APIs with Database Integration: Data Seeding Pipeline
  *
  * Seed CLI for Metal Masala
  * Usage:
  *   node scripts/seed.js --import
  *   node scripts/seed.js --destroy
+ *   node scripts/seed.js --fresh
  *   node scripts/seed.js --file <path>
  *   node scripts/seed.js --help
  */
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import mongoose from 'mongoose';
+import config from '../src/config/index.js';
+import { DEV_USER_IDS } from '../src/config/constants.js';
+import { Category } from '../src/models/Category.js';
+import { Product } from '../src/models/Product.js';
+import { Review } from '../src/models/Review.js';
+import { User } from '../src/models/User.js';
+import { Order } from '../src/models/Order.js';
 import { SEED_DIR, STORE_DIR } from '../src/utils/jsonStore.js';
 
 function printUsage() {
   process.stdout.write(`
-Metal मसाला — Database Seeder CLI [L6]
+Metal मसाला — Database Seeder CLI [L6, L21, L28]
 
 Usage:
   node scripts/seed.js [options]
   npm run seed -- [options]
 
 Options:
-  --import         Copy all seed datasets into data/store/*.json
-  --destroy        Wipe all runtime store files in data/store/
-  --file <path>    Import a specific JSON file into data/store/
+  --import         Seed MongoDB collections and data store
+  --destroy        Wipe all database collections and store files
+  --fresh          Destroy existing collections and re-import in one operation
+  --file <path>    Import a specific JSON file
   --help, -h       Show this help message
 
 Exit codes:
@@ -37,113 +48,250 @@ Exit codes:
 \n`);
 }
 
-async function ensureDir(dir) {
-  await fs.mkdir(dir, { recursive: true });
-}
-
-async function runImport() {
-  await ensureDir(STORE_DIR);
-  process.stdout.write('📦 Starting seed import...\n');
-
-  const files = await fs.readdir(SEED_DIR);
-  const jsonFiles = files.filter((f) => f.endsWith('.json'));
-
-  if (jsonFiles.length === 0) {
-    process.stdout.write('⚠️  No seed files found in ' + SEED_DIR + '\n');
-    process.exit(2);
-  }
-
-  for (const file of jsonFiles) {
-    const src = path.join(SEED_DIR, file);
-    const dest = path.join(STORE_DIR, file);
-
-    const content = await fs.readFile(src, 'utf-8');
-    // Validate JSON parsing
-    const parsed = JSON.parse(content);
-    const count = Array.isArray(parsed) ? parsed.length : 1;
-
-    await fs.writeFile(dest, JSON.stringify(parsed, null, 2), 'utf-8');
-    process.stdout.write(`  ✔ Imported ${file} (${count} records)\n`);
-  }
-
-  process.stdout.write('✨ Seed data successfully imported into runtime store!\n');
-  process.exit(0);
+async function connectMongoose() {
+  const { uri, name } = config.db;
+  process.stdout.write(`🔌 Connecting to MongoDB (${config.db.target}: ${name})...\n`);
+  await mongoose.connect(uri, {
+    dbName: name,
+    serverSelectionTimeoutMS: 5000,
+  });
 }
 
 async function runDestroy() {
-  process.stdout.write('🧹 Destroying runtime store...\n');
+  process.stdout.write('🧹 Destroying database collections and runtime store...\n');
   try {
-    const files = await fs.readdir(STORE_DIR);
-    for (const file of files) {
-      if (file.endsWith('.json') || file.includes('.tmp.')) {
-        await fs.unlink(path.join(STORE_DIR, file));
-        process.stdout.write(`  ✖ Removed ${file}\n`);
+    await connectMongoose();
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    for (const coll of collections) {
+      await mongoose.connection.db.dropCollection(coll.name);
+      process.stdout.write(`  ✖ Dropped collection: ${coll.name}\n`);
+    }
+
+    // Also clear runtime JSON store if present
+    try {
+      const files = await fs.readdir(STORE_DIR);
+      for (const file of files) {
+        if (file.endsWith('.json') || file.includes('.tmp.')) {
+          await fs.unlink(path.join(STORE_DIR, file));
+        }
+      }
+    } catch {
+      // Ignore if store dir not found
+    }
+
+    process.stdout.write('✨ Database and store successfully destroyed.\n');
+  } catch (err) {
+    process.stderr.write(`❌ Error during destroy: ${err.message}\n`);
+    process.exitCode = 2;
+  } finally {
+    await mongoose.disconnect();
+  }
+}
+
+async function runImport() {
+  process.stdout.write('📦 Starting seed import into MongoDB...\n');
+  try {
+    await connectMongoose();
+
+    // 1. Categories
+    const categoriesRaw = JSON.parse(
+      await fs.readFile(path.join(SEED_DIR, 'categories.json'), 'utf-8')
+    );
+    const categoryMap = new Map(); // slug -> ObjectId
+
+    for (const cat of categoriesRaw) {
+      const existing = await Category.findOne({ slug: cat.slug });
+      if (existing) {
+        categoryMap.set(cat.slug, existing._id);
+      } else {
+        const created = await Category.create({
+          name: cat.name,
+          nameHi: cat.nameHi || '',
+          slug: cat.slug,
+          description: cat.description || '',
+          image: cat.image || '',
+          sortOrder: cat.sortOrder || 0,
+        });
+        categoryMap.set(cat.slug, created._id);
       }
     }
-    process.stdout.write('✨ Runtime store destroyed successfully.\n');
-    process.exit(0);
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      process.stdout.write('✨ Store directory does not exist. Nothing to destroy.\n');
-      process.exit(0);
+    process.stdout.write(`  ✔ Categories seeded (${categoryMap.size} categories)\n`);
+
+    // 2. Products
+    const productsRaw = JSON.parse(
+      await fs.readFile(path.join(SEED_DIR, 'products.json'), 'utf-8')
+    );
+    const productMap = new Map(); // seed id/slug -> ObjectId
+
+    for (const prod of productsRaw) {
+      let catId = null;
+      if (prod.category) {
+        const catSlug = typeof prod.category === 'object' ? prod.category.slug : prod.category;
+        catId = categoryMap.get(catSlug) || categoryMap.get('jhumkas');
+      }
+
+      const existing = await Product.findOne({ slug: prod.slug });
+      if (existing) {
+        productMap.set(prod.id || prod.slug, existing._id);
+        productMap.set(prod.slug, existing._id);
+      } else {
+        const created = await Product.create({
+          name: prod.name,
+          slug: prod.slug,
+          tagline: prod.tagline || '',
+          description: prod.description || '',
+          price: prod.price,
+          compareAtPrice: prod.compareAtPrice,
+          currency: prod.currency || 'INR',
+          category: catId,
+          tags: prod.tags || [],
+          material: prod.material,
+          finish: prod.finish,
+          images: prod.images || [],
+          stock: prod.stock ?? 10,
+          sku: prod.sku || `MM-${prod.slug.toUpperCase().slice(0, 8)}`,
+          isFeatured: !!prod.isFeatured,
+          isNewDrop: !!prod.isNewDrop,
+          ratingAverage: prod.ratingAverage || 0,
+          ratingCount: prod.ratingCount || 0,
+          soldCount: prod.soldCount || 0,
+          craft: prod.craft || {},
+          details: prod.details || {},
+        });
+        productMap.set(prod.id || prod.slug, created._id);
+        productMap.set(prod.slug, created._id);
+      }
     }
-    process.stderr.write(`❌ Failed to destroy store: ${err.message}\n`);
-    process.exit(2);
-  }
-}
+    process.stdout.write(`  ✔ Products seeded (${productsRaw.length} products)\n`);
 
-async function runImportFile(filePath) {
-  if (!filePath) {
-    process.stderr.write('❌ Error: Missing file path for --file\n');
-    printUsage();
-    process.exit(1);
-  }
+    // 3. Dev Users (fixed IDs, placeholder password for B4)
+    const usersRaw = JSON.parse(
+      await fs.readFile(path.join(SEED_DIR, 'users.json'), 'utf-8')
+    );
+    const userMap = new Map();
 
-  await ensureDir(STORE_DIR);
-  const resolvedPath = path.resolve(process.cwd(), filePath);
-  const filename = path.basename(resolvedPath);
+    for (const u of usersRaw) {
+      const fixedId = DEV_USER_IDS[u.role] || u.id;
+      const existing = await User.findById(fixedId);
+      if (existing) {
+        userMap.set(u.id || u.email, existing._id);
+      } else {
+        const created = await User.create({
+          _id: new mongoose.Types.ObjectId(fixedId),
+          name: u.name,
+          email: u.email,
+          password: '__unset_until_B4__',
+          role: u.role || 'customer',
+          phone: u.phone || '9876543210',
+          addresses: u.addresses || [],
+          wishlist: [],
+          isActive: true,
+        });
+        userMap.set(u.id || u.email, created._id);
+      }
+    }
+    process.stdout.write(`  ✔ Dev users seeded with fixed IDs\n`);
 
-  try {
-    process.stdout.write(`📦 Importing single file: ${resolvedPath}...\n`);
-    const content = await fs.readFile(resolvedPath, 'utf-8');
-    const parsed = JSON.parse(content);
-    const count = Array.isArray(parsed) ? parsed.length : 1;
+    // 4. Reviews
+    const reviewsRaw = JSON.parse(
+      await fs.readFile(path.join(SEED_DIR, 'reviews.json'), 'utf-8')
+    );
+    let reviewCount = 0;
 
-    const dest = path.join(STORE_DIR, filename);
-    await fs.writeFile(dest, JSON.stringify(parsed, null, 2), 'utf-8');
-    process.stdout.write(`  ✔ Successfully imported ${filename} (${count} records)\n`);
-    process.exit(0);
+    for (const rev of reviewsRaw) {
+      const prodObjectId = productMap.get(rev.product);
+      const userObjectId = userMap.get(rev.user) || DEV_USER_IDS.customer;
+
+      if (prodObjectId) {
+        const existing = await Review.findOne({ product: prodObjectId, user: userObjectId });
+        if (!existing) {
+          await Review.create({
+            product: prodObjectId,
+            user: userObjectId,
+            rating: rev.rating || 5,
+            title: rev.title || 'Beautiful Piece',
+            body: rev.body || 'Loved the craftsmanship and shine.',
+            isVerifiedPurchase: !!rev.isVerifiedPurchase,
+          });
+          reviewCount++;
+        }
+      }
+    }
+    process.stdout.write(`  ✔ Reviews seeded (${reviewCount} reviews imported)\n`);
+
+    // 5. Orders (Sample orders for analytics)
+    const ordersRaw = JSON.parse(
+      await fs.readFile(path.join(SEED_DIR, 'orders.json'), 'utf-8')
+    );
+    let orderCount = 0;
+
+    for (const ord of ordersRaw) {
+      const existing = await Order.findOne({ orderNumber: ord.orderNumber });
+      if (!existing) {
+        const resolvedItems = (ord.items || []).map((item) => ({
+          ...item,
+          product: productMap.get(item.product) || new mongoose.Types.ObjectId(),
+        }));
+
+        await Order.create({
+          orderNumber: ord.orderNumber,
+          user: userMap.get(ord.user) || DEV_USER_IDS.customer,
+          items: resolvedItems,
+          shippingAddress: ord.shippingAddress,
+          pricing: ord.pricing,
+          payment: ord.payment,
+          status: ord.status || 'placed',
+          statusHistory: ord.statusHistory || [{ status: 'placed', at: new Date() }],
+          createdAt: ord.createdAt ? new Date(ord.createdAt) : new Date(),
+        });
+        orderCount++;
+      }
+    }
+    process.stdout.write(`  ✔ Orders seeded (${orderCount} orders imported for analytics)\n`);
+
+    // Also populate JSON store directory for dual-mode fallback
+    try {
+      await fs.mkdir(STORE_DIR, { recursive: true });
+      for (const file of ['categories.json', 'products.json', 'users.json', 'reviews.json', 'orders.json']) {
+        const content = await fs.readFile(path.join(SEED_DIR, file), 'utf-8');
+        await fs.writeFile(path.join(STORE_DIR, file), content, 'utf-8');
+      }
+    } catch {
+      // Ignore if cannot copy to store dir
+    }
+
+    process.stdout.write('✨ Database successfully seeded with Metal मसाला data!\n');
   } catch (err) {
-    process.stderr.write(`❌ Failed to import ${resolvedPath}: ${err.message}\n`);
-    process.exit(2);
+    process.stderr.write(`❌ Error during import: ${err.message}\n`);
+    process.exitCode = 2;
+  } finally {
+    await mongoose.disconnect();
   }
 }
 
-async function main() {
-  // [L6] Parsing process.argv manually without third-party dependencies
-  const args = process.argv.slice(2);
+// Parse command line arguments
+const args = process.argv.slice(2);
 
-  if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
-    printUsage();
-    process.exit(args.length === 0 ? 1 : 0);
-  }
-
-  if (args.includes('--import')) {
-    await runImport();
-  } else if (args.includes('--destroy')) {
-    await runDestroy();
-  } else if (args.includes('--file')) {
-    const fileIndex = args.indexOf('--file');
-    const targetFile = args[fileIndex + 1];
-    await runImportFile(targetFile);
-  } else {
-    process.stderr.write(`❌ Unknown option(s): ${args.join(' ')}\n`);
-    printUsage();
-    process.exit(1);
-  }
+if (args.includes('--help') || args.includes('-h') || args.length === 0) {
+  printUsage();
+  process.exit(0);
 }
 
-main().catch((err) => {
-  process.stderr.write(`💥 Fatal error: ${err.stack || err.message}\n`);
-  process.exit(2);
-});
+if (args.includes('--fresh')) {
+  await runDestroy();
+  await runImport();
+  process.exit(0);
+}
+
+if (args.includes('--destroy')) {
+  await runDestroy();
+  process.exit(0);
+}
+
+if (args.includes('--import')) {
+  await runImport();
+  process.exit(0);
+}
+
+printUsage();
+process.exit(1);
