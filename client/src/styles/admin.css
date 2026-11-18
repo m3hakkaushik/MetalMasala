@@ -1,0 +1,127 @@
+.admin-header {
+  padding-block: 1.35rem 0.05rem;
+}
+.admin-header h1 {
+  font-size: clamp(2.35rem, 4.3vw, 4.1rem);
+}
+.admin-header p {
+  margin-top: 0.4rem;
+}
+.admin-tabs {
+  margin-bottom: 0;
+  border-color: #ffffff55;
+}
+.admin-tabs a[aria-current='page'] {
+  color: var(--haldi);
+  border-color: var(--haldi);
+}
+.admin-content {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  min-height: 56vh;
+  padding-block: clamp(1.1rem, 2.75vw, 2.55rem) 3.5rem;
+}
+.admin-content > h2,
+.admin-content > .panel-heading h2 {
+  font-size: clamp(2rem, 3.6vw, 3.35rem);
+}
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.85rem;
+}
+.admin-filters > .form-field {
+  flex: 0 1 min(100%, 17rem);
+}
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--stroke);
+}
+.table-wrap table {
+  width: 100%;
+  min-width: 37rem;
+  border-collapse: collapse;
+  text-align: start;
+}
+.table-wrap th,
+.table-wrap td {
+  padding: 0.65rem 0.75rem;
+  text-align: start;
+  border-bottom: 1px solid var(--stroke);
+}
+.table-wrap thead {
+  background: var(--matte);
+}
+.table-wrap tbody tr:nth-child(odd) {
+  background: var(--sheet);
+}
+.table-wrap tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.table-wrap select {
+  min-height: 2.35rem;
+  padding: 0.32rem 0.45rem;
+}
+.table-wrap .form-actions {
+  gap: 0.3rem 0.7rem;
+}
+.delete-link {
+  color: var(--mirchi);
+}
+.admin-product-form fieldset {
+  display: grid;
+  gap: 0.7rem;
+  border: 0;
+  border-bottom: 1px solid var(--stroke);
+  padding: 0.5rem 0 0.85rem;
+}
+.admin-product-form legend {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.image-fields {
+  padding-block: 0.4rem;
+}
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+.dashboard-kpis > div {
+  padding: 0.75rem;
+  border-top: 3px solid var(--patina);
+  background: var(--sheet);
+}
+.dashboard-kpis dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.dashboard-kpis dd {
+  color: var(--patina);
+  font: 400 clamp(1.25rem, 2.7vw, 2.15rem)/1.2 var(--display);
+}
+.dashboard-panel h3 {
+  font: 400 1.55rem/1.12 var(--display);
+}
+.dashboard-chart {
+  width: 100%;
+  min-width: 0;
+  color: var(--silver-oxide);
+  font-size: 0.76rem;
+}
+.metric-list li {
+  align-items: baseline;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--stroke);
+}
+.metric-list li > span {
+  flex: 0 0 auto;
+  text-align: end;
+  font-size: 0.87rem;
+}
+@media (min-width: 660px) {
+  .dashboard-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
