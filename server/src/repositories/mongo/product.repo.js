@@ -7,7 +7,7 @@ import { slugify } from '../../utils/formatters.js';
 // [L23] Aggregation Pipeline (Facets)
 // [L28] Building REST APIs with Database Integration (Product Mongo Repository)
 
-function formatProduct(doc) {
+export function formatProduct(doc) {
   if (!doc) return null;
   const product = typeof doc.toJSON === 'function' ? doc.toJSON() : { ...doc };
 

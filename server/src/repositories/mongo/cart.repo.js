@@ -10,16 +10,14 @@ class MongoCartRepository {
    * @returns {Promise<object>}
    */
   async findByUser(userId) {
-    let cart = await Cart.findOne({ user: userId }).populate(
-      'items.product',
-      'name slug price images stock'
-    );
+    const criteria = { user: userId };
+    const cart = await Cart.findOne(criteria).populate('items.product', 'name slug price images stock');
+    if (cart) return cart;
 
-    if (!cart) {
-      cart = await Cart.create({ user: userId, items: [] });
-    }
-
-    return cart;
+    // The bag GET and guest merge can arrive together immediately after sign-in.
+    return Cart.findOneAndUpdate(criteria, { $setOnInsert: { items: [] } }, {
+      upsert: true, returnDocument: 'after',
+    }).populate('items.product', 'name slug price images stock');
   }
 
   /**
@@ -28,14 +26,9 @@ class MongoCartRepository {
    * @returns {Promise<object>}
    */
   async clear(userId) {
-    let cart = await Cart.findOne({ user: userId });
-    if (!cart) {
-      cart = await Cart.create({ user: userId, items: [] });
-    } else {
-      cart.items = [];
-      await cart.save();
-    }
-    return cart;
+    return Cart.findOneAndUpdate({ user: userId }, { $set: { items: [] } }, {
+      upsert: true, returnDocument: 'after',
+    });
   }
 }
 
