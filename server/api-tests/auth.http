@@ -1,0 +1,28 @@
+@apiUrl = http://localhost:4000/api/v1
+@demoPassword = ChangeMe#123
+
+### Log in. Save the mm_refresh name/value from Set-Cookie in oldRefresh.
+# @name login
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{ "email": "aarav@example.com", "password": "{{demoPassword}}" }
+
+### Read the authenticated account.
+GET {{apiUrl}}/auth/me
+Authorization: Bearer {{login.response.body.$.data.accessToken}}
+
+### Rotate the cookie. Save the replacement name/value in newRefresh.
+# @no-cookie-jar
+POST {{apiUrl}}/auth/refresh
+Cookie: {{oldRefresh}}
+
+### Replay the original refresh cookie (401).
+# @no-cookie-jar
+POST {{apiUrl}}/auth/refresh
+Cookie: {{oldRefresh}}
+
+### The replacement in the same family is also rejected (401).
+# @no-cookie-jar
+POST {{apiUrl}}/auth/refresh
+Cookie: {{newRefresh}}

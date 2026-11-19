@@ -56,7 +56,7 @@ Owner column = the phase that **implements** the endpoint for real. **FE** = the
 ### Auth conventions
 - Access token: `Authorization: Bearer <accessToken>` (15 min). Kept **in memory** on the client.
 - Refresh token: httpOnly cookie `mm_refresh`, path `/api/v1/auth`, 7 days, rotated on every refresh.
-- **Until B4 ships:** auth is stubbed. Send `x-dev-role: customer|manager|admin` (client does this when `VITE_DEV_ROLE` is set). Fixed dev user ids are in the overview (§5 S7).
+- Staff and customer permissions use the current database account. Seed identities are listed in the README.
 
 ### Access legend
 `public` · `auth` (any logged-in user) · `manager+` (manager or admin) · `admin` · `owner` (the resource's owner; manager+ may also act where noted)
@@ -267,11 +267,11 @@ Order items are **snapshots** (name/price/image frozen at purchase time).
 | POST | `/auth/refresh` | cookie | Rotates refresh token → `{ accessToken, expiresIn }`. Reuse of an old refresh token revokes the whole family |
 | POST | `/auth/logout` | cookie | Revokes refresh token, clears cookie → 204 |
 | GET | `/auth/me` | auth | → `{ user }` |
-| PATCH | `/auth/password` | auth | Body `{currentPassword,newPassword}`; revokes all refresh tokens |
+| PATCH | `/auth/password` | auth | Body `{currentPassword,newPassword}`; revokes all refresh tokens and issues a fresh token pair |
 | POST | `/auth/forgot-password` | public | **STRETCH** — always 200; logs reset link via mail stub |
 | POST | `/auth/reset-password/:token` | public | **STRETCH** |
 
-Password policy: ≥ 8 chars, at least one letter and one number.
+Passwords use at least eight characters, one letter and one number, with a 72-byte limit.
 
 ### 4.9 Users *(B4)*
 

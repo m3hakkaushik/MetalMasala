@@ -1,19 +1,25 @@
 # Metal मसाला
 
-Metal मसाला is a storefront for handcrafted Indian jewellery. The React storefront uses an Express API for catalogue, newsletter, contact, and pricing. Mock Service Worker simulates customer accounts, cart and order processing, and later backend features.
+Metal मसाला is a storefront for handcrafted Indian jewellery. Customers can browse and filter the catalogue, ask the stylist for recommendations, save favourites, and track orders. Staff can maintain inventory and fulfil orders. Admins can also view analytics and manage customer accounts.
+
+![The jewellery storefront showing the Jhumkas collection](docs/images/storefront.jpg)
 
 ## Run locally
 
-Use Node.js 22.12 or later. Start the API from the repository root.
+Use Node.js 22.12 or later and MongoDB. Docker is an option for the supplied local database configuration.
 
 ```sh
 cd server
 npm ci
 cp .env.example .env
+docker compose up -d mongo
+npm run seed -- --import
 npm run dev
 ```
 
-Open a second terminal at the repository root and start the storefront.
+For an existing local MongoDB, skip Docker and point `MONGODB_URI_LOCAL` at it. For a development Atlas database, set `DB_TARGET=atlas`, supply `MONGODB_URI` in the ignored `server/.env`, and choose `DB_NAME`. Keep demo seeds in an isolated development database. Rerunning the seed import preserves existing records and upgrades the fixed Phase 3 demo accounts’ placeholder passwords.
+
+Open a second terminal at the repository root.
 
 ```sh
 cd client
@@ -22,39 +28,75 @@ cp .env.example .env
 npm run dev
 ```
 
-Open http://localhost:5173. The server listens on port 4000 and initializes its JSON catalogue from the seed on first use. Checkout simulates UPI, card, and cash on delivery. Set `VITE_MOCK_GROUPS=all` in the client environment for a standalone demo.
+Open `http://localhost:5173`. Vite proxies `/api` and `/socket.io` to the Express server on port 4000. The [MongoDB setup](docs/mongodb-setup.md) covers database diagnostics. The React app uses the API for every feature. The guest bag lives in the browser and merges into the account cart after sign-in.
 
-From `server/`, run `npm test` and `npm run lint`. From `client/`, run `npm run lint`, `npm run build`, and `npm run preview`. See the [Phase 2 HTTP examples](server/api-tests/phase-2.http) and [standalone MongoDB setup](docs/mongodb-setup.md).
+### Demo accounts
 
-## Demo accounts
+Use the value set in `DEV_SEED_PASSWORD`. The local example is `ChangeMe#123`.
 
-On the sign-in page, open **Use a demo account** to fill its credentials.
+| Role | Email | Access |
+| --- | --- | --- |
+| Customer | `aarav@example.com` | Checkout, account, reviews, wishlists, and order tracking |
+| Manager | `manager@metalmasala.in` | Catalogue edits, order processing, and drop announcements |
+| Admin | `admin@metalmasala.in` | Manager capabilities plus catalogue deletion, analytics, and user management |
 
-| Role | Email | Mock password | Access |
-| --- | --- | --- | --- |
-| Customer | `aarav@example.com` | `Test@1234` | Shop, checkout, orders, reviews, and account |
-| Manager | `manager@metalmasala.in` | `Manager@1234` | Catalogue management and order processing |
-| Admin | `admin@metalmasala.in` | `Admin@1234` | Manager features, product deletion, analytics, and user management |
+## Architecture
 
-Mock state belongs to the current browser. Add `?resetMocks=1` to the local URL to restore the demo database. The guest bag has separate browser storage. Use fictional contact details for the demo.
+```mermaid
+flowchart LR
+  SPA[React storefront and staff console]
+  API[Express controllers and services]
+  DB[(MongoDB via Mongoose)]
+  Bus[Node EventEmitter]
+  Socket[Socket.IO on the Express HTTP listener]
+  AI[Stylist and copywriting adapter]
+  SPA -->|REST and JWT| API
+  API --> DB
+  API --> AI
+  API -->|Persisted changes| Bus
+  Bus --> Socket
+  SPA <-->|Product, account and staff namespaces| Socket
+```
 
-## Frontend layout
-
-| Path | Purpose |
+| Layer | Stack and entry points |
 | --- | --- |
-| `client/src/app` | Routes, role guards, providers, and site layout |
-| `client/src/api` | Contract-facing requests, validation, and refresh handling |
-| `client/src/pages` and `client/src/features` | Storefront, commerce, account, and staff flows |
-| `client/src/components/ui` and `client/src/styles` | Shared UI, jewellery illustrations, and design tokens |
-| `client/src/mocks` | Selectable MSW handlers and seed data |
-| `client/src/stores` | Guest bag, memory-only access token, and UI state |
+| `client/src/` | React, Vite, React Router, TanStack Query, Zustand, and Axios |
+| `server/src/` | Node.js, Express, Zod, Mongoose, bcrypt, JWT, and Socket.IO |
+| `server/scripts/` | MongoDB seeding and connectivity checks, catalogue export, and raw WebSocket demo |
+| `server/api-tests/` and `server/test/` | HTTP recipes, a Postman collection, and automated Node and Supertest checks |
+| `docs/` | API contract, architecture, project review, and lecture evidence |
 
-There are 32 demo products, eight categories, 30 reviews, and 23 orders. To use product photos later, place WebP files under `client/public/products/` using the paths in `client/src/mocks/data/products.json`, then restart Vite or rebuild.
+The [API contract](docs/01_API_CONTRACT.md) covers catalogue, pricing, accounts, carts, orders, staff tools, analytics, and realtime events. The [authorization audit](docs/authz.md) maps those routes to their guards. The [realtime guide](docs/websockets.md) explains Socket.IO and the independent WebSocket demo.
 
-## Switch to the real API
+## Configuration
 
-`VITE_MOCK_GROUPS=all` enables the demo. Use a comma-separated subset for integration or set it to an empty string to build without the mock modules. Unselected requests go through the Vite proxy to port 4000 by default.
+| Variables | What they control |
+| --- | --- |
+| `PORT`, `CLIENT_ORIGIN` | Express port and exact trusted browser origin |
+| `DB_TARGET`, `DB_NAME`, `MONGODB_URI_LOCAL`, `MONGODB_URI` | Local or Atlas database selection and connection |
+| `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` | Separate signing keys of at least 32 characters. Generate two values using `openssl rand -hex 32`. Production requires both. Local development generates temporary keys when unset. |
+| `JWT_ACCESS_EXPIRES`, `JWT_REFRESH_EXPIRES` | Token lifetimes. Defaults are `15m` and `7d`. |
+| `BCRYPT_ROUNDS`, `DEV_SEED_PASSWORD` | Password hashing cost and development-only fixture password |
+| `COOKIE_SECURE`, `COOKIE_SAME_SITE` | Use `true` for production cookies. For separate sites serving the SPA and API, set `COOKIE_SAME_SITE=none` with HTTPS and `COOKIE_SECURE=true`. |
+| `VITE_API_URL`, `VITE_SOCKET_URL` | Browser-facing endpoints. A relative API URL and empty socket URL use the same origin. |
+| `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL` | Provider and optional credentials. The default `mock` provider returns deterministic catalogue-based suggestions and copy. `gemini` uses the configured external service. |
 
-Phase 2 defaults to `catalogue-extras,reviews,cart,orders,admin,ai,auth,users`. Keep `catalogue-extras` until the real facets and related-product endpoints land in Phase 3. To test staff catalogue writes from the storefront, sign in as the corresponding demo user, set `VITE_DEV_ROLE=manager` or `VITE_DEV_ROLE=admin`, and restart Vite. The local Express API refuses those headers in production.
+The stylist retrieves matching products before it calls the provider. The server accepts recommendations only from that candidate list. Checkout exercises COD, demo UPI, and demo card flows. The notification service logs sample email text through `DEBUG=mm:data`.
 
-See the [API contract](docs/01_API_CONTRACT.md), [frontend spec](docs/02_FRONTEND_PHASE.md), and [handoff](docs/07_IMPLEMENTATION_MAP.md#handoff-log).
+## Verification and scripts
+
+| Run from | Commands |
+| --- | --- |
+| `server/` | `npm test`, `npm run lint`, `npm run db:ping`, `npm run ws:demo`, `npm run ws:client` |
+| `client/` | `npm run lint`, `npm run build`, `npm run preview` |
+
+See the [project review](docs/PROJECT_REVIEW.md) for the demo walkthrough, verification notes, and limitations. The [implementation map](docs/07_IMPLEMENTATION_MAP.md) links course lectures to their evidence.
+
+## Team
+
+| Phase | Owner | Work |
+| --- | --- | --- |
+| B1 | Mehak | Node and Express foundations, catalogue routes |
+| B2 | Nitesh | MVC, middleware, configuration, and MongoDB setup |
+| B3 | Tanishq | MongoDB data layer, commerce, analytics, and AI |
+| B4 | Aakash | Authentication, authorization, events, realtime, and full-stack integration |

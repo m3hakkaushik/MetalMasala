@@ -98,7 +98,7 @@ Frontend ──merge──▶ B1 Mehak ──merge──▶ B2 Nitesh ──merg
 | Layer | Choice | Notes |
 |---|---|---|
 | Frontend | **React 18 + Vite** (JavaScript/JSX) | Separate SPA in `client/` |
-| Routing | React Router v6 | |
+| Routing | React Router v7 | |
 | Styling | **Tailwind CSS** + CSS variables for design tokens | |
 | Motion | **Framer Motion** (`motion`) | Used sparingly, see frontend doc |
 | Client state | Zustand | cart, auth session, UI |
@@ -109,7 +109,7 @@ Frontend ──merge──▶ B1 Mehak ──merge──▶ B2 Nitesh ──merg
 | Backend runtime | **Node.js 22 LTS+** | `engines` set in `package.json` |
 | Backend framework | **Express 4.x** | Course-aligned; Express 5 upgrade is out of scope |
 | Modules | **ES Modules** (`"type": "module"`) | one deliberate CommonJS file for the L4 demo |
-| Database | **MongoDB** (Atlas + local) via **Mongoose 8** | |
+| Database | **MongoDB** (Atlas + local) via **Mongoose 9** | |
 | Auth | `jsonwebtoken` + `bcryptjs` + `cookie-parser` | bcryptjs = pure JS, no native build pain on Windows |
 | Realtime | `socket.io` (+ `ws` for the L39 demo only) | |
 | Request validation | `zod` | Mongoose validators are the *second* layer |

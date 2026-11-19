@@ -1,3 +1,4 @@
+# Set the role tokens locally using auth.http before sending a protected request.
 @apiUrl = http://localhost:4000/api/v1
 
 ### [L14] Subscribe with a new address (201)
@@ -56,16 +57,16 @@ Content-Type: application/json
 ### [L17] Customer role is denied before body validation (403)
 POST {{apiUrl}}/products
 Content-Type: application/json
-X-Dev-Role: customer
+Authorization: Bearer {{customerToken}}
 
 {}
 
 ### [L17] The manager reaches body validation (422)
 POST {{apiUrl}}/products
 Content-Type: application/json
-X-Dev-Role: manager
+Authorization: Bearer {{managerToken}}
 
 {}
 
-### [L15] Nested reviews placeholder (501)
+### [L15] Read nested MongoDB reviews (200)
 GET {{apiUrl}}/products/{{phaseTwoProduct.response.body.$.data.id}}/reviews
