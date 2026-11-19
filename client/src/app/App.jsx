@@ -51,9 +51,7 @@ export function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter
-          future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-        >
+        <BrowserRouter>
           <Suspense
             fallback={
               <div className="site-width empty-state" role="status">

@@ -20,5 +20,5 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   define: { __LOCAL_PRODUCT_PHOTOS__: JSON.stringify(localPhotos) },
   server: { port: 5173, strictPort: true, proxy },
-  preview: { proxy },
+  preview: { port: 5173, strictPort: true, proxy },
 });

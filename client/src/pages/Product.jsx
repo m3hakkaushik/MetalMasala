@@ -7,7 +7,7 @@ import {
   Star,
   ZoomIn,
 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import {
   FINISHES,
@@ -27,6 +27,7 @@ import { WishlistButton } from '../features/catalogue/WishlistButton';
 import { Reviews } from '../features/catalogue/Reviews';
 import { useBag } from '../features/cart/useBag';
 import { flyToBag } from '../features/cart/flyToBag';
+import { useSocket } from '../hooks/useSocket';
 import { useUi } from '../stores/ui.store';
 
 function Gallery({ product }) {
@@ -110,6 +111,38 @@ function Gallery({ product }) {
   );
 }
 
+function Viewers({ slug }) {
+  const [count, setCount] = useState(null);
+  const subscribe = useCallback(
+    (socket) => {
+      const join = () => socket.emit('product:join', { slug });
+      const update = (data) => {
+        if (data.slug === slug) setCount(data.count);
+      };
+      const disconnected = () => setCount(null);
+      socket.on('connect', join);
+      socket.on('viewers:count', update);
+      socket.on('disconnect', disconnected);
+      if (socket.connected) join();
+      return () => {
+        if (socket.connected) socket.emit('product:leave', { slug });
+        socket.off('connect', join);
+        socket.off('viewers:count', update);
+        socket.off('disconnect', disconnected);
+      };
+    },
+    [slug],
+  );
+  useSocket('/', subscribe);
+  return (
+    count > 0 && (
+      <p className="form-help">
+        {count} {count === 1 ? 'person' : 'people'} viewing now
+      </p>
+    )
+  );
+}
+
 function ProductDetails({ product }) {
   const [qty, setQty] = useState(1);
   const [addError, setAddError] = useState('');
@@ -169,6 +202,7 @@ function ProductDetails({ product }) {
             <h1>{product.name}</h1>
             <WishlistButton productId={product.id} />
           </div>
+          <Viewers key={product.slug} slug={product.slug} />
           <p className="product-info__tagline">{product.tagline}</p>
           <div className="product-info__price price">
             <span>{money(product.price)}</span>

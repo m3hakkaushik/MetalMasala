@@ -1,11 +1,12 @@
-import { Menu, Search, ShoppingBag, Sparkle, UserRound } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Menu, Search, ShoppingBag, Sparkle, UserRound, X } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Drawer } from '../components/ui/Drawer';
 import { BagDrawer } from '../features/cart/BagDrawer';
 import { useBag } from '../features/cart/useBag';
 import { SearchDrawer } from '../features/search/SearchDrawer';
 import { Stylist } from '../features/stylist/Stylist';
+import { useSocket } from '../hooks/useSocket';
 import { useAuth } from '../stores/auth.store';
 import { useUi } from '../stores/ui.store';
 
@@ -175,6 +176,41 @@ function Footer() {
   );
 }
 
+function DropAnnouncement() {
+  const [drop, setDrop] = useState(null);
+  const subscribe = useCallback((socket) => {
+    socket.on('drop:announce', setDrop);
+    return () => {
+      socket.off('drop:announce', setDrop);
+    };
+  }, []);
+  useSocket('/', subscribe);
+  if (!drop) return null;
+  return (
+    <aside
+      className="site-width drop-announcement"
+      aria-label="New drop announcement"
+    >
+      <div role="status">
+        <strong>{drop.title}</strong> {drop.message}{' '}
+        {drop.productSlug && (
+          <Link className="text-link" to={`/product/${drop.productSlug}`}>
+            See the piece
+          </Link>
+        )}
+      </div>
+      <button
+        type="button"
+        className="icon-button"
+        aria-label="Dismiss announcement"
+        onClick={() => setDrop(null)}
+      >
+        <X size={18} />
+      </button>
+    </aside>
+  );
+}
+
 export function Layout() {
   const { pathname, hash } = useLocation();
   const notice = useUi((state) => state.notice);
@@ -196,6 +232,7 @@ export function Layout() {
         Skip to content
       </a>
       <Header />
+      <DropAnnouncement />
       <main id="main-content" tabIndex={-1}>
         <Outlet />
       </main>

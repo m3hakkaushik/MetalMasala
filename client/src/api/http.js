@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useAuth } from '../stores/auth.store';
 import { apiUrl } from './config';
-import { waitForApiSetup } from './networkReady';
 
 const http = axios.create({ baseURL: apiUrl, withCredentials: true });
 const sessionHttp = axios.create({ baseURL: apiUrl, withCredentials: true });
@@ -28,12 +27,20 @@ function normalize(error) {
   };
 }
 
+// Keep successive cookie rotations serialized across tabs that share a cookie jar.
+function withSessionLock(callback) {
+  return navigator.locks
+    ? navigator.locks.request('mm-session', callback)
+    : callback();
+}
+
 export async function refreshAccess() {
   if (!pendingRefresh) {
     const version = useAuth.getState().sessionVersion;
-    pendingRefresh = (async () => {
+    pendingRefresh = withSessionLock(async () => {
       try {
-        await waitForApiSetup();
+        if (useAuth.getState().sessionVersion !== version)
+          throw new Error('Session changed');
         const { data } = unwrap(await sessionHttp.post('/auth/refresh'));
         if (useAuth.getState().sessionVersion !== version)
           throw new Error('Session changed');
@@ -41,21 +48,18 @@ export async function refreshAccess() {
         return data.accessToken;
       } catch (error) {
         throw normalize(error);
-      } finally {
-        pendingRefresh = undefined;
       }
-    })();
+    }).finally(() => {
+      pendingRefresh = undefined;
+    });
   }
   return pendingRefresh;
 }
 
-http.interceptors.request.use(async (config) => {
-  await waitForApiSetup();
+http.interceptors.request.use((config) => {
   const { accessToken, sessionVersion } = useAuth.getState();
   config.sessionVersion = sessionVersion;
   if (accessToken) config.headers.set('Authorization', `Bearer ${accessToken}`);
-  const devRole = import.meta.env.VITE_DEV_ROLE;
-  if (devRole) config.headers.set('x-dev-role', devRole);
   return config;
 });
 

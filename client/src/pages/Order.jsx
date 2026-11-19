@@ -2,7 +2,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { CircleCheck, PackageCheck } from 'lucide-react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { isMocked } from '../api/config';
 import { nextStatuses, orderDate } from '../api/commerce';
 import { cancelOrder, getOrder } from '../api/orders';
 import { Seo } from '../app/Seo';
@@ -86,11 +85,6 @@ function OrderScreen({ data, confirmed, userId }) {
       <div className="order-grid">
         <section className="account-panel">
           <h2>Order timeline</h2>
-          {!confirmed && isMocked('orders') && (
-            <p className="form-help">
-              The demo advances this timeline while this page is open.
-            </p>
-          )}
           <OrderTimeline order={order} />
         </section>
         <OrderItems order={order} />
