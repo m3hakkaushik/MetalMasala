@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto';
 import path from 'node:path';
 import dotenv from 'dotenv';
 import { z } from 'zod';
@@ -41,6 +42,16 @@ const origin = z
     }
   }, 'Use an HTTP(S) origin with no path or trailing slash.');
 
+const lifetime = z
+  .string()
+  .regex(/^[1-9]\d{0,5}[smhd]$/)
+  .transform((value) => {
+    const seconds = { s: 1, m: 60, h: 3600, d: 86400 };
+    return Number(value.slice(0, -1)) * seconds[value.at(-1)];
+  })
+  .pipe(z.number().max(90 * 86400));
+const secret = z.string().min(32).optional();
+
 const schema = z
   .object({
     NODE_ENV: z
@@ -65,7 +76,9 @@ const schema = z
       .trim()
       .regex(/^[\w-]+$/, 'Use letters, digits, underscores, or hyphens.')
       .default('metal_masala'),
-    AI_PROVIDER: z.enum(['mock', 'openai', 'anthropic', 'gemini']).default('mock'),
+    AI_PROVIDER: z
+      .enum(['mock', 'openai', 'anthropic', 'gemini'])
+      .default('mock'),
     AI_API_KEY: z.string().trim().optional(),
     AI_MODEL: z.string().trim().optional(),
     FREE_SHIPPING_THRESHOLD: integer(1, Number.MAX_SAFE_INTEGER).prefault(
@@ -76,9 +89,59 @@ const schema = z
     LOW_STOCK_THRESHOLD: integer(0, Number.MAX_SAFE_INTEGER).prefault('5'),
     RATE_LIMIT_WINDOW_MS: integer(1, 2_147_483_647).prefault('60000'),
     RATE_LIMIT_MAX: integer(1, Number.MAX_SAFE_INTEGER).prefault('100'),
-    BCRYPT_ROUNDS: integer(10, 14).optional(),
+    BCRYPT_ROUNDS: integer(10, 14).prefault('12'),
+    JWT_ACCESS_SECRET: secret,
+    JWT_REFRESH_SECRET: secret,
+    JWT_ACCESS_EXPIRES: lifetime.prefault('15m'),
+    JWT_REFRESH_EXPIRES: lifetime.prefault('7d'),
+    COOKIE_SECURE: z.stringbool().optional(),
+    COOKIE_SAME_SITE: z.enum(['lax', 'none']).default('lax'),
+    DEV_SEED_PASSWORD: z
+      .string()
+      .min(8)
+      .regex(/[a-z]/i)
+      .regex(/\d/)
+      .refine((value) => Buffer.byteLength(value) <= 72)
+      .default('ChangeMe#123'),
   })
   .superRefine((env, ctx) => {
+    if (env.NODE_ENV === 'production' && env.DATA_STORE !== 'mongo') {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['DATA_STORE'],
+        message: 'Production requires MongoDB.',
+      });
+    }
+    for (const key of ['JWT_ACCESS_SECRET', 'JWT_REFRESH_SECRET']) {
+      if (env.NODE_ENV === 'production' && !env[key]) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [key],
+          message: 'Required in production.',
+        });
+      }
+    }
+    if (
+      env.JWT_ACCESS_SECRET &&
+      env.JWT_ACCESS_SECRET === env.JWT_REFRESH_SECRET
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['JWT_REFRESH_SECRET'],
+        message: 'Use separate secrets.',
+      });
+    }
+    if (
+      (env.COOKIE_SECURE === false && env.NODE_ENV === 'production') ||
+      (env.COOKIE_SAME_SITE === 'none' &&
+        !(env.COOKIE_SECURE ?? env.NODE_ENV === 'production'))
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['COOKIE_SECURE'],
+        message: 'Required for production and SameSite=None.',
+      });
+    }
     if (env.NATIVE_PORT === 0 && env.NODE_ENV !== 'test') {
       ctx.addIssue({
         code: 'custom',
@@ -136,6 +199,20 @@ const config = Object.freeze({
     provider: env.AI_PROVIDER,
     apiKey: env.AI_API_KEY,
     model: env.AI_MODEL,
+  }),
+  auth: Object.freeze({
+    jwt: Object.freeze({
+      accessSecret: env.JWT_ACCESS_SECRET ?? randomBytes(32).toString('hex'),
+      refreshSecret: env.JWT_REFRESH_SECRET ?? randomBytes(32).toString('hex'),
+      accessExpires: env.JWT_ACCESS_EXPIRES,
+      refreshExpires: env.JWT_REFRESH_EXPIRES,
+    }),
+    bcryptRounds: env.BCRYPT_ROUNDS,
+    cookie: Object.freeze({
+      secure: env.COOKIE_SECURE ?? env.NODE_ENV === 'production',
+      sameSite: env.COOKIE_SAME_SITE,
+    }),
+    devSeedPassword: env.DEV_SEED_PASSWORD,
   }),
   rateLimit: Object.freeze({
     windowMs: env.RATE_LIMIT_WINDOW_MS,

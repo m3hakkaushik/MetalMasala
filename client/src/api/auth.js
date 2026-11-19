@@ -7,12 +7,13 @@ export const logout = () => http.post('/auth/logout');
 export const changePassword = (fields) => http.patch('/auth/password', fields);
 
 export async function restoreSession() {
-  const { setSession, clear } = useAuth.getState();
+  const { sessionVersion, setSession, clear } = useAuth.getState();
   try {
     const accessToken = await refreshAccess();
     const { data } = await http.get('/auth/me');
-    setSession({ user: data.user, accessToken });
+    if (useAuth.getState().sessionVersion === sessionVersion)
+      setSession({ user: data.user, accessToken });
   } catch {
-    clear();
+    if (useAuth.getState().sessionVersion === sessionVersion) clear();
   }
 }

@@ -43,3 +43,8 @@
 - “Build commerce services and controllers: Reviews with verified purchase check, server-side Cart with guest merge, Orders with atomic stock decrement and compensation rollback, Admin Orders, and Aggregation Analytics.”
 - “Implement Masala Stylist and AI Copywriter with offline mock adapter and prompt-injection allowlist verification.”
 - “Document AI developer tools (AI_TOOLS.md) and spec-first workflow (AI_DRIVEN_DEVELOPMENT.md); leave clean EVENT HOOK seams for B4.”
+
+### Phase 4 · Aakash
+
+- Implemented L31–L41 after the Phase 3 merge. Replaced the development identity and browser mocks with signed account sessions, live REST routes, and Socket.IO. Kept mock payments and the offline AI provider as demo adapters.
+- The browser uncovered concurrent first-cart creation during registration. An atomic upsert fixed the merge and a regression test covers concurrent requests. The backend suite also caught a review-rating update that ran after its response. The review hook now awaits recalculation. The stylist response now uses the catalogue product shape so recommendations render with the existing product card.

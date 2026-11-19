@@ -12,16 +12,20 @@ const phone = z
   .string()
   .trim()
   .regex(/^\d{10}$/, 'Phone number must be 10 digits.');
+const bcryptLimit = (value) => new TextEncoder().encode(value).length <= 72;
 const password = z
   .string()
   .min(8, 'Use at least 8 characters.')
   .regex(/[a-z]/i, 'Include a letter.')
   .regex(/\d/, 'Include a number.')
-  .max(128);
+  .refine(bcryptLimit, 'Use at most 72 bytes.');
 
 export const loginSchema = z.object({
   email,
-  password: z.string().min(1, 'Enter your password.').max(128),
+  password: z
+    .string()
+    .min(1, 'Enter your password.')
+    .refine(bcryptLimit, 'Use at most 72 bytes.'),
 });
 export const registerSchema = z.object({ name, email, password });
 export const passwordSchema = z.object({

@@ -1,17 +1,22 @@
 import './helpers/environment.js';
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { test, before, after } from 'node:test';
 import request from 'supertest';
+import { bearer, connectTestUsers } from './helpers/auth.js';
 import app from '../src/app.js';
 import {
   contactRepo,
   subscriberRepo,
 } from '../src/repositories/json/records.repo.js';
 
+let disconnect;
+before(async () => { disconnect = await connectTestUsers(); });
+after(() => disconnect?.());
+
 const api = request(app);
 const at = '/api/v1';
 const staff = (method, uri, role = 'manager') =>
-  api[method](at + uri).set('x-dev-role', role);
+  api[method](at + uri).set('Authorization', bearer(role));
 
 function checkError(response, status, code) {
   assert.equal(response.status, status);
@@ -56,14 +61,15 @@ test('correlation headers cover malformed JSON, unknown routes, and oversized bo
 });
 
 test('role checks precede validation and reserve catalogue deletion for admins', async () => {
-  checkError(await api.post(at + '/products').send({}), 403, 'FORBIDDEN');
+  checkError(await api.post(at + '/products').send({}), 401, 'UNAUTHENTICATED');
+  checkError(await staff('post', '/products', 'customer').send({}), 403, 'FORBIDDEN');
   checkError(
     await staff('post', '/products').send({}),
     422,
     'VALIDATION_ERROR'
   );
   checkError(
-    await staff('get', '/products/export.csv', 'toString'),
+    await api.get(at + '/products/export.csv').set('Authorization', 'Bearer invalid'),
     401,
     'UNAUTHENTICATED'
   );
@@ -74,8 +80,8 @@ test('role checks precede validation and reserve catalogue deletion for admins',
   );
   checkError(
     await api.get(at + '/products/example-id/reviews'),
-    501,
-    'INTERNAL_ERROR'
+    404,
+    'NOT_FOUND'
   );
 });
 

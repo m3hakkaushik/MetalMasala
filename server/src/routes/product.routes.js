@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { productController } from '../controllers/product.controller.js';
-import { protect, restrictTo } from '../middleware/auth.js';
+import { protect, requirePermission, restrictTo } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
 import { productService } from '../services/product.service.js';
 import { catchAsync } from '../utils/catchAsync.js';
@@ -22,7 +22,7 @@ router.get('/facets', catchAsync(productController.getFacets));
 router.get(
   '/export.csv',
   protect,
-  restrictTo('manager', 'admin'),
+  requirePermission('product:write'),
   catchAsync(productController.exportCsv)
 );
 router.use('/:productId/reviews', reviewsRouter);
@@ -42,7 +42,7 @@ router
   // [L17] Check staff access before validating a write payload.
   .post(
     protect,
-    restrictTo('manager', 'admin'),
+    requirePermission('product:write'),
     validate({ body: productBody }),
     catchAsync(productController.create)
   );
@@ -54,7 +54,7 @@ router
   // [L17] Staff access is checked before the patch body is validated.
   .patch(
     protect,
-    restrictTo('manager', 'admin'),
+    requirePermission('product:write'),
     validate({ params: identifierParams, body: productPatch }),
     catchAsync(productController.update)
   )

@@ -1,3 +1,5 @@
+import { bus } from '../events/bus.js';
+import { EVENTS } from '../events/events.js';
 import mongoose from 'mongoose';
 import { ERROR_CODES as codes } from '../config/constants.js';
 import { reviewRepo } from '../repositories/mongo/review.repo.js';
@@ -71,7 +73,7 @@ export const reviewService = {
       isVerifiedPurchase,
     });
 
-    // EVENT HOOK: review.created  { review }                         (review.service, after save)
+    bus.emit(EVENTS.REVIEW_CREATED, { review });
 
     return review;
   },

@@ -14,7 +14,9 @@
     "export": "node scripts/export-products.js",
     "test": "node --test test/*.test.js",
     "lint": "eslint .",
-    "db:ping": "node scripts/db-ping.js"
+    "db:ping": "node scripts/db-ping.js",
+    "ws:demo": "node scripts/ws-demo-server.js",
+    "ws:client": "node scripts/ws-demo-client.js"
   },
   "keywords": [
     "metal-masala",
@@ -25,15 +27,20 @@
   "author": "Mehak",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "compression": "^1.8.2",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "debug": "^4.4.0",
     "dotenv": "^17.4.2",
     "express": "^4.21.2",
     "express-rate-limit": "^8.7.2",
     "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.12.2",
     "morgan": "^1.12.1",
+    "socket.io": "^4.8.4",
+    "ws": "^8.23.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
@@ -41,6 +48,7 @@
     "mongodb": "^6.21.0",
     "mongodb-memory-server": "^11.3.0",
     "prettier": "^3.5.1",
+    "socket.io-client": "^4.8.4",
     "supertest": "^7.0.0"
   }
 }

@@ -55,7 +55,7 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "X-Dev-Role", "value": "manager" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" },
               {
                 "key": "Content-Type",
                 "value": "application/json"
@@ -77,7 +77,7 @@
           "request": {
             "method": "DELETE",
             "header": [
-              { "key": "X-Dev-Role", "value": "admin" }
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
             ],
             "url": {
               "raw": "{{apiUrl}}/categories/jhumkas",
@@ -139,7 +139,7 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "X-Dev-Role", "value": "manager" }
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
             ],
             "url": {
               "raw": "{{apiUrl}}/products/export.csv",
@@ -153,7 +153,7 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "X-Dev-Role", "value": "manager" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" },
               {
                 "key": "Content-Type",
                 "value": "application/json"

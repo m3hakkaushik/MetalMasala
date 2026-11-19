@@ -10,6 +10,8 @@ import cartRouter from './cart.routes.js';
 import orderRouter from './order.routes.js';
 import adminOrderRouter from './adminOrder.routes.js';
 import analyticsRouter from './analytics.routes.js';
+import userRouter, { adminUserRouter } from './user.routes.js';
+import authRouter from './auth.routes.js';
 import aiRouter from './ai.routes.js';
 
 const router = Router();
@@ -20,6 +22,9 @@ router.use('/health', healthRouter);
 router.use('/categories', categoryRouter);
 router.use('/products', productRouter);
 router.use('/reviews', reviewRouter);
+router.use('/auth', authRouter);
+router.use('/users', userRouter);
+router.use('/admin/users', adminUserRouter);
 router.use('/cart', cartRouter);
 router.use('/orders', orderRouter);
 router.use('/admin/orders', adminOrderRouter);

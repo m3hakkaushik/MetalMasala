@@ -34,18 +34,13 @@ test('the Atlas target needs a connection string', () => {
   assert.match(result.stdout, /Required when DB_TARGET=atlas/);
 });
 
-test('the development role stub refuses an admin header in production', () => {
-  const result = run(
-    `
-    import { protect } from './src/middleware/auth.js';
-    const request = { get: () => 'admin' };
-    protect(request, {}, (error) => {
-      if (error?.status !== 501 || error.code !== 'UNAUTHENTICATED' || request.user) {
-        process.exitCode = 1;
-      }
-    });
-  `,
-    { NODE_ENV: 'production', NATIVE_PORT: '4001' }
-  );
-  assert.equal(result.status, 0, result.stdout + result.stderr);
+test('production requires distinct JWT secrets and secure cookies', () => {
+  const result = run("await import('./src/config/index.js')", {
+    NODE_ENV: 'production', NATIVE_PORT: '4001', DATA_STORE: 'mongo',
+    JWT_ACCESS_SECRET: 'a'.repeat(32), JWT_REFRESH_SECRET: 'a'.repeat(32),
+    COOKIE_SECURE: 'false',
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stdout, /Use separate secrets/);
+  assert.match(result.stdout, /COOKIE_SECURE/);
 });

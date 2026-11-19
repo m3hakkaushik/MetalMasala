@@ -88,6 +88,15 @@ async function runDestroy() {
   }
 }
 
+async function upgradeSeedPassword(id) {
+  // Repair existing Phase 3 fixtures while preserving any password already set in Phase 4.
+  const legacy = await User.findOne({ _id: id, password: '__unset_until_B4__' });
+  if (legacy) {
+    legacy.password = config.auth.devSeedPassword;
+    await legacy.save();
+  }
+}
+
 async function runImport() {
   process.stdout.write('📦 Starting seed import into MongoDB...\n');
   try {
@@ -164,7 +173,7 @@ async function runImport() {
     }
     process.stdout.write(`  ✔ Products seeded (${productsRaw.length} products)\n`);
 
-    // 3. Dev Users (fixed IDs, placeholder password for B4)
+    // 3. Dev users with fixed IDs and hashed passwords
     const usersRaw = JSON.parse(
       await fs.readFile(path.join(SEED_DIR, 'users.json'), 'utf-8')
     );
@@ -174,13 +183,14 @@ async function runImport() {
       const fixedId = DEV_USER_IDS[u.role] || u.id;
       const existing = await User.findById(fixedId);
       if (existing) {
+        await upgradeSeedPassword(existing.id);
         userMap.set(u.id || u.email, existing._id);
       } else {
         const created = await User.create({
           _id: new mongoose.Types.ObjectId(fixedId),
           name: u.name,
           email: u.email,
-          password: '__unset_until_B4__',
+          password: config.auth.devSeedPassword,
           role: u.role || 'customer',
           phone: u.phone || '9876543210',
           addresses: u.addresses || [],
@@ -277,20 +287,24 @@ if (args.includes('--help') || args.includes('-h') || args.length === 0) {
   process.exit(0);
 }
 
+if (config.server.env === 'production') {
+  throw new Error('Demo fixtures are only available in development and test.');
+}
+
 if (args.includes('--fresh')) {
   await runDestroy();
-  await runImport();
-  process.exit(0);
+  if (!process.exitCode) await runImport();
+  process.exit(process.exitCode ?? 0);
 }
 
 if (args.includes('--destroy')) {
   await runDestroy();
-  process.exit(0);
+  process.exit(process.exitCode ?? 0);
 }
 
 if (args.includes('--import')) {
   await runImport();
-  process.exit(0);
+  process.exit(process.exitCode ?? 0);
 }
 
 printUsage();

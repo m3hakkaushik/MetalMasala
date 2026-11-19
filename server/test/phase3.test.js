@@ -1,6 +1,8 @@
+import './helpers/mongoEnvironment.js';
 import assert from 'node:assert/strict';
 import { test, before, after } from 'node:test';
 import request from 'supertest';
+import { bearer } from './helpers/auth.js';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import app from '../src/app.js';
@@ -143,7 +145,7 @@ test('[L28] Cart Lifecycle: Add item, update quantity, cap at stock, and merge',
   // 1. Add item to cart
   const addRes = await request(app)
     .post('/api/v1/cart/items')
-    .set('x-dev-role', 'customer')
+    .set('Authorization', bearer('customer'))
     .send({ productId: prod.id, qty: 2 });
 
   assert.equal(addRes.status, 200);
@@ -154,7 +156,7 @@ test('[L28] Cart Lifecycle: Add item, update quantity, cap at stock, and merge',
   // 2. Quantity cap: requesting more than stock (stock is 10) returns 409
   const capRes = await request(app)
     .post('/api/v1/cart/items')
-    .set('x-dev-role', 'customer')
+    .set('Authorization', bearer('customer'))
     .send({ productId: prod.id, qty: 15 });
 
   assert.equal(capRes.status, 409);
@@ -163,7 +165,7 @@ test('[L28] Cart Lifecycle: Add item, update quantity, cap at stock, and merge',
   // 3. Guest cart merge
   const mergeRes = await request(app)
     .post('/api/v1/cart/merge')
-    .set('x-dev-role', 'customer')
+    .set('Authorization', bearer('customer'))
     .send({
       items: [{ productId: prod.id, qty: 1 }],
     });
@@ -207,8 +209,8 @@ test('[L28] Concurrency Safety: Two simultaneous orders for last item -> exactly
 
   // Launch two concurrent order requests simultaneously
   const [res1, res2] = await Promise.all([
-    request(app).post('/api/v1/orders').set('x-dev-role', 'customer').send(orderPayload),
-    request(app).post('/api/v1/orders').set('x-dev-role', 'customer').send(orderPayload),
+    request(app).post('/api/v1/orders').set('Authorization', bearer('customer')).send(orderPayload),
+    request(app).post('/api/v1/orders').set('Authorization', bearer('customer')).send(orderPayload),
   ]);
 
   const statuses = [res1.status, res2.status];
@@ -236,7 +238,7 @@ test('[L28] Cancel Order restocks items and transitions status', async () => {
 
   const orderRes = await request(app)
     .post('/api/v1/orders')
-    .set('x-dev-role', 'customer')
+    .set('Authorization', bearer('customer'))
     .send({
       shippingAddress: {
         fullName: 'Aarav Mehta',
@@ -259,7 +261,7 @@ test('[L28] Cancel Order restocks items and transitions status', async () => {
   // Cancel order
   const cancelRes = await request(app)
     .patch(`/api/v1/orders/${orderId}/cancel`)
-    .set('x-dev-role', 'customer');
+    .set('Authorization', bearer('customer'));
 
   assert.equal(cancelRes.status, 200);
   assert.equal(cancelRes.body.data.status, 'cancelled');
@@ -273,7 +275,7 @@ test('[L23] Admin Analytics: summary, revenue, sales-by-category, top-products',
   // GET /api/v1/admin/analytics/summary
   const summaryRes = await request(app)
     .get('/api/v1/admin/analytics/summary')
-    .set('x-dev-role', 'admin');
+    .set('Authorization', bearer('admin'));
 
   assert.equal(summaryRes.status, 200);
   assert.ok('revenue' in summaryRes.body.data);
@@ -283,7 +285,7 @@ test('[L23] Admin Analytics: summary, revenue, sales-by-category, top-products',
   // GET /api/v1/admin/analytics/revenue
   const revRes = await request(app)
     .get('/api/v1/admin/analytics/revenue?range=30d')
-    .set('x-dev-role', 'admin');
+    .set('Authorization', bearer('admin'));
 
   assert.equal(revRes.status, 200);
   assert.ok(Array.isArray(revRes.body.data));
@@ -291,7 +293,7 @@ test('[L23] Admin Analytics: summary, revenue, sales-by-category, top-products',
   // Non-admin gets 403
   const forbiddenRes = await request(app)
     .get('/api/v1/admin/analytics/summary')
-    .set('x-dev-role', 'customer');
+    .set('Authorization', bearer('customer'));
   assert.equal(forbiddenRes.status, 403);
 });
 
@@ -301,7 +303,7 @@ test('[L23, L28] Reviews: Rating recalculation and duplicate prevention', async 
   // Post review
   const reviewRes = await request(app)
     .post(`/api/v1/products/${prod.id}/reviews`)
-    .set('x-dev-role', 'customer')
+    .set('Authorization', bearer('customer'))
     .send({
       rating: 5,
       title: 'Stunning choker!',
@@ -314,7 +316,7 @@ test('[L23, L28] Reviews: Rating recalculation and duplicate prevention', async 
   // Duplicate review from same user -> 409 Conflict
   const dupRes = await request(app)
     .post(`/api/v1/products/${prod.id}/reviews`)
-    .set('x-dev-role', 'customer')
+    .set('Authorization', bearer('customer'))
     .send({
       rating: 4,
       title: 'Trying again',
@@ -345,7 +347,7 @@ test('[L43] AI Stylist: candidate retrieval, brand voice, and allowlist verifica
   // AI Describe (manager+)
   const describeRes = await request(app)
     .post('/api/v1/ai/describe')
-    .set('x-dev-role', 'manager')
+    .set('Authorization', bearer('manager'))
     .send({
       name: 'Peacock Temple Kada',
       material: 'brass',

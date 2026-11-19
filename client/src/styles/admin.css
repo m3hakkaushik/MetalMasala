@@ -125,3 +125,16 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+.admin-drop {
+  margin-bottom: 1rem;
+}
+
+.admin-drop summary {
+  cursor: pointer;
+}
+
+.admin-drop form {
+  max-width: 32rem;
+  margin-top: 1rem;
+}

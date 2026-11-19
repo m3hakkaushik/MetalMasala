@@ -1,0 +1,28 @@
+@apiUrl = http://localhost:4000/api/v1
+# Run auth/login once per role and paste response access tokens into local variables.
+
+### Public catalogue (200)
+GET {{apiUrl}}/products
+
+### Anonymous request to a private endpoint (401)
+GET {{apiUrl}}/users/me
+
+### Customer can see own profile (200)
+GET {{apiUrl}}/users/me
+Authorization: Bearer {{customerToken}}
+
+### Customer cannot access staff orders (403)
+GET {{apiUrl}}/admin/orders
+Authorization: Bearer {{customerToken}}
+
+### Manager can process orders (200)
+GET {{apiUrl}}/admin/orders
+Authorization: Bearer {{managerToken}}
+
+### Manager cannot manage users (403)
+GET {{apiUrl}}/admin/users
+Authorization: Bearer {{managerToken}}
+
+### Admin can manage users (200)
+GET {{apiUrl}}/admin/users
+Authorization: Bearer {{adminToken}}

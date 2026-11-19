@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import { DropPublisher } from './DropPublisher';
 import { useAuth } from '../../stores/auth.store';
 
 export default function AdminShell() {
@@ -41,6 +42,7 @@ export default function AdminShell() {
         className="site-width admin-content"
         aria-label="Store management content"
       >
+        <DropPublisher />
         <Outlet />
       </section>
     </div>

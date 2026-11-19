@@ -3,7 +3,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { login, register as registerAccount } from '../api/auth';
-import { isMocked } from '../api/config';
 import { loginSchema, registerSchema } from '../api/validation';
 import { safeReturnTo } from '../app/Access';
 import { Seo } from '../app/Seo';
@@ -13,12 +12,6 @@ import { RequestError } from '../components/ui/Status';
 import { mergeGuestBag } from '../features/cart/sessionCart';
 import { useAuth } from '../stores/auth.store';
 import { useUi } from '../stores/ui.store';
-
-const demos = [
-  ['Customer', 'aarav@example.com', 'Test@1234'],
-  ['Manager', 'manager@metalmasala.in', 'Manager@1234'],
-  ['Admin', 'admin@metalmasala.in', 'Admin@1234'],
-];
 
 export default function Auth({ create = false }) {
   const navigate = useNavigate();
@@ -30,7 +23,6 @@ export default function Auth({ create = false }) {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
-    reset,
   } = useForm({
     resolver: zodResolver(create ? registerSchema : loginSchema),
     defaultValues: { name: '', email: '', password: '' },
@@ -110,22 +102,6 @@ export default function Auth({ create = false }) {
             {create ? 'Sign in' : 'Create an account'}
           </Link>
         </p>
-        {!create && isMocked('auth') && (
-          <details className="demo-accounts">
-            <summary>Use a demo account</summary>
-            <div>
-              {demos.map(([role, email, password]) => (
-                <Button
-                  key={role}
-                  variant="outline"
-                  onClick={() => reset({ email, password })}
-                >
-                  {role}
-                </Button>
-              ))}
-            </div>
-          </details>
-        )}
       </div>
     </div>
   );

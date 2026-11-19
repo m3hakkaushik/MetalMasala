@@ -64,18 +64,18 @@ This file answers one question for every curriculum topic: **"How did you implem
 
 | Lecture | Concept | Where in Metal मसाला | How it's implemented | Status |
 |---|---|---|---|---|
-| L31 | Authentication | Accounts | `POST /auth/register|login|logout|refresh`, `GET /auth/me`, `PATCH /auth/password`; normalised email; identical error for unknown email vs wrong password; strict rate limit on login. (STRETCH: lockout, forgot/reset.) | ⬜ |
-| L32 | Authorization Concepts | Who can do what | `docs/authz.md`: authN vs authZ, 401 vs 403, permission matrix; ownership checks in services (orders, cart, addresses, reviews). | ⬜ |
-| L33 | Password Hashing (bcrypt) | Safe credentials | `bcryptjs` in User `pre('save')` (cost from config), `comparePassword`, `select:false`, zod password policy, change-password revokes sessions, seeds hashed via `User.create`. | ⬜ |
-| L34 | JWT | Stateless identity | `utils/jwt.js` sign/verify (HS256; claims `sub`, `role`); secrets from validated config; decode-vs-verify explained; errors mapped to `TOKEN_EXPIRED`/`UNAUTHENTICATED`. | ⬜ |
-| L35 | Access Tokens, Refresh Tokens | Sessions | 15-min access token in JSON/`Authorization`; 7-day refresh token in httpOnly cookie `mm_refresh`; `RefreshToken` collection (hashed, TTL index); rotation + reuse detection (revoke family); client interceptor refreshes silently. | ⬜ |
-| L36 | Protected Routes | Real guard | Stub replaced inside `protect` (Bearer → verify → load user → active check → password-changed check); no route edits needed; route audit table in `docs/authz.md`. | ⬜ |
-| L37 | RBAC | Customer / manager / admin | `restrictTo(roles)` + `config/permissions.js` + `requirePermission`; admin user management (list, role, activate/deactivate); RBAC test matrix (`api-tests/rbac.http` / `supertest`). | ⬜ |
-| L38 | EventEmitter | Decoupled side effects | `events/bus.js` (EventEmitter subclass) with `user.registered`, `order.placed`, `order.statusChanged`, `stock.low`, `review.created`; B3's hooks → `bus.emit` after DB writes; listeners for notifications (mail stub), stock alerts, socket bridge; `once`, `off`, `errorMonitor`. | ⬜ |
-| L39 | Web Sockets | Protocol understanding | `docs/websockets.md` (Upgrade handshake, frames, polling vs SSE vs WS); `scripts/ws-demo-server.js` + client using `ws` (echo, broadcast, heartbeat). | ⬜ |
-| L40 | Socket.IO | Live commerce | Shared HTTP server; namespaces `/` (viewer counts, drop banners), `/account` (JWT; order tracking rooms), `/admin` (JWT + role; new-order/low-stock alerts, drop publish); rooms `product:<slug>`, `order:<id>`, `user:<id>`, `admins`; client hooks `useSocket`, `useOrderLive`. | ⬜ |
-| L41 | Full-Stack Application Integration & Project Review | Everything together | All mock groups removed; MSW excluded from prod bundle; refresh flow + guest-cart merge verified; cross-origin cookie/CORS checks; end-to-end script and final README in `docs/PROJECT_REVIEW.md`. | ⬜ |
-| L45 | Capstone Project | The entire repository | Frontend + B1–B4 delivered as one full-stack application; this map fully ✅. | ⬜ |
+| L31 | Authentication | Accounts | `POST /auth/register`, `/auth/login`, `/auth/logout`, `/auth/refresh`, `GET /auth/me`, `PATCH /auth/password`; normalised email; identical error for unknown email vs wrong password; strict rate limit on login. (STRETCH: lockout, forgot/reset.) | ✅ |
+| L32 | Authorization Concepts | Who can do what | `docs/authz.md`: authN vs authZ, 401 vs 403, permission matrix; ownership checks in services (orders, cart, addresses, reviews). | ✅ |
+| L33 | Password Hashing (bcrypt) | Safe credentials | `bcryptjs` in User `pre('save')` (cost from config), `comparePassword`, `select:false`, zod password policy, change-password revokes sessions, seeds hashed via `User.create`. | ✅ |
+| L34 | JWT | Stateless identity | `utils/jwt.js` sign/verify (HS256; claims `sub`, `role`); secrets from validated config; decode-vs-verify explained; errors mapped to `TOKEN_EXPIRED`/`UNAUTHENTICATED`. | ✅ |
+| L35 | Access Tokens, Refresh Tokens | Sessions | 15-min access token in JSON/`Authorization`; 7-day refresh token in httpOnly cookie `mm_refresh`; `RefreshToken` collection (hashed, TTL index); rotation + reuse detection (revoke family); client interceptor refreshes silently. | ✅ |
+| L36 | Protected Routes | Real guard | Stub replaced inside `protect` (Bearer → verify → load user → active check → password-changed check); route audit table in `docs/authz.md`. | ✅ |
+| L37 | RBAC | Customer / manager / admin | `restrictTo(roles)` + `config/permissions.js` + `requirePermission`; admin user management (list, role, activate/deactivate); RBAC test matrix (`api-tests/rbac.http` / `supertest`). | ✅ |
+| L38 | EventEmitter | Decoupled side effects | `events/bus.js` (EventEmitter subclass) with `user.registered`, `order.placed`, `order.statusChanged`, `stock.low`, `review.created`; B3's hooks → `bus.emit` after DB writes; listeners for notifications (mail stub), stock alerts, socket bridge; `once`, `off`, `errorMonitor`. | ✅ |
+| L39 | Web Sockets | Protocol understanding | `docs/websockets.md` (Upgrade handshake, frames, polling vs SSE vs WS); `scripts/ws-demo-server.js` + client using `ws` (echo, broadcast, heartbeat). | ✅ |
+| L40 | Socket.IO | Live commerce | Shared HTTP server; namespaces `/` (viewer counts, drop banners), `/account` (JWT; order tracking rooms), `/admin` (JWT + role; new-order/low-stock alerts, drop publish); rooms `product:<slug>`, `order:<id>`, `user:<id>`, `admins`; client hooks `useSocket`, `useOrderLive`. | ✅ |
+| L41 | Full-Stack Application Integration & Project Review | Everything together | All mock groups removed; MSW excluded from prod bundle; refresh flow + guest-cart merge verified; cross-origin cookie/CORS checks; end-to-end script and final README in `docs/PROJECT_REVIEW.md`. | ✅ |
+| L45 | Capstone Project | The entire repository | Frontend and B1–B4 are integrated and verified together. Team review and release tagging follow the Phase 4 PR. | ✅ |
 
 ---
 
@@ -87,8 +87,8 @@ This file answers one question for every curriculum topic: **"How did you implem
 | Routing & guards | `client/src/app/App.jsx`, `client/src/app/Access.jsx` | React Router lazily loads account, checkout, tracking, and staff routes. Guards enforce authentication and role at direct URLs. | ✅ |
 | Server state | `client/src/api/`, `client/src/features/cart/useBag.js` | TanStack Query caches catalogue and customer data, provides loading and retry states, and invalidates queries after mutations. | ✅ |
 | Client state | `client/src/stores/`, `client/src/features/cart/sessionCart.js` | The guest bag persists in browser storage, auth tokens stay in memory, and sign-in merges guest items into the server-shaped cart. | ✅ |
-| Contract-faithful mocking | `client/src/mocks/registry.js`, `client/src/mocks/handlers/` | Selectable MSW route groups support commerce, accounts, catalogue, staff, marketing, and AI. `catalogue-extras` keeps the B3 catalogue routes available during B1 and B2. | ✅ |
-| Auth plumbing | `client/src/api/http.js`, `client/src/mocks/handlers/auth.js` | Axios attaches the bearer token, unwraps envelopes, and queues expired-token retries behind one refresh. Mocks implement refresh rotation and reuse handling. | ✅ |
+| Contract-faithful mocking | `docs/02_FRONTEND_PHASE.md` and frontend commit history | MSW supported the standalone frontend and earlier integration phases. The Phase 4 app uses the live API for every group. | ✅ |
+| Auth plumbing | `client/src/api/http.js`, `server/src/services/auth.service.js` | Axios attaches bearer tokens and queues expired-token retries. The server rotates the refresh session and checks for reuse. | ✅ |
 | Forms & validation | `client/src/api/validation.js`, `client/src/api/productFields.js`, `client/src/components/ui/Field.jsx` | React Hook Form and Zod validate modal and page forms, including checkout phone and pincode. | ✅ |
 | Design system | `client/src/styles/tokens.css`, `client/src/main.jsx` | Patina, gulaal, haldi and kapoor tokens mapped to Tailwind. Self-hosted Yatra One, Instrument Sans, Mukta and Kalam. | ✅ |
 | Signature hero | `client/src/features/home/Hero.jsx` | The shirorekha continues into the pendant rail. Springs react to pointer and scroll velocity, with fixed positions for reduced motion. | ✅ |

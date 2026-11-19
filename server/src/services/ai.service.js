@@ -1,6 +1,7 @@
 import { ERROR_CODES as codes, FINISHES, MATERIALS, TAGS } from '../config/constants.js';
 import { getAiProvider } from './ai/provider.js';
 import Product from '../models/Product.js';
+import { formatProduct } from '../repositories/mongo/product.repo.js';
 import { AppError } from '../utils/AppError.js';
 import { debugData } from '../utils/logger.js';
 
@@ -45,14 +46,14 @@ export const aiService = {
 
     // Fetch up to 12 candidate products
     let candidates = await Product.find(query)
-      .select('name slug price tags finish material tagline images stock')
+      .populate('category', 'name slug')
       .limit(12)
       .lean();
 
     // If filter too narrow, fallback to featured products
     if (candidates.length === 0) {
       candidates = await Product.find({ stock: { $gt: 0 } })
-        .select('name slug price tags finish material tagline images stock')
+        .populate('category', 'name slug')
         .sort({ isFeatured: -1, ratingAverage: -1 })
         .limit(12)
         .lean();
@@ -122,29 +123,19 @@ ${JSON.stringify(candidateSummary)}`;
     }
 
     // Strict allowlist validation
-    const rawIds = Array.isArray(parsed.productIds) ? parsed.productIds : [];
+    const rawIds = Array.isArray(parsed?.productIds) ? parsed.productIds : [];
     const validIds = rawIds.filter((id) => candidateIds.has(String(id)));
 
-    // Fetch full product objects for allowlisted products
+    // The storefront renders recommendations with the same cards as the catalogue.
     const recommendedProducts = candidates
-      .filter((c) => validIds.includes(c._id.toString()))
-      .map((c) => ({
-        id: c._id.toString(),
-        name: c.name,
-        slug: c.slug,
-        price: c.price,
-        image: c.images?.[0]?.url || '',
-        tagline: c.tagline,
-        finish: c.finish,
-        material: c.material,
-        tags: c.tags,
-      }));
+      .filter((candidate) => validIds.includes(candidate._id.toString()))
+      .map(formatProduct);
 
     const duration = Date.now() - startTime;
     debugData('AI Stylist request completed in %d ms using provider: %s', duration, provider.name);
 
     return {
-      reply: parsed.reply || 'Here are our recommended jewellery pieces for you.',
+      reply: parsed?.reply || 'Here are our recommended jewellery pieces for you.',
       products: recommendedProducts,
       provider: provider.name,
     };
