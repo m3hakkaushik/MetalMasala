@@ -6,6 +6,13 @@ import { useAuth } from '../stores/auth.store';
 
 const connections = new Map();
 const getToken = () => useAuth.getState().accessToken;
+const RECONNECT_OPTIONS = {
+  reconnection: true,
+  reconnectionAttempts: Infinity,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 30_000,
+  randomizationFactor: 0.5,
+};
 let renewal;
 
 function renewSession() {
@@ -32,13 +39,30 @@ function createConnection(namespace) {
   const needsAuth = namespace !== '/';
   const socket = io(socketUrl + (needsAuth ? namespace : ''), {
     autoConnect: false,
+    ...RECONNECT_OPTIONS,
     auth: (done) => done({ token: needsAuth ? getToken() : undefined }),
   });
   let blockedToken;
+  let reconnectTimer;
   function connect() {
     if (!needsAuth || (getToken() && getToken() !== blockedToken))
       socket.connect();
   }
+  const handleOnline = () => {
+    if (connections.has(namespace) && !socket.connected && !renewal) connect();
+  };
+  const handleVisibility = () => {
+    if (
+      document.visibilityState === 'visible' &&
+      connections.has(namespace) &&
+      !socket.connected &&
+      !renewal
+    ) {
+      connect();
+    }
+  };
+  window.addEventListener('online', handleOnline);
+  document.addEventListener('visibilitychange', handleVisibility);
   const unsubscribe = needsAuth
     ? useAuth.subscribe((state, previous) => {
         if (state.accessToken !== previous.accessToken) {
@@ -71,13 +95,20 @@ function createConnection(namespace) {
     socket.on('disconnect', (reason) => {
       if (reason === 'io server disconnect') {
         // Give password changes time to apply their replacement token before reconnecting.
-        setTimeout(() => {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = setTimeout(() => {
           if (connections.has(namespace) && !renewal) connect();
         }, 100);
       }
     });
   }
-  return { socket, connect, unsubscribe, users: 0 };
+  function cleanup() {
+    clearTimeout(reconnectTimer);
+    window.removeEventListener('online', handleOnline);
+    document.removeEventListener('visibilitychange', handleVisibility);
+    unsubscribe();
+  }
+  return { socket, connect, cleanup, users: 0 };
 }
 
 // [L40] Share one Socket.IO connection per namespace and detach subscriptions on navigation.
@@ -89,13 +120,13 @@ export function useSocket(namespace, attach) {
       connections.set(namespace, connection);
     }
     connection.users++;
-    const cleanup = attach(connection.socket);
+    const detach = attach(connection.socket);
     connection.connect();
     return () => {
-      cleanup?.();
+      detach?.();
       connection.users--;
       if (connection.users) return;
-      connection.unsubscribe();
+      connection.cleanup();
       connection.socket.disconnect();
       connections.delete(namespace);
     };
